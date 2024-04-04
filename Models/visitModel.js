@@ -22,7 +22,20 @@ const visitSchema=mongoose.Schema({
     prescription:{
         type:String,
         required:true
-    }
+    },
+    files:[
+        {
+           docType:String,
+           fieldname: String,
+           originalname: String,
+           encoding: String,
+           mimetype: String,
+           destination: String,
+           filename: String,
+           path: String,
+           size: Number,
+        }
+    ]
 },
 {
     timestamps:true

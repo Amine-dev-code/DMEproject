@@ -1,6 +1,7 @@
 const User=require('../Models/userModel');
 const Visit=require('../Models/visitModel');
 
+
 const addVisit=async(req,res)=>{
 try{
     const visit = new Visit(req.body);
@@ -131,6 +132,11 @@ const clientDoctorVisits=async(req,res)=>{
         })
     }
 }
+
+
+
+
+
 module.exports={
     addVisit,
     editVisit,
