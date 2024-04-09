@@ -1,6 +1,10 @@
 const express = require('express');
+const Uploadnotify=require('../Models/uploadNotify')
 const multer = require('multer');
-const Visit=require('../Models/visitModel')
+const {
+notifyUserDoc
+}=require('../Notifications/documentNotification')
+const Visit=require('../Models/visitModel');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads')
@@ -39,13 +43,13 @@ const uploading=async(req, res, next)=>{
     
     const visit=await Visit.findByIdAndUpdate(id,{new:true});
     visit.files.push(newFile);
-    visit.save()
+    visit.save();
     console.log('uploaded');
     console.log(req.file);
     console.log(req.body);
-    console.log(visit)
-  
-    // Process the uploaded file and respond to the client
+    const idoctor=visit.doctor.toHexString()
+    const ipatient=visit.patient.toHexString()
+    notifyUserDoc.emit('uploadFile',idoctor,ipatient,visit._id)
     res.send('File uploaded successfully');
     }catch(error){
         res.status(500).json({
@@ -53,13 +57,23 @@ const uploading=async(req, res, next)=>{
         })
     }
   }
-  const getDocs=async(req,res)=>{
-
+  const getNotification=async(req,res)=>{
+    try{
+      const {patientId}=req.params
+      const uploadDoc=await Uploadnotify.find({receiver:patientId,readingStatus:false})
+      res.status(200).json(uploadDoc)
+    }catch(error){
+      res.status(500).json({
+        message:error.message
+      })
+    }
   }
+ 
   
  
 
   module.exports={
     uploading,
-    upload
+    upload,
+    getNotification
   }

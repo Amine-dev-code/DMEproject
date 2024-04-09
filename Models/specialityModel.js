@@ -8,6 +8,6 @@ const specialitySchema=mongoose.Schema({
     }
 })
 
-const speciality=mongoose.model('Speciality',specialitySchema);
+const Speciality=mongoose.model('Speciality',specialitySchema);
 
 module.exports=Speciality;
