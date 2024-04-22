@@ -1,0 +1,192 @@
+{
+    "extension": "linecounter",
+    "version": "0.2.7",
+    "workspace": "/Users/edyrr/dmee/DMEproject/DME/src/components",
+    "linecount": [
+        {
+            "version": "0.2.7",
+            "counttime": "2024-04-21 11:06:11",
+            "filesum": 28,
+            "codesum": 1121,
+            "commentsum": 26,
+            "blanksum": 55,
+            "statistics": {
+                ".vue": {
+                    "code": 1121,
+                    "comment": 26,
+                    "blank": 55
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 2,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "Appointments.vue"
+                },
+                {
+                    "blank": 1,
+                    "code": 164,
+                    "comment": 0,
+                    "filename": "AppointmentsTable.vue"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "DashbordHome.vue"
+                },
+                {
+                    "blank": 6,
+                    "code": 39,
+                    "comment": 8,
+                    "filename": "DateNTime.vue"
+                },
+                {
+                    "blank": 14,
+                    "code": 166,
+                    "comment": 9,
+                    "filename": "DocAppointmentForm.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "doctorIllustration.vue"
+                },
+                {
+                    "blank": 4,
+                    "code": 37,
+                    "comment": 0,
+                    "filename": "DonutCircle.vue"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "DoughnutChat.vue"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "icons/IconCommunity.vue"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "icons/IconDocumentation.vue"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "icons/IconEcosystem.vue"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "icons/IconSupport.vue"
+                },
+                {
+                    "blank": 0,
+                    "code": 19,
+                    "comment": 1,
+                    "filename": "icons/IconTooling.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "inputField.vue"
+                },
+                {
+                    "blank": 3,
+                    "code": 33,
+                    "comment": 0,
+                    "filename": "landingPageContent.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 30,
+                    "comment": 1,
+                    "filename": "MockComp.vue"
+                },
+                {
+                    "blank": 4,
+                    "code": 51,
+                    "comment": 2,
+                    "filename": "NavBar.vue"
+                },
+                {
+                    "blank": 0,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "NoteSheet.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 46,
+                    "comment": 1,
+                    "filename": "PatientCount.vue"
+                },
+                {
+                    "blank": 0,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "PatientProfilePreview.vue"
+                },
+                {
+                    "blank": 1,
+                    "code": 51,
+                    "comment": 1,
+                    "filename": "PatientsTable.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 23,
+                    "comment": 0,
+                    "filename": "SearchBar.vue"
+                },
+                {
+                    "blank": 7,
+                    "code": 83,
+                    "comment": 2,
+                    "filename": "SideBar.vue"
+                },
+                {
+                    "blank": 0,
+                    "code": 117,
+                    "comment": 0,
+                    "filename": "SignUp.vue"
+                },
+                {
+                    "blank": 1,
+                    "code": 16,
+                    "comment": 1,
+                    "filename": "TotalCard.vue"
+                },
+                {
+                    "blank": 0,
+                    "code": 38,
+                    "comment": 0,
+                    "filename": "UserInstance.vue"
+                },
+                {
+                    "blank": 0,
+                    "code": 33,
+                    "comment": 0,
+                    "filename": "UserList.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 41,
+                    "comment": 0,
+                    "filename": "WelcomeDoctor.vue"
+                }
+            ]
+        }
+    ]
+}

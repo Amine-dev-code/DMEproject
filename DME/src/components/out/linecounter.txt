@@ -1,0 +1,45 @@
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.7
+-------------------------------------------------------------------------------
+count time : 2024-04-21 11:06:11
+count workspace : /Users/edyrr/dmee/DMEproject/DME/src/components
+total files : 28
+total code lines : 1121
+total comment lines : 26
+total blank lines : 55
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |           .vue|           1121|             26|             55| 1.0e+2|
+   -------------------------------------------------------------------------
+Appointments.vue, code is 4, comment is 0, blank is 2.
+AppointmentsTable.vue, code is 164, comment is 0, blank is 1.
+DashbordHome.vue, code is 3, comment is 0, blank is 0.
+DateNTime.vue, code is 39, comment is 8, blank is 6.
+DocAppointmentForm.vue, code is 166, comment is 9, blank is 14.
+doctorIllustration.vue, code is 11, comment is 0, blank is 2.
+DonutCircle.vue, code is 37, comment is 0, blank is 4.
+DoughnutChat.vue, code is 0, comment is 0, blank is 0.
+icons/IconCommunity.vue, code is 7, comment is 0, blank is 0.
+icons/IconDocumentation.vue, code is 7, comment is 0, blank is 0.
+icons/IconEcosystem.vue, code is 7, comment is 0, blank is 0.
+icons/IconSupport.vue, code is 7, comment is 0, blank is 0.
+icons/IconTooling.vue, code is 19, comment is 1, blank is 0.
+inputField.vue, code is 17, comment is 0, blank is 2.
+landingPageContent.vue, code is 33, comment is 0, blank is 3.
+MockComp.vue, code is 30, comment is 1, blank is 2.
+NavBar.vue, code is 51, comment is 2, blank is 4.
+NoteSheet.vue, code is 20, comment is 0, blank is 0.
+PatientCount.vue, code is 46, comment is 1, blank is 2.
+PatientProfilePreview.vue, code is 51, comment is 0, blank is 0.
+PatientsTable.vue, code is 51, comment is 1, blank is 1.
+SearchBar.vue, code is 23, comment is 0, blank is 2.
+SideBar.vue, code is 83, comment is 2, blank is 7.
+SignUp.vue, code is 117, comment is 0, blank is 0.
+TotalCard.vue, code is 16, comment is 1, blank is 1.
+UserInstance.vue, code is 38, comment is 0, blank is 0.
+UserList.vue, code is 33, comment is 0, blank is 0.
+WelcomeDoctor.vue, code is 41, comment is 0, blank is 2.
+===============================================================================

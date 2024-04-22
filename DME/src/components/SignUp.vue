@@ -11,6 +11,37 @@
       <div class="birthday">
         <select name="" class="day" id="day">
           <option value="">Day</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+          <option value="16">16</option>
+          <option value="17">17</option>
+          <option value="18">18</option>
+          <option value="19">19</option>
+          <option value="20">20</option>
+          <option value="21">21</option>
+          <option value="22">22</option>
+          <option value="23">23</option>
+          <option value="24">24</option>
+          <option value="25">25</option>
+          <option value="26">26</option>
+          <option value="27">27</option>
+          <option value="28">28</option>
+          <option value="29">29</option>
+          <option value="30">30</option>
+          <option value="31">31</option>
         </select>
         <select name="" id="month" class="month">
           <option value="">Month</option>
@@ -110,21 +141,20 @@
     <hr />
     <div class="health-info">
       <div
-        id="surgery"
         style="
           display: flex;
           flex-direction: row;
           align-items: center;
           justify-content: space-between;
-          gap: 10px;
+          gap: 10px ;
           margin-bottom: 10px;
         "
       >
-        <button class="add-btn">+</button>
-        <input placeholder="Surgery" />
+        <button class="add-btn" @click.prevent="add('surgery-btn')" id="surgery-btn">+</button>
+        <input placeholder="Surgery" class="input-style" />
       </div>
+      <hr style="width : 300px ;"/>
       <div
-        id="allergy"
         style="
           display: flex;
           flex-direction: row;
@@ -134,22 +164,22 @@
           margin-bottom: 10px;
         "
       >
-        <button class="add-btn">+</button>
-        <input placeholder="Allergies" />
+        <button class="add-btn" @click.prevent="add('allergy-btn')" id="allergy-btn">+</button>
+        <input placeholder="Allergies" class="input-style"/>
       </div>
-      <div
-        id="diagnosis"
-        style="
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: space-between;
-          gap: 10px;
-          margin-bottom: 10px;
-        "
-      >
-        <button class="add-btn">+</button>
-        <input placeholder="Diagnosis" />
+      <hr style="width : 300px ;"/>
+      <div>
+        <div style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 10px;
+      ">
+          <button class="add-btn" @click.prevent="add('diagnosis-btn')" id="diagnosis-btn">+</button>
+          <input placeholder="Diagnosis" class="input-style" />
+        </div>
       </div>
     </div>
     <button class="create-patient-btn" type="submit">Create new patient</button>
@@ -157,7 +187,21 @@
   <!-- </div> -->
 </template>
 
-<script></script>
+<script>
+export default {
+  methods: {
+    add(id) {
+      let current = document.getElementById(id);
+      let parent = current.parentNode.parentNode;
+      let newDiv = document.createElement('div');
+      newDiv.innerHTML = `
+        <input placeholder="Diagnosis" class="input-style" />
+      `;
+      parent.insertBefore(newDiv, parent.childNode);
+    }
+  }
+}
+</script>
 
 <style>
 .signup-form {
@@ -171,7 +215,7 @@ hr {
   width: 40vw; /* Adjust the border style, width, and color */
   margin: 30px;
 }
-div > input {
+.input-style {
   width: 29.5vw;
   height: 40px;
   background-color: rgba(0, 206, 200, 0.1);
@@ -271,20 +315,9 @@ div > input {
   display: flex;
   flex-direction: column;
   font-family: sans-serif;
+  align-items:center ;
 }
-.health-info > textarea {
-  width: 59vw;
-  background-color: rgba(0, 206, 200, 0.1);
-  color: rgba(67, 106, 230, 0.5);
-  border: 2px solid #00cec8;
-  border-radius: 10px;
-  padding: 10px;
-  font-size: 14px;
-  margin-bottom: 20px;
-}
-.health-info > textarea::placeholder {
-  color: rgba(67, 106, 230, 0.5);
-}
+
 .form-header {
   text-align: center;
 }
