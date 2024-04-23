@@ -1,7 +1,12 @@
 <template>
-  <div class="total">the total is 500</div>
+  <div class="total">the {{ totalName }} is {{ totalNum }}</div>
 </template>
 
+<script>
+export default {
+  props: ['total-name', 'total-num']
+}
+</script>
 <style>
 .total {
   background-color: rgba(0, 206, 200, 0.1);

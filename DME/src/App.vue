@@ -1,13 +1,13 @@
 <template>
-  <DocAppointmentForm/>
+  <DashBoard/>
 </template>
 
 <script>
+import DashBoard from './views/doctor/DashBoard.vue';
 
-import DocAppointmentForm from './components/DocAppointmentForm.vue';
 export default {
   components: {
-    DocAppointmentForm
+    DashBoard
   }
 }
 </script>

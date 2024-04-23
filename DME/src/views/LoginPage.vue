@@ -1,29 +1,38 @@
 <template>
   <div class="container">
-    <div class="LoginForm">
-      <input-field class="Input" Type="email" Name="email" Placeholder="example@email.com" />
-      <p style="margin: 0; font-family: sans-serif; color: rgba(67, 106, 230, 0.5)">or enter</p>
-      <input-field class="Input" Type="tel" Name="phone" Placeholder="e.g. 05 12 34 56 78" />
-      <input-field
-        class="Input"
-        Type="password"
-        Name="password"
-        Placeholder="enter your password"
-      />
-      <button class="lgn-btn">Login</button>
-    </div>
+    <form @submit.prevent="handleSubmit" class="LoginForm">
+        <input class="Input" type="email" name="email" placeholder="example@email.com" v-model="email" >
+        <p style="margin: 0; font-family: sans-serif; color: rgba(67, 106, 230, 0.5)">or enter</p>
+        <input class="Input" type="tel" name="phone" placeholder="e.g. 05 12 34 56 78" v-model="phone" >
+        <input
+          class="Input"
+          type="password"
+          name="password"
+          placeholder="enter your password"
+          required
+          v-model="password"
+        />
+        <button class="lgn-btn">Login</button>
+    </form>
     <div class="logindiv">
-      <img src="./assets/login.svg" alt="" class="loginimg" />
+      <img src="../assets/login.svg" alt="" class="loginimg" />
     </div>
   </div>
 </template>
 
 <script>
-import inputField from './components/inputField.vue'
-
 export default {
-  components: {
-    inputField
+  data() {
+    return {
+      email: '',
+      phone: '',
+      password: ''
+    }
+  },
+  methods: {
+    handleSubmit() {
+      console.log("form submitted");
+    }
   }
 }
 </script>

@@ -1,7 +1,7 @@
 import { createApp, VueElement } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import App from './App.vue'
-import LoginPage from './LoginPage.vue'
+import LoginPage from './views/LoginPage.vue'
 import LandingPage from './views/LandingPage.vue'
 
 const routes = [

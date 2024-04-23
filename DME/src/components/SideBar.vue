@@ -2,9 +2,9 @@
   <div class="SideBarContainer">
     <div class="profile">
       <div class="profilePicture">
-        <img src="path_to_profile_picture" alt="Profile Picture" />
+        <img src="" alt="Profile Picture" />
       </div>
-      <p>Dr. Franz</p>
+      <p>{{ name }}</p>
     </div>
     <div class="menu">
       <router-link to="/" :class="{ active: isActive('/') }">Home</router-link>
@@ -21,6 +21,7 @@
 import { useRoute } from 'vue-router'
 
 export default {
+  props: ['name', 'id'],
   setup() {
     // Get the current route
     const route = useRoute()
