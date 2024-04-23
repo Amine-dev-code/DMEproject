@@ -1,15 +1,11 @@
 <template>
-  <!-- <div classs="signup-container"> -->
   <h1 class="form-header">Patient Profile Creation</h1>
   <form action="" class="signup-form">
     <div class="general-info">
-      <!-- <div style="display: flex; flex-direction: column"> -->
-      <!-- <label for="">Name</label> -->
-      <input class="half input-style" type="text" placeholder="first name" />
-      <!-- </div> -->
-      <input type="text" placeholder="family name" class="input-style" />
+      <input class="half input-style" type="text" name="first-name" placeholder="first name"  v-model="firstName" required>
+      <input type="text" placeholder="family name" name="family-name" class="input-style"  v-model="familyName" required>
       <div class="birthday">
-        <select name="" class="day" id="day">
+        <select name="" class="day" id="day"  v-model="day" required>
           <option value="">Day</option>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -43,7 +39,7 @@
           <option value="30">30</option>
           <option value="31">31</option>
         </select>
-        <select name="" id="month" class="month">
+        <select name="" id="month" class="month"  v-model="month" required>
           <option value="">Month</option>
           <option value="01">January</option>
           <option value="02">February</option>
@@ -58,16 +54,15 @@
           <option value="11">November</option>
           <option value="12">December</option>
         </select>
-        <select name="" id="year" class="year">
+        <select name="" id="year" class="year"  v-model="year" required>
           <option value="">Year</option>
         </select>
       </div>
-      <!-- <input type="text" class="input-style" placeholder="birthday MM-DD-YYYY" /> -->
-      <input type="text" class="input-style" placeholder="gender" />
+      <input type="text" class="input-style" placeholder="gender"  v-model="gender" required>
       <div class="body-info">
-        <input type="text" placeholder="height" class="input-style" />
-        <input type="text" placeholder="weight" class="input-style" />
-        <select class="blood-type">
+        <input type="text" placeholder="height" class="input-style"  v-model="height" required>
+        <input type="text" placeholder="weight" class="input-style"  v-model="weight" required>
+        <select class="blood-type"  v-model="blood" required>
           <option value="">Select blood type</option>
           <option value="A+">A+</option>
           <option value="A-">A-</option>
@@ -82,10 +77,10 @@
     </div>
     <hr />
     <div class="contact-info">
-      <input class="number input-style" type="text" placeholder="number" />
-      <input class="email input-style" type="text" placeholder="email" />
-      <input class="address input-style" type="text" placeholder="address" />
-      <select id="wilaya" name="wilaya" class="state">
+      <input class="number input-style" type="tel" placeholder="number"  v-model="phone" required>
+      <input class="email input-style" type="email" placeholder="email"  v-model="email" required>
+      <input class="address input-style" type="text" placeholder="address"  v-model="address" required>
+      <select id="wilaya" name="wilaya" class="state"  v-model="wilaya" required>
         <option value="">Select wilaya</option>
         <option value="Adrar">Adrar</option>
         <option value="Chlef">Chlef</option>
@@ -136,36 +131,44 @@
         <option value="Ghardaïa">Ghardaïa</option>
         <option value="Relizane">Relizane</option>
       </select>
-      <input class="city input-style" type="text" placeholder="city" />
+      <input class="city input-style" type="text" placeholder="city"  v-model="city" required>
     </div>
     <hr />
     <div class="health-info">
       <div
         style="
           display: flex;
-          flex-direction: row;
+          flex-direction: column;
           align-items: center;
           justify-content: space-between;
           gap: 10px ;
           margin-bottom: 10px;
         "
       >
-        <button class="add-btn" @click.prevent="add('surgery-btn')" id="surgery-btn">+</button>
-        <input placeholder="Surgery" class="input-style" />
+        <input placeholder="Surgery" class="input-style" v-model="tempSurg" @keyup.enter="addSurgeries">
+        <div class="added-container" v-if="surgeries.length > 0">
+          <div class="added" v-for="surgery in surgeries" :key="surgery">
+            {{ surgery }}
+          </div>
+        </div>
       </div>
       <hr style="width : 300px ;"/>
       <div
         style="
           display: flex;
-          flex-direction: row;
+          flex-direction: column;
           align-items: center;
           justify-content: space-between;
           gap: 10px;
           margin-bottom: 10px;
         "
       >
-        <button class="add-btn" @click.prevent="add('allergy-btn')" id="allergy-btn">+</button>
-        <input placeholder="Allergies" class="input-style"/>
+        <input placeholder="Allergies" class="input-style" v-model="tempAllerg" @keyup.enter="addAllergies">
+        <div class="added-container" v-if="allergies.length > 0">
+          <div class="added" v-for="allergy in allergies" :key="allergy">
+            {{ allergy }}
+          </div>
+        </div>
       </div>
       <hr style="width : 300px ;"/>
       <div>
@@ -177,30 +180,75 @@
         gap: 10px;
         margin-bottom: 10px;
       ">
-          <button class="add-btn" @click.prevent="add('diagnosis-btn')" id="diagnosis-btn">+</button>
-          <input placeholder="Diagnosis" class="input-style" />
+          <input placeholder="Diagnosis" class="input-style"  v-model="tempDiag" @keyup.enter="addDiagnosis">
+          <div class="added-container" v-if="diagnosises.length > 0">
+            <div class="added" v-for="diagnosis in diagnosises" :key="diagnosis">
+              {{ diagnosis }}
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <button class="create-patient-btn" type="submit">Create new patient</button>
+    <button class="create-patient-btn" type="submit" @click.prevent="handleSubmit">Create new patient</button>
   </form>
-  <!-- </div> -->
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      email:'',
+      firstName:'',
+      familyName:'',
+      day:'',
+      month:'',
+      year:'',
+      gender:'',
+      height:'',
+      weight:'',
+      blood:'',
+      phone:'',
+      address:'',
+      wilaya:'',
+      city:'',
+      tempSurg:'',
+      tempAllerg:'',
+      tempDiag:'',
+      diagnosises: [],
+      surgeries: [],
+      allergies: []
+    };
+  },
   methods: {
-    add(id) {
-      let current = document.getElementById(id);
-      let parent = current.parentNode.parentNode;
-      let newDiv = document.createElement('div');
-      newDiv.innerHTML = `
-        <input placeholder="Diagnosis" class="input-style" />
-      `;
-      parent.insertBefore(newDiv, parent.childNode);
+    addDiagnosis(event) {
+        if(event.key === 'Enter' && this.tempDiag) {
+          if(!this.diagnosises.includes(this.tempDiag)) {
+            this.diagnosises.push(this.tempDiag);
+          }
+          this.tempDiag = '';
+        }
+      },
+      addAllergies(event) {
+        if(event.key === 'Enter' && this.tempAllerg) {
+          if(!this.allergies.includes(this.tempAllerg)) {
+            this.allergies.push(this.tempAllerg);
+          }
+          this.tempAllerg = '';
+        }
+      },
+      addSurgeries(event) {
+        if(event.key === 'Enter' && this.tempSurg) {
+          if(!this.surgeries.includes(this.tempSurg)) {
+            this.surgeries.push(this.tempSurg);
+          }
+          this.tempSurg = '';
+        }
+      },
+      handleSubmit() {
+        return;
+      }
     }
   }
-}
 </script>
 
 <style>
@@ -218,7 +266,7 @@ hr {
 .input-style {
   width: 29.5vw;
   height: 40px;
-  background-color: rgba(0, 206, 200, 0.1);
+  /*background-color: rgba(0, 206, 200, 0.1);*/
   border: 2px solid #00cec8;
   border-radius: 10px;
 }
@@ -259,7 +307,7 @@ hr {
 }
 .blood-type {
   height: 47px;
-  background-color: rgba(0, 206, 200, 0.1);
+  /*background-color: rgba(0, 206, 200, 0.1);*/
   border: 2px solid #00cec8;
   border-radius: 10px;
   width: 15vw;
@@ -270,7 +318,7 @@ hr {
 .month,
 .year {
   height: 47px;
-  background-color: rgba(0, 206, 200, 0.1);
+  /*background-color: rgba(0, 206, 200, 0.1);*/
   border: 2px solid #00cec8;
   border-radius: 10px;
   width: 10vw;
@@ -280,7 +328,7 @@ hr {
 .body-info > input {
   width: 15vw;
   height: 40px;
-  background-color: rgba(0, 206, 200, 0.1);
+  /*background-color: rgba(0, 206, 200, 0.1);*/
   border: 2px solid #00cec8;
   border-radius: 10px;
 }
@@ -304,7 +352,7 @@ hr {
 }
 .state {
   height: 47px;
-  background-color: rgba(0, 206, 200, 0.1);
+  /*background-color: rgba(0, 206, 200, 0.1);*/
   border: 2px solid #00cec8;
   border-radius: 10px;
   width: 30vw;
@@ -331,6 +379,7 @@ hr {
   font-size: 18px;
   font-family: sans-serif;
   margin-bottom: 20px;
+  padding: 10px ;
 }
 .create-patient-btn:hover {
   background-color: rgba(67, 106, 230, 0.8);
@@ -356,5 +405,24 @@ hr {
   border-radius: 10px;
   font-size: larger;
   font-weight: bolder;
+}
+.added-container {
+  display: flex; 
+  flex-direction: row;
+  height: 40px ;
+  width: auto;
+}
+.added {
+  height: 30px;
+  width: auto;
+  background-color: rgba(0, 206, 200, 0.1);
+  color: rgba(0, 206, 200, 1);
+  border-radius: 10px;
+  border: none ;
+  display: flex;
+  padding: 5px ;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px ;
 }
 </style>

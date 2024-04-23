@@ -1,13 +1,13 @@
 <template>
-  <AppointmentsTable/>
+  <DocAppointmentForm/>
 </template>
 
 <script>
-import AppointmentsTable from './components/AppointmentsTable.vue';
 
+import DocAppointmentForm from './components/DocAppointmentForm.vue';
 export default {
   components: {
-    AppointmentsTable
+    DocAppointmentForm
   }
 }
 </script>

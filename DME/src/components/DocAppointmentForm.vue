@@ -5,13 +5,11 @@
     Appointment data
   </h1>
     <form action="" class="doc-app-form-container">
-        <div style="width: 100%">
-            <button class="add-btn" @click.prevent="add('diagnosis')">+</button>
+        <div style="width: 100%; display: flex; justify-content: center;">
             <input type="text" class="input-style" placeholder="diagnosis" id="diagnosis">
         </div>
         <hr style="width: 300px ; border: 1px solid rgba(67, 106, 230, 0.5);" />
         <div style="">
-            <button class="add-btn" @click.prevent>+</button>
             <input type="text" class="input-style" placeholder="perscription" id="perscription">
         </div>
         <hr style="width: 300px ; border: 1px solid rgba(67, 106, 230, 0.5);" />
