@@ -1,6 +1,6 @@
 require('dotenv').config()
 const express = require('express')
-
+const cookieParser = require('cookie-parser');
 var cors = require('cors')
 const app = express()
 const mongoose=require('mongoose')
@@ -10,7 +10,7 @@ const visitRoutes=require('./Routes/visitRoutes.js')
 const documentRoutes=require('./Routes/documentRoute.js')
 const authRoutes=require('./Routes/authRoute.js')
 const loginRoute=require('./Routes/loginRoute.js')
-
+app.use(cookieParser());
 app.use(cors())//this is mandatory to let front connect into front
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))

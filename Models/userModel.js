@@ -71,6 +71,10 @@ email: {
         prix:{
             type:Number,
         },
+        maxPatient:{
+            type:Number,
+            required:true
+        }
     }
 },
 {

@@ -27,24 +27,32 @@ const handleLogin=async(req,res)=>{
  return res.sendStatus(401)
  else{
     //jwt
-    const accessToken=jwt.sign(
+    
+    const Token=jwt.sign(
         {'email':foundUser.email},
-        process.env.ACCESS_TOKEN_SECRET,
-        {expiresIn:'30s'}
+        process.env.TOKEN_SECRET
     )
-    const refreshToken=jwt.sign(
-        {'email':foundUser.email},
-        process.env.REFRESH_TOKEN_SECRET,
-        {expiresIn:'2d'}
-
-        
-    )
+    res.cookie('jwt', Token, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
      res.status(200).json({
-         'success':'logged in'
+         foundUser
  })
+ 
  }
+ }
+
+ const handleLogout=async(req,res)=>{
+try{
+    res.clearCookie('jwt', { httpOnly: true });
+    res.status(200).json('done successfully')
+}catch(error){
+res.status(500).json({
+    message:error.message
+})
+}
+    
  }
 
  module.exports={
-    handleLogin
+    handleLogin,
+    handleLogout
  }

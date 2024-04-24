@@ -2,7 +2,7 @@ const mongoose=require('mongoose')
 const User=require('./userModel')
 const { ObjectId } = require('mongodb');
 
-const visitSchema=mongoose.Schema({
+const appointmentSchema=mongoose.Schema({
     patient:{
         type:mongoose.SchemaTypes.ObjectId,
         ref:"User"
@@ -24,6 +24,6 @@ const visitSchema=mongoose.Schema({
     }
 },
 )
-const Appointment=mongoose.model('Appointment',visitSchema);
+const Appointment=mongoose.model('Appointment',appointmentSchema);
 
 module.exports=Appointment;
