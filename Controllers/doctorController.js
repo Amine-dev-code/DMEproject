@@ -1,20 +1,7 @@
 const User=require('../Models/userModel');
 //const { param } = require('../Routes/userRoutes');
 
-const postDoctor=async(req,res)=>{
-    try{
-        const doctor = new User(req.body);
-        doctor.role='doctor'
-        await doctor.save();
-        res.status(200).json(doctor)
-        console.log(doctor);
-    }
-    catch(error){
-        res.status(500).json({
-            message:error.message
-        })
-    }
-}
+
 const getDoctors=async(req,res)=>{
     try{
         const doctors=await User.find({role:'doctor'})
@@ -81,11 +68,43 @@ const getDoctorInfo=async(req,res)=>{
         })
     }
 }
+const searchDoctors=async(req,res)=>{
+    //this function is gonna be filtering doctors based on :
+    //price
+    //speciality
+    //
+    try{
+        const price=req.query.price
+        const speciality=req.query.speciality
+
+        if(price!=undefined && speciality!=undefined){
+            const filteredDoctors=await User.find({role:'doctor',"doctor_profile.price":price,'doctor_profile.speciality':speciality})
+        }
+        else if(price==undefined && speciality!=undefined){
+            const filteredDocotors=await User.find({role:'doctor','doctor_profile.speciality':speciality})
+        }
+        else if(price!=undefined && speciality==undefined){
+            const filteredDocotors=await User.find({role:'doctor',"doctor_profile.price":price})
+        }
+        else{
+             const filteredDocotors=await User.find({role:'doctor'})
+        }
+        res.status(200).json({
+            filteredDocotors
+        })
+
+    }catch(error){
+        res.status(500).json({
+            message:error.message
+        })
+    }
+}
 module.exports={
-    postDoctor,
+    
     getDoctors,
     deleteUser,
     editDoctor,
     deleteUsers,
-    getDoctorInfo
+    getDoctorInfo,
+    searchDoctors
 }

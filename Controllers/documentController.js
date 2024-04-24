@@ -1,4 +1,5 @@
 const express = require('express');
+const fs=require('fs');
 const Uploadnotify=require('../Models/uploadNotify')
 const multer = require('multer');
 const {
@@ -46,7 +47,6 @@ const uploading=async(req, res, next)=>{
     visit.save();
     console.log('uploaded');
     console.log(req.file);
-    console.log(req.body);
     const idoctor=visit.doctor.toHexString()
     const ipatient=visit.patient.toHexString()
     notifyUserDoc.emit('uploadFile',idoctor,ipatient,visit._id)
@@ -61,6 +61,7 @@ const uploading=async(req, res, next)=>{
     try{
       const {patientId}=req.params
       const uploadDoc=await Uploadnotify.find({receiver:patientId,readingStatus:false})
+      await Uploadnotify.updateMany({receiver:patientId,readingStatus:false},{$set:{readingStatus:true}})
       res.status(200).json(uploadDoc)
     }catch(error){
       res.status(500).json({
@@ -68,6 +69,49 @@ const uploading=async(req, res, next)=>{
       })
     }
   }
+  const findDocument=async(req,res)=>{
+    
+      const {visitId}=req.params
+      const {docId}=req.params
+      const doc=await Visit.findOne(
+        { _id: visitId, 'files._id': docId }, 
+        { 'files.$': 1 }
+      );
+      console.log(doc)
+  }
+  //const deleteDocument=async(req,res)=>{
+    //try{
+     // const {visitId}=req.params
+      //const {docId}=req.params
+      //const doc=await Visit.findOne(
+        //{ _id: visitId, 'files._id': docId }, 
+        //{ 'files.$': 1 }
+      //)
+      
+      //if(fs.existsSync('./uploads/TP4.pdf')){
+       // fs.unlink('./uploads/TP4.pdf',async(err)=>{
+          //try{
+           
+           //const UpdatedVisit= Visit.findByIdAndUpdate(visitId,{$pull:{files:{file_id:docId}}},{new:true})
+          //console.log(UpdatedVisit)
+          //}catch(error){
+           // console.log(error)
+          //}
+          
+        //})
+   // }
+   // else{
+     // res.status(200).json('doesnt exist')
+    //}
+      
+      
+   // }
+   // catch(error){
+     // res.status(500).json({
+      //  message:error.message
+      //})
+    //}
+  //}
  
   
  
@@ -75,5 +119,7 @@ const uploading=async(req, res, next)=>{
   module.exports={
     uploading,
     upload,
-    getNotification
+    getNotification,
+    findDocument,
+    //deleteDocument
   }

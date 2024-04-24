@@ -4,18 +4,20 @@ const User=require('../Models/userModel')
 
 
 const {
-    postPatient,
     editPatient,
     ownPatients,
-    getPatientInfo
+    getPatientInfo,
+    getPatients
     
 }=require('../Controllers/patientController')
 
 
-router.post('/postPatient', postPatient)
+
 router.put('/editPatient/:id', editPatient)
 router.get('/getOwnPatients/:doctorId', ownPatients)
 router.get('/doctorInfo/:patientId',getPatientInfo)
+router.get('/getPatients',getPatients)
+
 
 
 module.exports=router;

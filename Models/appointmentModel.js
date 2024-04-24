@@ -1,0 +1,29 @@
+const mongoose=require('mongoose')
+const User=require('./userModel')
+const { ObjectId } = require('mongodb');
+
+const visitSchema=mongoose.Schema({
+    patient:{
+        type:mongoose.SchemaTypes.ObjectId,
+        ref:"User"
+    },
+    doctor:{
+        type:mongoose.SchemaTypes.ObjectId,
+        ref:"User"
+    },
+    reservation_date:{
+        type:Date,
+        immutable:true,
+        default:()=>Date.now()
+    },
+    visit_date:{
+        type:Date,
+    },
+    status:{
+        type:Boolean
+    }
+},
+)
+const Appointment=mongoose.model('Appointment',visitSchema);
+
+module.exports=Appointment;

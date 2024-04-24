@@ -36,12 +36,10 @@ email: {
     },
     patient_profile:{
         gender:{
-            type:String,
-            
+            type:String, 
         },
         date:{
             type:Date,
-            
         },
         address:{
 
