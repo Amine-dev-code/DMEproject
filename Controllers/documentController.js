@@ -18,11 +18,11 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage,
   createDestDir: true,
   fileFilter:function(req,file,cb){
-    if(file.mimetype!=='image/jpeg'||file.mimetype!=='application/pdf'){
+    if(file.mimetype=='image/jpeg'||file.mimetype=='application/pdf'){
       cb(null,true)
     }
     else{
-      cb(new Error('The file is not PDF or img'));
+      cb('this is not image or pdf');
     }
   } })
 // Define a route handler for handling file uploads

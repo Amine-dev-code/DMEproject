@@ -6,6 +6,10 @@ const appointmentDaySchema=mongoose.Schema({
         type:mongoose.SchemaTypes.ObjectId,
         ref:"User"
     },
+    reserved_patients:{
+        type:Number,
+        default:0
+    },
     treatment_day:{
         type:Date
     },

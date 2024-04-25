@@ -8,16 +8,17 @@ const {
     editPatient,
     ownPatients,
     getPatientInfo,
-    getPatients
+    getPatients,
+    postPatient
     
 }=require('../Controllers/patientController')
 
 
-
+router.post('/postPatient', postPatient)
 router.put('/editPatient/:id', editPatient)
 router.get('/getOwnPatients/:doctorId', ownPatients)
-router.get('/doctorInfo/:patientId',getPatientInfo)
-router.get('/getPatients',verifyJWT,getPatients)
+router.get('/patientInfo/:patientId',getPatientInfo)
+router.get('/getPatients',getPatients)
 
 
 

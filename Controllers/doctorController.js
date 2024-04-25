@@ -2,6 +2,21 @@ const User=require('../Models/userModel');
 //const { param } = require('../Routes/userRoutes');
 
 
+const postDoctor=async(req,res)=>{
+    try{
+        const doctor = new User(req.body);
+        doctor.role='doctor'
+        await doctor.save();
+        res.status(200).json(doctor)
+        console.log(doctor);
+    }
+    catch(error){
+        res.status(500).json({
+            message:error.message
+        })
+    }
+}
+
 const getDoctors=async(req,res)=>{
     try{
         const doctors=await User.find({role:'doctor'})
@@ -59,7 +74,13 @@ const deleteUsers=async(req,res)=>{
 const getDoctorInfo=async(req,res)=>{
     try{
         const {doctorId}=req.params
-        const infos=await User.findById({doctorId},{patient_profile:0},{pasword:0})
+        if (!isValidObjectId(patientId)) {
+            return res.status(400).json({ message: "Invalid patient ID" });
+        }
+        const infos=await User.findById(doctorId,{patient_profile:0,password:0})
+        if(!infos){
+            res.status(404).json({message:'patient not found'})
+        }
         res.status(200).json({infos})
     }
     catch(error){
@@ -106,5 +127,6 @@ module.exports={
     editDoctor,
     deleteUsers,
     getDoctorInfo,
-    searchDoctors
+    searchDoctors,
+    postDoctor
 }

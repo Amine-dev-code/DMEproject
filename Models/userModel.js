@@ -73,7 +73,7 @@ email: {
         },
         maxPatient:{
             type:Number,
-            required:true
+            default:10
         }
     }
 },
