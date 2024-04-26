@@ -12,8 +12,11 @@
     "serve": "vue-cli-service serve"
   },
   "dependencies": {
+    "@firecms/neat": "^0.2.1",
     "@vue/cli-service": "^5.0.8",
     "chart.js": "^4.4.2",
+    "gsap": "^3.12.5",
+    "three.js": "^0.77.1",
     "vue": "^3.4.21",
     "vue-chartjs": "^5.3.1",
     "vue-router": "^4.3.0"
