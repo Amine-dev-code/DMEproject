@@ -1,7 +1,7 @@
 const mongoose=require('mongoose')
 const User=require('./userModel')
 const { ObjectId } = require('mongodb');
-
+const Schema = mongoose.Schema;
 const visitSchema=mongoose.Schema({
     patient:{
         type:mongoose.SchemaTypes.ObjectId,
@@ -10,6 +10,10 @@ const visitSchema=mongoose.Schema({
     doctor:{
         type:mongoose.SchemaTypes.ObjectId,
         ref:"User"
+    },
+    age:{
+        type:String,
+        required:true
     },
     rapport:{
         type:String,
@@ -25,6 +29,7 @@ const visitSchema=mongoose.Schema({
     },
     files:[
         {
+           //file_id: Schema.Types.ObjectId,
            docType:String,
            fieldname: String,
            originalname: String,

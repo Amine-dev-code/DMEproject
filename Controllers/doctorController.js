@@ -1,6 +1,7 @@
 const User=require('../Models/userModel');
 //const { param } = require('../Routes/userRoutes');
 
+
 const postDoctor=async(req,res)=>{
     try{
         const doctor = new User(req.body);
@@ -15,6 +16,7 @@ const postDoctor=async(req,res)=>{
         })
     }
 }
+
 const getDoctors=async(req,res)=>{
     try{
         const doctors=await User.find({role:'doctor'})
@@ -72,7 +74,13 @@ const deleteUsers=async(req,res)=>{
 const getDoctorInfo=async(req,res)=>{
     try{
         const {doctorId}=req.params
-        const infos=await User.findById({doctorId},{patient_profile:0},{pasword:0})
+        if (!isValidObjectId(patientId)) {
+            return res.status(400).json({ message: "Invalid patient ID" });
+        }
+        const infos=await User.findById(doctorId,{patient_profile:0,password:0})
+        if(!infos){
+            res.status(404).json({message:'patient not found'})
+        }
         res.status(200).json({infos})
     }
     catch(error){
@@ -81,11 +89,44 @@ const getDoctorInfo=async(req,res)=>{
         })
     }
 }
+const searchDoctors=async(req,res)=>{
+    //this function is gonna be filtering doctors based on :
+    //price
+    //speciality
+    //
+    try{
+        const price=req.query.price
+        const speciality=req.query.speciality
+
+        if(price!=undefined && speciality!=undefined){
+            const filteredDoctors=await User.find({role:'doctor',"doctor_profile.price":price,'doctor_profile.speciality':speciality})
+        }
+        else if(price==undefined && speciality!=undefined){
+            const filteredDocotors=await User.find({role:'doctor','doctor_profile.speciality':speciality})
+        }
+        else if(price!=undefined && speciality==undefined){
+            const filteredDocotors=await User.find({role:'doctor',"doctor_profile.price":price})
+        }
+        else{
+             const filteredDocotors=await User.find({role:'doctor'})
+        }
+        res.status(200).json({
+            filteredDocotors
+        })
+
+    }catch(error){
+        res.status(500).json({
+            message:error.message
+        })
+    }
+}
 module.exports={
-    postDoctor,
+    
     getDoctors,
     deleteUser,
     editDoctor,
     deleteUsers,
-    getDoctorInfo
+    getDoctorInfo,
+    searchDoctors,
+    postDoctor
 }

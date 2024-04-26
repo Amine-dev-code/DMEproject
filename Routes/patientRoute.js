@@ -1,13 +1,15 @@
 const express=require('express')
 const router=express.Router()
 const User=require('../Models/userModel')
+const verifyJWT=require('../Middlewares/verifyJWT')
 
 
 const {
-    postPatient,
     editPatient,
     ownPatients,
-    getPatientInfo
+    getPatientInfo,
+    getPatients,
+    postPatient
     
 }=require('../Controllers/patientController')
 
@@ -15,7 +17,9 @@ const {
 router.post('/postPatient', postPatient)
 router.put('/editPatient/:id', editPatient)
 router.get('/getOwnPatients/:doctorId', ownPatients)
-router.get('/doctorInfo/:patientId',getPatientInfo)
+router.get('/patientInfo/:patientId',getPatientInfo)
+router.get('/getPatients',getPatients)
+
 
 
 module.exports=router;

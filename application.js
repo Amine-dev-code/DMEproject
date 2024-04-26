@@ -1,6 +1,6 @@
 require('dotenv').config()
 const express = require('express')
-
+const cookieParser = require('cookie-parser');
 var cors = require('cors')
 const app = express()
 const mongoose=require('mongoose')
@@ -8,11 +8,15 @@ const doctorRoutes=require('./Routes/doctorRoutes.js')
 const patientRoutes=require('./Routes/patientRoute.js')
 const visitRoutes=require('./Routes/visitRoutes.js')
 const documentRoutes=require('./Routes/documentRoute.js')
+const authRoutes=require('./Routes/authRoute.js')
+const loginRoute=require('./Routes/loginRoute.js')
+const vizualisationRoute=require('./Routes/vizualisationRoute.js')
+app.use(cookieParser());
 app.use(cors())//this is mandatory to let front connect into front
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 //const {errorMiddleware}=require('./middleware/errorMiddleware.js')
-app.use('/api',doctorRoutes,patientRoutes,visitRoutes,documentRoutes)
+app.use('/api',doctorRoutes,patientRoutes,visitRoutes,documentRoutes,authRoutes,loginRoute,vizualisationRoute)
 
 
 

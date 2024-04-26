@@ -36,12 +36,10 @@ email: {
     },
     patient_profile:{
         gender:{
-            type:String,
-            
+            type:String, 
         },
         date:{
             type:Date,
-            
         },
         address:{
 
@@ -73,6 +71,10 @@ email: {
         prix:{
             type:Number,
         },
+        maxPatient:{
+            type:Number,
+            default:10
+        }
     }
 },
 {
