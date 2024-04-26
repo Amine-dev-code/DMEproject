@@ -1,13 +1,14 @@
 <template>
-  <DashBoard/>
+  <PatientsDash/>
 </template>
 
 <script>
-import DashBoard from './views/doctor/DashBoard.vue';
-
+import PatientsDash from '@/views/doctor/PatientsDash.vue';
+import SideBar from '@/components/SideBar.vue';
 export default {
   components: {
-    DashBoard
+    PatientsDash,
+    SideBar
   }
 }
 </script>

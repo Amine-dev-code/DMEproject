@@ -134,8 +134,6 @@
     table-layout: fixed; /* Fix the table layout */
     border-collapse: collapse;
     font-family: sans-serif;
-    border-collapse: collapse;
-    width: 70%;
     background-color: rgba(0, 206, 200, 0.1);
   }
   .appointments-table thead {

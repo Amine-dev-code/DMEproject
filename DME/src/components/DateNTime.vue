@@ -2,20 +2,21 @@
   <div
     style="
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       color: white;
       font-family: sans-serif;
       background-color: #00cec8;
       border-radius: 10px;
-      height: 30px;
+      height: auto;
       align-items: center;
-      padding: 5px;
+      padding-top: 30px;
+      padding-bottom: 30px;
       width: 120px;
       justify-content: space-between;
     "
   >
     <div>{{ formattedTime }}</div>
-    <p style="color: white">|</p>
+    <hr style="width: 80%; border: 1px solid white;"/>
     <div>{{ formattedDate }}</div>
   </div>
 </template>
@@ -60,5 +61,3 @@ export default {
   }
 }
 </script>
-
-<style scoped></style>

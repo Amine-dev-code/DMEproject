@@ -35,7 +35,5 @@ export default {
 
 <style>
 .donutContainer {
-  height: 30vh;
-  width: auto;
 }
 </style>

@@ -1,10 +1,8 @@
 <template>
   <div class="SideBarContainer">
     <div class="profile">
-      <div class="profilePicture">
-        <img src="" alt="Profile Picture" />
-      </div>
-      <p>{{ name }}</p>
+        <img src="" alt="Profile Picture" class="profilePicture"/>
+        <p>{{ name }}</p>
     </div>
     <div class="menu">
       <router-link to="/" :class="{ active: isActive('/') }">Home</router-link>
@@ -42,31 +40,28 @@ export default {
 .SideBarContainer {
   position: fixed;
   left: 0;
-  width: 15vw;
+  width: 20vw;
   height: 100vh;
   background-color: #2a4b66;
-  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center ;
   font-family: sans-serif;
   font-size: 20px;
 }
-
-a {
-  color: white;
-  text-decoration: none;
-}
 .profile {
+  color: white;
   margin-top: 30px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center ;
   gap: 20px;
   flex: 3;
   flex-basis: 0;
 }
-.profilePicture img {
+.profilePicture {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -82,9 +77,10 @@ a {
   flex-basis: 0;
 }
 .menu > * {
-  width: 90%;
+  width: 120%;
   padding: 15px;
   border-radius: 10px;
+  color: white;
 }
 .active {
   background-color: rgba(0, 206, 200, 0.1);

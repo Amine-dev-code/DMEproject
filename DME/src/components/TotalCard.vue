@@ -1,5 +1,5 @@
 <template>
-  <div class="total">the {{ totalName }} is {{ totalNum }}</div>
+  <div class="total"> total {{ totalName }} is {{ totalNum }} </div>
 </template>
 
 <script>
@@ -13,9 +13,8 @@ export default {
   border: 2px solid #00cec8;
   color: #00cec8;
   border-radius: 10px;
-  height: 75px;
-  width: 25vw;
-  /*flex: 1;*/
+  height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;

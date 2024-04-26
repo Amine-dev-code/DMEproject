@@ -28,7 +28,6 @@ export default {
   display: flex;
   flex-direction: row;
   border-radius: 10px;
-  flex: 2;
 }
 img {
   border-top-left-radius: 10px;

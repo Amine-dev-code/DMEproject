@@ -47,6 +47,7 @@ export default {
     border-radius: 10px ; 
     height: 40px ;
     margin-top: 10px ;
+    flex-grow: 0;
 }
 .booking-btn:hover {
     background-color: rgba(67, 106, 230, 0.8);

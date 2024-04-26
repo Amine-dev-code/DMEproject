@@ -8,8 +8,10 @@
 </template>
 <style>
 .note {
-  height: 150px;
-  width: 40vw;
+  /*height: 200px;*/
+  /*width: 25vw;*/
+  height: 100%;
+  width: 100%;
   border-radius: 10px;
   border: 2px solid #00cec8;
   background-color: rgba(0, 206, 200, 0.1);
