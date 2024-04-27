@@ -12,6 +12,7 @@
       <router-link to="/patients" :class="{ active: isActive('/patients') }">Patients</router-link>
       <router-link to="/messages" :class="{ active: isActive('/messages') }">Messages</router-link>
     </div>
+    <router-link to="/clinic" class="log-out">Log out</router-link>
   </div>
 </template>
 
@@ -85,5 +86,11 @@ export default {
 .active {
   background-color: rgba(0, 206, 200, 0.1);
   color: #00cec8;
+}
+.log-out {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  color: white;
 }
 </style>

@@ -5,11 +5,17 @@
         <div class="header-cell">NAME</div>
         <div class="header-cell">PHONE NUMBER</div>
         <div class="header-cell">EMAIL ADDRESS</div>
+        <div class="header-cell" style="padding-left: 120px;">DELETE</div>
       </div>
       <a v-for="patient in patientsData" :key="patient.id" :href="`/patient/${patient.id}`" class="table-row">
         <div class="table-cell">{{ patient.name }}</div>
         <div class="table-cell">{{ patient.phone }}</div>
         <div class="table-cell">{{ patient.email }}</div>
+        <div class="table-cell">
+          <button class="rmv-btn" @click.prevent="handleRmv">
+            <img src="../assets/delete.png" alt="" style="background-color: transparent;">
+          </button>
+        </div>
       </a>
     </div>
   </div>
@@ -21,6 +27,13 @@ export default {
     patients: {
       type: Array,
       required: true
+    }
+  },
+  methods: {
+    handleRmv() {
+      if(confirm("are you sure you want to delete this patient?")) {
+        alert("aya ok ay");
+      }
     }
   },
   data() {
@@ -71,6 +84,105 @@ export default {
           phone: "555-987-6543",
           email: "jane@example.com"
         },
+        {
+          id: 6,
+          name: "Jane Smith",
+          birthday: "1985-08-22",
+          gender: "Female",
+          address: "456 Elm St, Townsville",
+          phone: "555-987-6543",
+          email: "jane@example.com"
+        },
+        {
+          id: 7,
+          name: "Jane Smith",
+          birthday: "1985-08-22",
+          gender: "Female",
+          address: "456 Elm St, Townsville",
+          phone: "555-987-6543",
+          email: "jane@example.com"
+        },
+        {
+          id: 8,
+          name: "Jane Smith",
+          birthday: "1985-08-22",
+          gender: "Female",
+          address: "456 Elm St, Townsville",
+          phone: "555-987-6543",
+          email: "jane@example.com"
+        },
+        {
+          id: 8,
+          name: "Jane Smith",
+          birthday: "1985-08-22",
+          gender: "Female",
+          address: "456 Elm St, Townsville",
+          phone: "555-987-6543",
+          email: "jane@example.com"
+        },
+        {
+          id: 9,
+          name: "Jane Smith",
+          birthday: "1985-08-22",
+          gender: "Female",
+          address: "456 Elm St, Townsville",
+          phone: "555-987-6543",
+          email: "jane@example.com"
+        },
+        {
+          id: 10,
+          name: "Jane Smith",
+          birthday: "1985-08-22",
+          gender: "Female",
+          address: "456 Elm St, Townsville",
+          phone: "555-987-6543",
+          email: "jane@example.com"
+        },
+        {
+          id: 11,
+          name: "Jane Smith",
+          birthday: "1985-08-22",
+          gender: "Female",
+          address: "456 Elm St, Townsville",
+          phone: "555-987-6543",
+          email: "jane@example.com"
+        },
+        {
+          id: 12,
+          name: "Jane Smith",
+          birthday: "1985-08-22",
+          gender: "Female",
+          address: "456 Elm St, Townsville",
+          phone: "555-987-6543",
+          email: "jane@example.com"
+        },
+        {
+          id: 13,
+          name: "Jane Smith",
+          birthday: "1985-08-22",
+          gender: "Female",
+          address: "456 Elm St, Townsville",
+          phone: "555-987-6543",
+          email: "jane@example.com"
+        },
+        {
+          id: 14,
+          name: "Jane Smith",
+          birthday: "1985-08-22",
+          gender: "Female",
+          address: "456 Elm St, Townsville",
+          phone: "555-987-6543",
+          email: "jane@example.com"
+        },
+        {
+          id: 15,
+          name: "Jane Smith",
+          birthday: "1985-08-22",
+          gender: "Female",
+          address: "456 Elm St, Townsville",
+          phone: "555-987-6543",
+          email: "jane@example.com"
+        },
         // Add more dummy patient data as needed
       ]
     };
@@ -80,12 +192,12 @@ export default {
 
 <style>
 .patients-container {
-  max-height: 200px;
+  max-height: 550px;
   overflow-y: auto; /* Enable vertical scrolling */
   overflow-x: hidden; /* Prevent horizontal scrolling */
   position: absolute;
   right: 60px;
-  bottom: 60px;
+  top: 100px;
 }
 
 .table {
@@ -94,47 +206,48 @@ export default {
   border-collapse: collapse;
   font-family: sans-serif;
   border-collapse: collapse;
-  width: 70vw; /* Change the width to 75vw */
+  width: 70vw;
 }
-
 .table-header {
-  border-radius: 50%;
-  background-color: rgba(0, 206, 200, 0.3); /* Optional: Add hover effect */
   display: table-row;
-  position: sticky; /* Make the header sticky */
-  top: 0; /* Stick the header to the top */
-  background-color: rgba(0, 206, 200, 1); /* Optional: Add background color for header */
-  z-index: 1; 
+  position: sticky;
+  top: 0;
+  background-color: #2a4b66;
+  z-index: 1;
   height: 50px;
+  color: white;
 }
 .table-row {
   display: table-row;
 }
-
 .table-cell {
   display: table-cell;
-  color: rgba(67, 106, 230, 1);
   border-bottom: 1px solid rgba(0, 206, 200, 1);
   font-size: 20px;
   padding: 10px;
+  color: #2a4b66;
 }
-
 .table-row:hover {
   background-color: rgba(0, 206, 200, 0.1); /* Optional: Add hover effect */
 }
-
 .header-cell {
   display: table-cell;
-  color: #2a4b66;
+  color: white;
   padding: 8px;
-  border-bottom: 1px solid rgba(0, 206, 200, 1);
 }
 .table-cell,
 .header-cell {
   display: table-cell;
-  color: rgba(67, 106, 230, 1);
-  border-bottom: 1px solid rgba(0, 206, 200, 1);
+  /*border-bottom: 1px solid rgba(0, 206, 200, 1);*/
   font-size: 20px;
   vertical-align: middle; /* Align text vertically to the middle */
+}
+.rmv-btn {
+  padding-left: 120px;
+  background-color: transparent;
+  border: none;
+}
+.rmv-btn:hover {
+  background-color: #2a4b66;
 }
 </style>

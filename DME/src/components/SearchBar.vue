@@ -1,25 +1,29 @@
 <template>
-  <input-field class="searchbar" Placeholder="Search" />
+  <input class="searchbar" placeholder="Search" />
 </template>
 
 <script>
-import inputField from './inputField.vue'
 
 export default {
-  components: {
-    inputField
-  }
 }
 </script>
 <style>
 .searchbar {
   width: 20vw;
   height: 30px;
-  margin-top: 10px;
-  margin-left: 10px;
   background-color: rgba(0, 206, 200, 0.1);
+  border-radius: 10px;
+  border: 2px solid rgba(0, 206, 200, 1);
 }
 .searchbar::placeholder {
   color: rgba(67, 106, 230, 0.5);
+  padding-left: 10px;
 }
+body {
+  margin: 0;
+  padding: 0;
+}
+input:focus {
+  outline:none;
+} 
 </style>

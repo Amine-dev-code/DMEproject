@@ -43,7 +43,4 @@ export default {
 </script>
 
 <style>
-.chartContainer {
-  /*width: 41vw;*/
-}
 </style>
