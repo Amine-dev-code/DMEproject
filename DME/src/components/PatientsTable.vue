@@ -7,7 +7,7 @@
         <div class="header-cell">EMAIL ADDRESS</div>
         <div class="header-cell" style="padding-left: 120px;">DELETE</div>
       </div>
-      <a v-for="patient in patientsData" :key="patient.id" :href="`/patient/${patient.id}`" class="table-row">
+      <router-link to="/patient" v-for="patient in patientsData" :key="patient.id" :href="`/patient/${patient.id}`" class="table-row">
         <div class="table-cell">{{ patient.name }}</div>
         <div class="table-cell">{{ patient.phone }}</div>
         <div class="table-cell">{{ patient.email }}</div>
@@ -16,7 +16,7 @@
             <img src="../assets/delete.png" alt="" style="background-color: transparent;">
           </button>
         </div>
-      </a>
+      </router-link>
     </div>
   </div>
 </template>

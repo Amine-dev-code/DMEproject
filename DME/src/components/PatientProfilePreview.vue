@@ -1,5 +1,5 @@
 <template>
-    <div style=" margin-top: 118px ;display: flex; flex-direction: row; justify-content: space-between; width: 20vw; background-color: rgba(0, 206, 200, 0.1); border-radius: 10px; border: 2px  solid #00cec8; padding: 10px ; height: 41vh;">
+    <div class="profile-preview-container">
         <div style="display: flex; flex-direction: column;">
             <p class="name">
                 name: 
@@ -22,13 +22,13 @@
         </div>
         <div style="display: flex; flex-direction: column;">
             <p>
-                {{ name }}
+                {{ name }} ouldkhaoua Idir
             </p>
             <p>
-                {{ gender }}
+                {{ gender }} Male
             </p>
             <p>
-                {{ bloodType }}
+                {{ bloodType }} A+
             </p>
             <p>
                 {{ birthday }}
@@ -48,4 +48,16 @@ export default {
 }
 </script>
 <style>
+.profile-preview-container {
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-between; 
+    width: 20vw; 
+    background-color: white; 
+    border-radius: 10px; 
+    border: 2px  solid #00cec8; 
+    padding: 10px ; 
+    color : #2a4b66;
+    height: min-content;
+}
 </style>

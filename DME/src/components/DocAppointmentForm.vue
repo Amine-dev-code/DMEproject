@@ -1,11 +1,11 @@
 <template>
   <div style="display: flex; flex-direction: column; align-items: center;" class="Container">
   <h1 style="text-align: center;">
-    Appointment data
+    Appointment Data Enrollment
   </h1>
     <form action="" class="doc-app-form-container">
         <div>
-            <input type="text" class="input-style" placeholder="diagnosis" id="diagnosis" v-model="diagnosis" @keyup.enter.prevent="addDiag" />
+            <input type="text" class="input-style" placeholder="diagnosis" v-model="diagnosis" @keyup.enter="addDiag" />
             <div v-if="diagnosises.length > 0" class="added-container">
               <div v-for="diagnosis in diagnosises" :key="diagnosis" class="added">
                 {{ diagnosis }}
@@ -28,7 +28,7 @@
             or
           <input type="file" id="file-input" @change="handleFileChange">
         </label>
-        <button type="submit" class="sub-btn">Submit</button>
+        <button type="submit" class="sub-btn" @click.prevent>Submit</button>
     </form>
   </div>
 
@@ -97,7 +97,7 @@ export default {
   gap: 10px;
 }
 .doc-app-form-container > div {
-  width: 40vw; 
+  max-width: 40vw; 
   display: flex; 
   justify-content: center; 
   flex-direction: column;
@@ -115,7 +115,7 @@ export default {
 }
 .input-style {
   height: 40px;
-  background-color: rgba(0, 206, 200, 0.1);
+  /*background-color: rgba(0, 206, 200, 0.1);*/
   border: 2px solid #00cec8;
   border-radius: 10px;
   overflow: hidden; /* Hide overflow text */
@@ -130,7 +130,13 @@ export default {
     background-color: rgba(67, 106, 230, 1);
     border: none;
     color: white;
-    border-radius: 5px;
+    border-radius: 10px;
+    width: 10vw;
+    height: 40px;
+    font-size: 14px;
+}
+.sub-btn:hover {
+  background-color: rgba(67, 106, 230, 0.8);
 }
   input[type=file]::file-selector-button {
     margin-right: 20px;
@@ -186,7 +192,6 @@ export default {
   }
 .added {
   height: 30px;
-  width: auto;
   background-color: rgba(0, 206, 200, 0.1);
   color: rgba(0, 206, 200, 1);
   border-radius: 10px;
@@ -196,13 +201,18 @@ export default {
   align-items: center;
   justify-content: center;
   margin-right: 5px ;
+  width: min-content;
+  flex: 1;
 }
 .added-container {
+  flex-wrap: wrap;
   display: flex; 
   flex-direction: row;
   height: 40px ;
-  width: auto;
+  width: min-content;
   margin-top: 5px;
+  flex: 1;
+  row-gap: 5px;
 }
 .Container div, .Container textarea {
   width: 100%;

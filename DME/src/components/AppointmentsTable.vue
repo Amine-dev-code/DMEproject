@@ -7,7 +7,7 @@
       <div class="header-cell">DATE</div>
       <div class="header-cell" style="padding-left: 120px;">DELETE</div>
     </div>
-    <a v-for="appointment in appointments" :key="appointment.id" class="table-row">
+    <router-link to="/appointment" v-for="appointment in appointments" :key="appointment.id" class="table-row">
       <div class="table-cell">{{ appointment.name }}</div>
       <div class="table-cell">{{ appointment.time }}</div>
       <div class="table-cell">{{ appointment.date }}</div>
@@ -16,7 +16,7 @@
           <img src="../assets/delete.png" alt="" style="background-color: transparent;">
         </button>
       </div>
-    </a>
+    </router-link>
   </div>
 </div>
   </template>
