@@ -1,12 +1,12 @@
 <template>
-  <LandingPage/>
+  <clinicPage/>
 </template>
 
 <script>
-import LandingPage from './views/LandingPage.vue';
+import clinicPage from '@/views/clinicPage.vue';
 export default {
   components: {
-    LandingPage
+    clinicPage
   }
 }
 </script>

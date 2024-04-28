@@ -1,11 +1,11 @@
 <template>
   <div class="navBarContainer">
-    <RouterLink to="/doctors" :class="{ active: isActive('/doctors') }">Doctors</RouterLink>
-    <RouterLink to="/location" :class="{ active: isActive('/location') }">Location</RouterLink>
-    <RouterLink to="/hours" :class="{ active: isActive('/hours') }">Hours</RouterLink>
-    <RouterLink to="/contact" :class="{ active: isActive('/contact') }">Contact</RouterLink>
+    <a href="#doctors" :class="{ active: isActive('#doctors') }">Doctors</a>
+    <a href="#location" :class="{ active: isActive('/location') }">Location</a>
+    <a href="#hours" :class="{ active: isActive('/hours') }">Hours</a>
+    <a href="#appointment" :class="{ active: isActive('/signup') }">Appointment</a>
+    <a href="#contact" :class="{ active: isActive('/contact') }">Contact</a>
     <RouterLink to="/login" :class="{ active: isActive('/login') }">Login</RouterLink>
-    <RouterLink to="/signup" :class="{ active: isActive('/signup') }">Sign up</RouterLink>
   </div>
 </template>
 
@@ -43,6 +43,8 @@ a {
   font-family: sans-serif;
   padding: 5px;
   border-radius: 5px;
+  mix-blend-mode: difference;
+  transform: translateY(-50%);
 }
 a:hover {
   color: #00cec8;
