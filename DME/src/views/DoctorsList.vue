@@ -1,35 +1,36 @@
 <template>
+  
     <div class="slider">
         <div class="doctor">
-            <h1>
-                Slider 1
-            </h1>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo iusto perferendis a cupiditate excepturi mollitia quasi exercitationem eligendi assumenda ipsa error expedita natus obcaecati delectus corporis, sit animi adipisci itaque suscipit non consequuntur pariatur tempora. Consequuntur 
-            </p>
+            <h1>Slide 1</h1>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere magni magnam unde ipsam repudiandae explicabo expedita labore, sequi minus neque beatae voluptatum, quasi accusamus quia quis voluptas laborum ad! Ab totam doloribus, excepturi possimus rem vel quia fugit molestiae officiis!
         </div>
         <div class="doctor">
-            <h1>
-                Slider 2
-            </h1>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo iusto perferendis a cupiditate excepturi mollitia quasi exercitationem eligendi assumenda ipsa error expedita natus obcaecati delectus corporis, sit animi adipisci itaque suscipit non consequuntur pariatur tempora. Consequuntur 
-            </p>
+            <h1>Slide 2</h1>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere magni magnam unde ipsam repudiandae explicabo expedita labore, sequi minus neque beatae voluptatum, quasi accusamus quia quis voluptas laborum ad! Ab totam doloribus, excepturi possimus rem vel quia fugit molestiae officiis!
         </div>
         <div class="doctor">
-            <h1>
-                Slider 3
-            </h1>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo iusto perferendis a cupiditate excepturi mollitia quasi exercitationem eligendi assumenda ipsa error expedita natus obcaecati delectus corporis, sit animi adipisci itaque suscipit non consequuntur pariatur tempora. Consequuntur 
-            </p>
+            <h1>Slide 3</h1>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere magni magnam unde ipsam repudiandae explicabo expedita labore, sequi minus neque beatae voluptatum, quasi accusamus quia quis voluptas laborum ad! Ab totam doloribus, excepturi possimus rem vel quia fugit molestiae officiis!
         </div>
-        <button id="prev">
-            <
-        </button>
-        <button id="next">
-            >
-        </button>
+        <div class="doctor">
+            <h1>Slide 4</h1>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere magni magnam unde ipsam repudiandae explicabo expedita labore, sequi minus neque beatae voluptatum, quasi accusamus quia quis voluptas laborum ad! Ab totam doloribus, excepturi possimus rem vel quia fugit molestiae officiis!
+        </div>
+        <div class="doctor">
+            <h1>Slide 5</h1>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere magni magnam unde ipsam repudiandae explicabo expedita labore, sequi minus neque beatae voluptatum, quasi accusamus quia quis voluptas laborum ad! Ab totam doloribus, excepturi possimus rem vel quia fugit molestiae officiis!
+        </div>
+        <div class="doctor">
+            <h1>Slide 6</h1>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere magni magnam unde ipsam repudiandae explicabo expedita labore, sequi minus neque beatae voluptatum, quasi accusamus quia quis voluptas laborum ad! Ab totam doloribus, excepturi possimus rem vel quia fugit molestiae officiis!
+        </div>
+        <div class="doctor">
+            <h1>Slide 7</h1>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere magni magnam unde ipsam repudiandae explicabo expedita labore, sequi minus neque beatae voluptatum, quasi accusamus quia quis voluptas laborum ad! Ab totam doloribus, excepturi possimus rem vel quia fugit molestiae officiis!
+        </div>
+        <button id="next">></button>
+        <button id="prev"><</button>
     </div>
 </template>
 
@@ -42,9 +43,9 @@ export default {
         };
     },
     created() {
-        const script = document.createElement('script');
-        script.src = '/Users/edyrr/dmee/DMEproject/DME/src/views/drls.js';
-        document.head.appendChild(script);
+        // const script = document.createElement('script');
+        // script.src = '/Users/edyrr/dmee/DMEproject/DME/src/views/drls.js';
+        // document.head.appendChild(script);
   }
 }
 </script>

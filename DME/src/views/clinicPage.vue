@@ -16,7 +16,7 @@
     hours
   </section>
   <section id="appointment">
-    appointment
+    <guestAppointmentForm/>
   </section>
   <section id="contact">
     contact
@@ -26,10 +26,12 @@
 <script>
 import NavBar from '@/components/NavBar.vue';
 import DoctorsList from '@/views/DoctorsList.vue';
+import guestAppointmentForm from '@/views/guestAppointmentForm.vue';
 export default {
   components: {
     NavBar,
-    DoctorsList
+    DoctorsList,
+    guestAppointmentForm
   }
 }
 </script>
@@ -64,5 +66,12 @@ section {
   margin: 0;
   display: flex;
   align-items: center;
+}
+#appointment {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
 }
 </style>
