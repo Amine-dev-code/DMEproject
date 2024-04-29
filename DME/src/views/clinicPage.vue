@@ -10,13 +10,10 @@
     <DoctorsList/>
   </section>
   <section id="location">
-    <h1 class="where-to-find-us">
-      Where to find us
-    </h1>
-    <div class="address">
-
-    </div>
-    <mapContainer class="map" />
+      <div class="address">
+        address of the clinic
+      </div>
+      <mapContainer class="map" />
   </section>
   <section id="hours">
     hours
@@ -83,26 +80,13 @@ section {
   background-color: white;
 }
 #location {
-  display: grid;
-  grid-template-columns: repeat(2, 50vw);
-  grid-template-columns: repeat(2, auto);
-}
-.map {
-  grid-column-start: 2;
-  grid-column-start: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
-}
-.where-to-find-us {
-  grid-column-start: 1;
-  grid-column-start: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
+  display: flex;
+  flex-direction: row;
 }
 .address {
-  grid-column-start: 1;
-  grid-column-start: 2;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  width: 50vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
