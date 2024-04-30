@@ -2,8 +2,6 @@
   <div class="container">
     <form @submit.prevent="handleSubmit" class="LoginForm">
         <input class="Input" type="email" name="email" placeholder="example@email.com" v-model="email" >
-        <p style="margin: 0; font-family: sans-serif; color: rgba(67, 106, 230, 0.5)">or enter</p>
-        <input class="Input" type="tel" name="phone" placeholder="e.g. 05 12 34 56 78" v-model="phone" >
         <input
           class="Input"
           type="password"

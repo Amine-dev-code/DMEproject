@@ -4,7 +4,7 @@
     <button class="add-appointment-btn">
         add an appointment
     </button>
-    <AppointmentsTable/>
+    <AppointmentsTable />
 </template>
 
 <script>

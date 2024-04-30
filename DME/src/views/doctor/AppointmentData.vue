@@ -11,10 +11,10 @@
   </template>
   
   <script>
-  import DocAppointmentForm from './components/DocAppointmentForm.vue';
-  import SideBar from './components/SideBar.vue';
-  import PatientProfilePreview from './components/PatientProfilePreview.vue';
-  import AppointmentPreview from './components/AppointmentPreview.vue';
+  import DocAppointmentForm from '../../components/DocAppointmentForm.vue';
+  import SideBar from '../../components/SideBar.vue';
+  import PatientProfilePreview from '../../components/PatientProfilePreview.vue';
+  import AppointmentPreview from '../../components/AppointmentPreview.vue';
   export default {
     components: {
       DocAppointmentForm,

@@ -45,6 +45,7 @@
 <script>
 export default {
     props: ['name', 'gender', 'phone', 'blood-type', 'birthday', 'address']
+    
 }
 </script>
 <style>

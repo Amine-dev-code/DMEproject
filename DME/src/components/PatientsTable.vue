@@ -24,10 +24,7 @@
 <script>
 export default {
   props: {
-    patients: {
-      type: Array,
-      required: true
-    }
+   
   },
   methods: {
     handleRmv() {

@@ -1,12 +1,12 @@
 <template>
-  <clinicPage/>
+  <router-View/>
 </template>
 
 <script>
-import clinicPage from '@/views/clinicPage.vue';
+
 export default {
   components: {
-    clinicPage
+    
   }
 }
 </script>

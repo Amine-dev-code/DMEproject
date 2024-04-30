@@ -11,6 +11,11 @@ const appointmentSchema=mongoose.Schema({
         type:mongoose.SchemaTypes.ObjectId,
         ref:"User"
     },
+    full_name:
+    {
+        type:String,
+        required:true
+    },
     reservation_date:{
         type:Date,
         immutable:true,

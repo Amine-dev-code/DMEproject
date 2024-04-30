@@ -1,4 +1,6 @@
 <template>
+        <SideBar name="idir ouldkhaoua" />
+
     <div class="home-container">
         <WelcomeDoctor class="welcome" />
         <div style="display: flex; flex-direction: row; grid-column-start: 2;
@@ -25,6 +27,7 @@ import TotalCard from '@/components/TotalCard.vue'
 import DonutCircle from '@/components/DonutCircle.vue'
 import PatientCount from '@/components/PatientCount.vue'
 import DateNTime from '@/components/DateNTime.vue'
+import SideBar from '@/components/SideBar.vue';
 
 export default {
     components: {
@@ -32,7 +35,8 @@ export default {
         TotalCard,
         DonutCircle,
         PatientCount,
-        DateNTime
+        DateNTime,
+        SideBar
     }
 }
 </script>
