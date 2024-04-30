@@ -10,6 +10,9 @@
     <DoctorsList/>
   </section>
   <section id="appointment">
+    <h1>
+      Book an appointment
+    </h1>
     <guestAppointmentForm/>
   </section>
   <section id="aboutus">
@@ -18,7 +21,7 @@
           <p>
             Hours:
           </p>
-
+          <workingHours/>
         </div>
         <hr style="width: 30vw; border: 1px solid rgba(42, 75, 102, 0.1);">
         <div>
@@ -26,7 +29,7 @@
             Contact us
           </p>
           <input type="text" name="name" placeholder="name">
-          <textarea name="" id="" cols="30" rows="10"></textarea>
+          <textarea name="" id="" cols="30" rows="10" placeholder="enter message" />
           <button @click.prevent="">
             Send email
           </button>
@@ -40,13 +43,15 @@
 import NavBar from '@/components/NavBar.vue';
 import DoctorsList from '@/views/DoctorsList.vue';
 import guestAppointmentForm from '@/views/guestAppointmentForm.vue';
-import mapContainer from '@/components/mapContainer.vue'
+import mapContainer from '@/components/mapContainer.vue';
+import workingHours from '@/components/workingHours.vue';
 export default {
   components: {
     NavBar,
     DoctorsList,
     guestAppointmentForm,
-    mapContainer
+    mapContainer,
+    workingHours
   }
 }
 </script>
@@ -84,14 +89,20 @@ section {
 }
 #appointment {
   display: flex;
+  flex-direction: column;
   width: 100%;
   justify-content: center;
   align-items: center;
   background-color: white;
 }
+#appointment > h1 {
+  font-size: 40px;
+  font-weight: lighter;
+  color: rgba(42, 75, 102, 1);
+}
 #aboutus {
   display: flex;
-  flex-direction: row;
+  /*flex-direction: row;*/
 }
 .aboutus-container {
   width: 50vw;
@@ -100,7 +111,7 @@ section {
   align-items: center;
   justify-content: center;
 }
-.aboutus-container div {
+.aboutus-container > div {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -114,12 +125,14 @@ section {
   font-size: 14px;
   padding-left: 10px;
 }
+.aboutus-container div > textarea {
+  padding-top: 10px;
+}
+.aboutus-container div > textarea::placeholder, .aboutus-container > div > input::placeholder {
+  color: rgba(42, 75, 102, 0.5);
+}
 .aboutus-container > div > input {
   height: 40px;
-}
-.aboutus-container > div > input::placeholder {
-  color: rgba(42, 75, 102, 0.5);
-  padding-left: 10px;
 }
 .aboutus-container > div > button {
   width: 10vw;

@@ -1,10 +1,8 @@
 <template>
   <div class="navBarContainer">
     <a href="#doctors" :class="{ active: isActive('#doctors') }">Doctors</a>
-    <a href="#location" :class="{ active: isActive('/location') }">Location</a>
-    <a href="#hours" :class="{ active: isActive('/hours') }">Hours</a>
     <a href="#appointment" :class="{ active: isActive('/signup') }">Appointment</a>
-    <a href="#contact" :class="{ active: isActive('/contact') }">Contact</a>
+    <a href="#aboutus" :class="{ active: isActive('/location') }">About us</a>
     <RouterLink to="/login" :class="{ active: isActive('/login') }">Login</RouterLink>
   </div>
 </template>
