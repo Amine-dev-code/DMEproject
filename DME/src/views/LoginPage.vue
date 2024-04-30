@@ -1,20 +1,24 @@
 <template>
   <div class="container">
     <form @submit.prevent="handleSubmit" class="LoginForm">
-        <input class="Input" type="email" name="email" placeholder="example@email.com" v-model="email" >
-        <input
-          class="Input"
-          type="password"
-          name="password"
-          placeholder="enter your password"
-          required
-          v-model="password"
-        />
-        <button class="lgn-btn">Login</button>
+      <input
+        class="login-input"
+        type="email"
+        name="email"
+        placeholder="example@email.com"
+        v-model="email"
+      />
+      <input
+        class="login-input"
+        type="password"
+        name="password"
+        placeholder="enter your password"
+        required
+        v-model="password"
+      />
+      <button class="lgn-btn">Login</button>
     </form>
-    <div class="logindiv">
-      <img src="../assets/login.svg" alt="" class="loginimg" />
-    </div>
+    <img src="../assets/login.svg" alt="" class="loginimg" />
   </div>
 </template>
 
@@ -23,13 +27,12 @@ export default {
   data() {
     return {
       email: '',
-      phone: '',
       password: ''
     }
   },
   methods: {
     handleSubmit() {
-      console.log("form submitted");
+      console.log('form submitted')
     }
   }
 }
@@ -44,29 +47,20 @@ export default {
   height: 100vh;
 }
 
-.logindiv {
-  flex: 1;
-  height: 100vh;
-}
-
 .LoginForm {
-  flex: 1;
   height: 100vh;
+  width: 50vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-.Input {
-  width: 20vw;
-  margin: 10px;
 }
 .Input::placeholder {
   text-align: center;
   color: rgba(67, 106, 230, 0.5);
 }
 .lgn-btn {
-  margin-top: 30px;
+  margin-top: 20px;
   background-color: #436ae6;
   color: white;
   width: 10vw;
@@ -80,5 +74,21 @@ export default {
 }
 .lgn-btn:active {
   background-color: rgba(67, 106, 230, 0.5);
+}
+.loginimg {
+  height: 100vh;
+}
+.login-input {
+  height: 40px;
+  width: 20vw;
+  border: 2px solid rgba(0, 206, 200, 0.5);
+  border-radius: 5px;
+  padding-left: 10px;
+  color: rgba(42, 75, 102, 1);
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.login-input::placeholder {
+  color: rgba(67, 106, 230, 0.5);
 }
 </style>
