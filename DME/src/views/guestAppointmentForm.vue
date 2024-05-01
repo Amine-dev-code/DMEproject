@@ -13,17 +13,19 @@
         <label for="email">Email</label>
         <input type="email" v-model="email" />
       </div>
-      <div class="element">
-        <select name="doctor" id="">
-          <option value="">pick a doctor</option>
-          <option v-for="doctor in doctors" :key="doctor.id" value="doctor.id">
-            {{ doctor.name }}
-          </option>
-        </select>
-      </div>
-      <div class="element">
-        <label for="date">Date</label>
-        <input type="date" name="date" v-model="date" />
+      <div class="last-row" style="display: flex; flex-direction: row">
+        <div class="element">
+          <select name="doctor" id="" v-model="doctorId">
+            <option value="">pick a doctor</option>
+            <option v-for="doctor in doctors" :key="doctor.id" value="doctor.id">
+              {{ doctor.name }}
+            </option>
+          </select>
+        </div>
+        <div class="">
+          <label for="date">Date</label>
+          <input type="date" name="date" v-model="date" class="date" />
+        </div>
       </div>
       <button class="book-btn" @click.prevent="print">book appointment</button>
     </form>
@@ -38,6 +40,7 @@ export default {
       phone: '',
       email: '',
       date: '',
+      doctorId: '',
       doctors: [
         {
           id: 1,
@@ -90,10 +93,18 @@ export default {
   flex-direction: column;
   gap: 5px;
 }
-.element > input {
+.element > input,
+.date {
   height: 40px;
   border-radius: 5px;
   border: 2px solid rgba(0, 206, 200, 0.5);
+}
+.element > select {
+  height: 40px;
+  border-radius: 5px;
+  border: 2px solid rgba(0, 206, 200, 0.5);
+  width: 15vw;
+  padding-left: 10px;
 }
 .element > input {
   width: 30vw;
@@ -113,5 +124,21 @@ export default {
 }
 .book-btn:active {
   background-color: rgba(67, 106, 230, 0.5);
+}
+.last-row {
+  width: 31vw;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+.last-row > div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.last-row > div > select {
+  margin-top: 18px;
+  height: 44px;
 }
 </style>
