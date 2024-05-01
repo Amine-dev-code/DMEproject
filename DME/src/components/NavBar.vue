@@ -19,7 +19,7 @@ const isActive = (path) => {
 }
 </script>
 
-<style>
+<style scoped>
 body {
   display: flex;
   justify-content: center;
@@ -41,7 +41,6 @@ a {
   font-family: sans-serif;
   padding: 5px;
   border-radius: 5px;
-  mix-blend-mode: difference;
   transform: translateY(-50%);
 }
 a:hover {

@@ -1,257 +1,311 @@
 <template>
-  <h1 class="form-header">Patient Profile Creation</h1>
-  <form action="" class="signup-form">
-    <div class="general-info">
-      <input class="half input-style" type="text" name="first-name" placeholder="first name"  v-model="firstName" required>
-      <input type="text" placeholder="family name" name="family-name" class="input-style"  v-model="familyName" required>
-      <div class="birthday">
-        <select name="" class="day" id="day"  v-model="day" required>
-          <option value="">Day</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-          <option value="13">13</option>
-          <option value="14">14</option>
-          <option value="15">15</option>
-          <option value="16">16</option>
-          <option value="17">17</option>
-          <option value="18">18</option>
-          <option value="19">19</option>
-          <option value="20">20</option>
-          <option value="21">21</option>
-          <option value="22">22</option>
-          <option value="23">23</option>
-          <option value="24">24</option>
-          <option value="25">25</option>
-          <option value="26">26</option>
-          <option value="27">27</option>
-          <option value="28">28</option>
-          <option value="29">29</option>
-          <option value="30">30</option>
-          <option value="31">31</option>
-        </select>
-        <select name="" id="month" class="month"  v-model="month" required>
-          <option value="">Month</option>
-          <option value="01">January</option>
-          <option value="02">February</option>
-          <option value="03">March</option>
-          <option value="04">April</option>
-          <option value="05">May</option>
-          <option value="06">June</option>
-          <option value="07">July</option>
-          <option value="08">August</option>
-          <option value="09">September</option>
-          <option value="10">October</option>
-          <option value="11">November</option>
-          <option value="12">December</option>
-        </select>
-        <select name="" id="year" class="year"  v-model="year" required>
-          <option value="">Year</option>
-        </select>
-      </div>
-      <input type="text" class="input-style" placeholder="gender"  v-model="gender" required>
-      <div class="body-info">
-        <input type="text" placeholder="height" class="input-style"  v-model="height" required>
-        <input type="text" placeholder="weight" class="input-style"  v-model="weight" required>
-        <select class="blood-type"  v-model="blood" required>
-          <option value="">Select blood type</option>
-          <option value="A+">A+</option>
-          <option value="A-">A-</option>
-          <option value="B+">B+</option>
-          <option value="B-">B-</option>
-          <option value="AB+">AB+</option>
-          <option value="AB-">AB-</option>
-          <option value="O+">O+</option>
-          <option value="O-">O-</option>
-        </select>
-      </div>
-    </div>
-    <hr />
-    <div class="contact-info">
-      <input class="number input-style" type="tel" placeholder="number"  v-model="phone" required>
-      <input class="email input-style" type="email" placeholder="email"  v-model="email" required>
-      <input class="address input-style" type="text" placeholder="address"  v-model="address" required>
-      <select id="wilaya" name="wilaya" class="state"  v-model="wilaya" required>
-        <option value="">Select wilaya</option>
-        <option value="Adrar">Adrar</option>
-        <option value="Chlef">Chlef</option>
-        <option value="Laghouat">Laghouat</option>
-        <option value="Oum El Bouaghi">Oum El Bouaghi</option>
-        <option value="Batna">Batna</option>
-        <option value="Béjaïa">Béjaïa</option>
-        <option value="Biskra">Biskra</option>
-        <option value="Béchar">Béchar</option>
-        <option value="Blida">Blida</option>
-        <option value="Bouira">Bouira</option>
-        <option value="Tamanrasset">Tamanrasset</option>
-        <option value="Tébessa">Tébessa</option>
-        <option value="Tlemcen">Tlemcen</option>
-        <option value="Tiaret">Tiaret</option>
-        <option value="Tizi Ouzou">Tizi Ouzou</option>
-        <option value="Alger">Alger</option>
-        <option value="Djelfa">Djelfa</option>
-        <option value="Jijel">Jijel</option>
-        <option value="Sétif">Sétif</option>
-        <option value="Saida">Saïda</option>
-        <option value="Skikda">Skikda</option>
-        <option value="Sidi Bel Abbès">Sidi Bel Abbès</option>
-        <option value="Annaba">Annaba</option>
-        <option value="Guelma">Guelma</option>
-        <option value="Constantine">Constantine</option>
-        <option value="Médéa">Médéa</option>
-        <option value="Mostaganem">Mostaganem</option>
-        <option value="M'Sila">M'Sila</option>
-        <option value="Mascara">Mascara</option>
-        <option value="Ouargla">Ouargla</option>
-        <option value="Oran">Oran</option>
-        <option value="El Bayadh">El Bayadh</option>
-        <option value="Illizi">Illizi</option>
-        <option value="Bordj Bou Arréridj">Bordj Bou Arréridj</option>
-        <option value="Boumerdès">Boumerdès</option>
-        <option value="El Tarf">El Tarf</option>
-        <option value="Tindouf">Tindouf</option>
-        <option value="Tissemsilt">Tissemsilt</option>
-        <option value="El Oued">El Oued</option>
-        <option value="Khenchela">Khenchela</option>
-        <option value="Souk Ahras">Souk Ahras</option>
-        <option value="Tipaza">Tipaza</option>
-        <option value="Mila">Mila</option>
-        <option value="Aïn Defla">Aïn Defla</option>
-        <option value="Naâma">Naâma</option>
-        <option value="Aïn Témouchent">Aïn Témouchent</option>
-        <option value="Ghardaïa">Ghardaïa</option>
-        <option value="Relizane">Relizane</option>
-      </select>
-      <input class="city input-style" type="text" placeholder="city"  v-model="city" required>
-    </div>
-    <hr />
-    <div class="health-info">
-      <div
-        style="
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: space-between;
-          gap: 10px ;
-          margin-bottom: 10px;
-        "
-      >
-        <input placeholder="Surgery" class="input-style" v-model="tempSurg" @keyup.enter="addSurgeries">
-        <div class="added-container" v-if="surgeries.length > 0">
-          <div class="added" v-for="surgery in surgeries" :key="surgery">
-            {{ surgery }}
-          </div>
+  <div class="signup-container">
+    <h1 class="form-header">Patient Profile Creation</h1>
+    <form action="" class="signup-form">
+      <div class="general-info">
+        <input
+          class="half input-style"
+          type="text"
+          name="first-name"
+          placeholder="first name"
+          v-model="firstName"
+          required
+        />
+        <input
+          type="text"
+          placeholder="family name"
+          name="family-name"
+          class="input-style"
+          v-model="familyName"
+          required
+        />
+        <div class="birthday">
+          <select name="" class="day" id="day" v-model="day" required>
+            <option value="">Day</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            <option value="31">31</option>
+          </select>
+          <select name="" id="month" class="month" v-model="month" required>
+            <option value="">Month</option>
+            <option value="01">January</option>
+            <option value="02">February</option>
+            <option value="03">March</option>
+            <option value="04">April</option>
+            <option value="05">May</option>
+            <option value="06">June</option>
+            <option value="07">July</option>
+            <option value="08">August</option>
+            <option value="09">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+          </select>
+          <select name="" id="year" class="year" v-model="year" required>
+            <option value="">Year</option>
+          </select>
+        </div>
+        <input type="text" class="input-style" placeholder="gender" v-model="gender" required />
+        <div class="body-info">
+          <input type="text" placeholder="height" class="input-style" v-model="height" required />
+          <input type="text" placeholder="weight" class="input-style" v-model="weight" required />
+          <select class="blood-type" v-model="blood" required>
+            <option value="">Select blood type</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+          </select>
         </div>
       </div>
-      <hr style="width : 300px ;"/>
-      <div
-        style="
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: space-between;
-          gap: 10px;
-          margin-bottom: 10px;
-        "
-      >
-        <input placeholder="Allergies" class="input-style" v-model="tempAllerg" @keyup.enter="addAllergies">
-        <div class="added-container" v-if="allergies.length > 0">
-          <div class="added" v-for="allergy in allergies" :key="allergy">
-            {{ allergy }}
+      <hr />
+      <div class="contact-info">
+        <input
+          class="number input-style"
+          type="tel"
+          placeholder="number"
+          v-model="phone"
+          required
+        />
+        <input
+          class="email input-style"
+          type="email"
+          placeholder="email"
+          v-model="email"
+          required
+        />
+        <input
+          class="address input-style"
+          type="text"
+          placeholder="address"
+          v-model="address"
+          required
+        />
+        <select id="wilaya" name="wilaya" class="state" v-model="wilaya" required>
+          <option value="">Select wilaya</option>
+          <option value="Adrar">Adrar</option>
+          <option value="Chlef">Chlef</option>
+          <option value="Laghouat">Laghouat</option>
+          <option value="Oum El Bouaghi">Oum El Bouaghi</option>
+          <option value="Batna">Batna</option>
+          <option value="Béjaïa">Béjaïa</option>
+          <option value="Biskra">Biskra</option>
+          <option value="Béchar">Béchar</option>
+          <option value="Blida">Blida</option>
+          <option value="Bouira">Bouira</option>
+          <option value="Tamanrasset">Tamanrasset</option>
+          <option value="Tébessa">Tébessa</option>
+          <option value="Tlemcen">Tlemcen</option>
+          <option value="Tiaret">Tiaret</option>
+          <option value="Tizi Ouzou">Tizi Ouzou</option>
+          <option value="Alger">Alger</option>
+          <option value="Djelfa">Djelfa</option>
+          <option value="Jijel">Jijel</option>
+          <option value="Sétif">Sétif</option>
+          <option value="Saida">Saïda</option>
+          <option value="Skikda">Skikda</option>
+          <option value="Sidi Bel Abbès">Sidi Bel Abbès</option>
+          <option value="Annaba">Annaba</option>
+          <option value="Guelma">Guelma</option>
+          <option value="Constantine">Constantine</option>
+          <option value="Médéa">Médéa</option>
+          <option value="Mostaganem">Mostaganem</option>
+          <option value="M'Sila">M'Sila</option>
+          <option value="Mascara">Mascara</option>
+          <option value="Ouargla">Ouargla</option>
+          <option value="Oran">Oran</option>
+          <option value="El Bayadh">El Bayadh</option>
+          <option value="Illizi">Illizi</option>
+          <option value="Bordj Bou Arréridj">Bordj Bou Arréridj</option>
+          <option value="Boumerdès">Boumerdès</option>
+          <option value="El Tarf">El Tarf</option>
+          <option value="Tindouf">Tindouf</option>
+          <option value="Tissemsilt">Tissemsilt</option>
+          <option value="El Oued">El Oued</option>
+          <option value="Khenchela">Khenchela</option>
+          <option value="Souk Ahras">Souk Ahras</option>
+          <option value="Tipaza">Tipaza</option>
+          <option value="Mila">Mila</option>
+          <option value="Aïn Defla">Aïn Defla</option>
+          <option value="Naâma">Naâma</option>
+          <option value="Aïn Témouchent">Aïn Témouchent</option>
+          <option value="Ghardaïa">Ghardaïa</option>
+          <option value="Relizane">Relizane</option>
+        </select>
+        <input class="city input-style" type="text" placeholder="city" v-model="city" required />
+      </div>
+      <hr />
+      <div class="health-info">
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 10px;
+          "
+        >
+          <input
+            placeholder="Surgery"
+            class="input-style"
+            v-model="tempSurg"
+            @keyup.enter="addSurgeries"
+          />
+          <div class="added-container" v-if="surgeries.length > 0">
+            <div class="added" v-for="surgery in surgeries" :key="surgery">
+              {{ surgery }}
+            </div>
           </div>
         </div>
-      </div>
-      <hr style="width : 300px ;"/>
-      <div>
-        <div style="
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        margin-bottom: 10px;
-      ">
-          <input placeholder="Diagnosis" class="input-style"  v-model="tempDiag" @keyup.enter="addDiagnosis">
-          <div class="added-container" v-if="diagnosises.length > 0">
-            <div class="added" v-for="diagnosis in diagnosises" :key="diagnosis">
-              {{ diagnosis }}
+        <hr style="width: 300px" />
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 10px;
+          "
+        >
+          <input
+            placeholder="Allergies"
+            class="input-style"
+            v-model="tempAllerg"
+            @keyup.enter="addAllergies"
+          />
+          <div class="added-container" v-if="allergies.length > 0">
+            <div class="added" v-for="allergy in allergies" :key="allergy">
+              {{ allergy }}
+            </div>
+          </div>
+        </div>
+        <hr style="width: 300px" />
+        <div>
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: space-between;
+              gap: 10px;
+              margin-bottom: 10px;
+              width: 30vw;
+            "
+          >
+            <input
+              placeholder="Diagnosis"
+              class="input-style"
+              v-model="tempDiag"
+              @keyup.enter="addDiagnosis"
+            />
+            <div class="added-container" v-if="diagnosises.length > 0">
+              <div class="added" v-for="diagnosis in diagnosises" :key="diagnosis">
+                {{ diagnosis }}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <button class="create-patient-btn" type="submit" @click.prevent="handleSubmit">Create new patient</button>
-  </form>
+      <button class="create-patient-btn" type="submit" @click.prevent="handleSubmit">
+        Create new patient
+      </button>
+    </form>
+  </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      email:'',
-      firstName:'',
-      familyName:'',
-      day:'',
-      month:'',
-      year:'',
-      gender:'',
-      height:'',
-      weight:'',
-      blood:'',
-      phone:'',
-      address:'',
-      wilaya:'',
-      city:'',
-      tempSurg:'',
-      tempAllerg:'',
-      tempDiag:'',
+      email: '',
+      firstName: '',
+      familyName: '',
+      day: '',
+      month: '',
+      year: '',
+      gender: '',
+      height: '',
+      weight: '',
+      blood: '',
+      phone: '',
+      address: '',
+      wilaya: '',
+      city: '',
+      tempSurg: '',
+      tempAllerg: '',
+      tempDiag: '',
       diagnosises: [],
       surgeries: [],
       allergies: []
-    };
+    }
   },
   methods: {
     addDiagnosis(event) {
-        if(event.key === 'Enter' && this.tempDiag) {
-          if(!this.diagnosises.includes(this.tempDiag)) {
-            this.diagnosises.push(this.tempDiag);
-          }
-          this.tempDiag = '';
+      if (event.key === 'Enter' && this.tempDiag) {
+        if (!this.diagnosises.includes(this.tempDiag)) {
+          this.diagnosises.push(this.tempDiag)
         }
-      },
-      addAllergies(event) {
-        if(event.key === 'Enter' && this.tempAllerg) {
-          if(!this.allergies.includes(this.tempAllerg)) {
-            this.allergies.push(this.tempAllerg);
-          }
-          this.tempAllerg = '';
-        }
-      },
-      addSurgeries(event) {
-        if(event.key === 'Enter' && this.tempSurg) {
-          if(!this.surgeries.includes(this.tempSurg)) {
-            this.surgeries.push(this.tempSurg);
-          }
-          this.tempSurg = '';
-        }
-      },
-      handleSubmit() {
-        return;
+        this.tempDiag = ''
       }
+    },
+    addAllergies(event) {
+      if (event.key === 'Enter' && this.tempAllerg) {
+        if (!this.allergies.includes(this.tempAllerg)) {
+          this.allergies.push(this.tempAllerg)
+        }
+        this.tempAllerg = ''
+      }
+    },
+    addSurgeries(event) {
+      if (event.key === 'Enter' && this.tempSurg) {
+        if (!this.surgeries.includes(this.tempSurg)) {
+          this.surgeries.push(this.tempSurg)
+        }
+        this.tempSurg = ''
+      }
+    },
+    handleSubmit() {
+      return
     }
   }
+}
 </script>
 
-<style>
+<style scoped>
 .signup-form {
   display: flex;
   justify-content: center;
@@ -273,7 +327,6 @@ hr {
 .input-style::placeholder {
   color: rgba(67, 106, 230, 0.5);
   font-size: 14px;
-  padding-left: 10px;
 }
 /*.body-info > input::placeholder {
   color: rgba(67, 106, 230, 0.5);
@@ -282,8 +335,12 @@ hr {
 .signup-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  background-color: lightblue;
+  height: 100vh;
+  overflow-y: auto;
+  align-items: center;
+  gap: 10px;
+  padding: 20px; /* Add padding */
+  margin-right: 120px;
 }
 .general-info {
   display: grid;
@@ -363,7 +420,7 @@ hr {
   display: flex;
   flex-direction: column;
   font-family: sans-serif;
-  align-items:center ;
+  align-items: center;
 }
 
 .form-header {
@@ -379,7 +436,7 @@ hr {
   font-size: 18px;
   font-family: sans-serif;
   margin-bottom: 20px;
-  padding: 10px ;
+  padding: 10px;
 }
 .create-patient-btn:hover {
   background-color: rgba(67, 106, 230, 0.8);
@@ -407,22 +464,27 @@ hr {
   font-weight: bolder;
 }
 .added-container {
-  display: flex; 
+  flex-wrap: wrap;
+  display: flex;
   flex-direction: row;
-  height: 40px ;
-  width: auto;
+  height: 40px;
+  width: 30vw;
+  margin-top: 5px;
+  flex: 1;
+  row-gap: 5px;
 }
 .added {
   height: 30px;
-  width: auto;
   background-color: rgba(0, 206, 200, 0.1);
   color: rgba(0, 206, 200, 1);
   border-radius: 10px;
-  border: none ;
+  border: none;
   display: flex;
-  padding: 5px ;
+  padding: 5px;
   align-items: center;
   justify-content: center;
-  margin-right: 5px ;
+  margin-right: 5px;
+  width: 100%;
+  flex: 1;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div style="display: flex; flex-direction: column; align-items: center" class="Container">
-    <h1 style="text-align: center">Appointment Data Enrollment</h1>
+    <p style="color: #2a4b66; text-align: center; font-size: 30px">Appointment Data Enrollment</p>
     <form action="" class="doc-app-form-container" @submit.prevent="">
       <div>
         <input
@@ -52,55 +52,6 @@
 </template>
 <script>
 export default {
-  mounted() {
-    const dropContainer = document.getElementById('dropcontainer')
-    const fileInput = document.getElementById('file-input')
-
-    dropContainer.addEventListener(
-      'dragover',
-      (e) => {
-        // prevent default to allow drop
-        e.preventDefault()
-      },
-      false
-    )
-
-    dropContainer.addEventListener('dragenter', () => {
-      dropContainer.classList.add('drag-active')
-    })
-
-    dropContainer.addEventListener('dragleave', () => {
-      dropContainer.classList.remove('drag-active')
-    })
-
-    dropContainer.addEventListener('drop', (e) => {
-      e.preventDefault()
-      dropContainer.classList.remove('drag-active')
-      fileInput.files = e.dataTransfer.files
-    })
-  },
-  methods: {
-    handleFileChange(event) {
-      // Handle file change if necessary
-      event
-    },
-    addDiag(event) {
-      if (event.key == 'Enter' && this.diagnosis && !this.diagnosises.includes(this.diagnosis)) {
-        this.diagnosises.push(this.diagnosis)
-      }
-      this.diagnosis = ''
-    },
-    addPers(event) {
-      if (
-        event.key == 'Enter' &&
-        this.perscription &&
-        !this.perscriptions.includes(this.perscription)
-      ) {
-        this.perscriptions.push(this.perscription)
-      }
-      this.perscription = ''
-    }
-  },
   data() {
     return {
       report: '',
@@ -108,6 +59,52 @@ export default {
       perscriptions: [],
       diagnosis: '',
       diagnosises: []
+    }
+  },
+  mounted() {
+    // const dropContainer = document.getElementById('drop-container')
+    // const fileInput = document.getElementById('file-input')
+    // dropContainer.addEventListener(
+    //   'dragover',
+    //   (e) => {
+    //     // prevent default to allow drop
+    //     e.preventDefault()
+    //   },
+    //   false
+    // )
+    // dropContainer.addEventListener('dragenter', () => {
+    //   dropContainer.classList.add('drag-active')
+    // })
+    // dropContainer.addEventListener('dragleave', () => {
+    //   dropContainer.classList.remove('drag-active')
+    // })
+    // dropContainer.addEventListener('drop', (e) => {
+    //   e.preventDefault()
+    //   dropContainer.classList.remove('drag-active')
+    //   fileInput.files = e.dataTransfer.files
+    // })
+  },
+  methods: {
+    handleFileChange(event) {
+      // Handle file change if necessary
+      event
+    },
+    addDiag(event) {
+      console.log('addDiag called')
+      if (event.key == 'Enter' && this.diagnosis) {
+        if (!this.diagnosises.includes(this.diagnosis)) {
+          this.diagnosises.push(this.diagnosis)
+        }
+      }
+      this.diagnosis = ''
+    },
+    addPers(event) {
+      if (event.key == 'Enter' && this.perscription) {
+        if (!this.perscriptions.includes(this.perscription)) {
+          this.perscriptions.push(this.perscription)
+        }
+      }
+      this.perscription = ''
     }
   }
 }
@@ -119,16 +116,15 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
+  margin-top: 20px;
 }
 .doc-app-form-container > div {
-  max-width: 40vw;
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
 .report {
-  background-color: rgba(0, 206, 200, 0.1);
   border: 2px solid #00cec8;
   border-radius: 10px;
   font-size: 14px;
@@ -184,7 +180,7 @@ input[type='file']::file-selector-button:hover {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 100px;
+  height: 150px;
   padding-top: 20px;
   padding-bottom: 20px;
   width: 40vw;
@@ -244,6 +240,6 @@ input[type='file']::file-selector-button:hover {
 }
 .Container div,
 .Container textarea {
-  width: 100%;
+  width: 40vw;
 }
 </style>
