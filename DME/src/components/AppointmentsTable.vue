@@ -26,16 +26,7 @@
     data() {
       return {
         appointments:[
-          { id: 1, name: "John Doe", date: "2024-05-01", time: "09:00 AM" },
-          { id: 2, name: "Jane Smith", date: "2024-05-02", time: "10:30 AM" },
-          { id: 3, name: "Michael Johnson", date: "2024-05-03", time: "01:00 PM" },
-          { id: 4, name: "Emily Davis", date: "2024-05-04", time: "02:30 PM" },
-          { id: 5, name: "Chris Brown", date: "2024-05-05", time: "04:00 PM" },
-          { id: 6, name: "Sarah Wilson", date: "2024-05-06", time: "05:30 PM" },
-          { id: 7, name: "Alex Rodriguez", date: "2024-05-07", time: "07:00 PM" },
-          { id: 8, name: "Jessica Martinez", date: "2024-05-08", time: "08:30 PM" },
-          { id: 9, name: "David Thompson", date: "2024-05-09", time: "10:00 PM" },
-          { id: 10, name: "Michelle Lee", date: "2024-05-10", time: "11:30 PM" }
+          
         ]
       };
     },

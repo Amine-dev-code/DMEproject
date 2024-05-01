@@ -8,23 +8,35 @@ const User=require('../Models/userModel.js')
 
 const PostAppointment=async(req,res)=>{
     try{
-        const doctorId=req.params;
-        const testDate=req.body.reservation_date;
-        const appointmentDay =await AppointmentDay.find({doctor:doctorId,treatment_day:testDate})
+        const {doctorId}=req.params;
+        const {patientId}=req.params;
+        const testDate=req.body.visit_date;
+        const appointmentDay =await AppointmentDay.findOne({doctor:doctorId,treatment_day:testDate})
+        console.log(appointmentDay)
         if(!appointmentDay || appointmentDay.status==false){
             const newAppointment = new Appointment(req.body);
             newAppointment.patient=patientId;
             newAppointment.doctor=doctorId;
             newAppointment.status=false
-            newAppointment.save()
-            const doctor=await User.findById(doctorId)
-            appointmentDay.reserved_patients++
-            if(appointmentDay.reserved_patients==doctor.doctor_profile.maxPatient){
-                appointmentDay.status=true
-                appointmentDay.save()
-            }
+            newAppointment.save();
+            if(appointmentDay==null){
+                const appointmenteDay= new AppointmentDay()
+                appointmenteDay.treatment_day=Date.now()
+                appointmenteDay.status=false
+                appointmenteDay.reserved_patients++
+                appointmenteDay.save()
+             }
+             else{
+                appointmentDay.reserved_patients++;
+                const doctor=await User.findById(doctorId);
+                if(appointmentDay.reserved_patients==doctor.doctor_profile.maxPatient){
+                    appointmentDay.status=true
+                    appointmentDay.save()
+                }
+             }
+            
             res.status(200).json({
-                message:'your appointment is succesfully tooken'
+                message:'your appointment is succesfully taken'
             })
         }
         else{
@@ -38,6 +50,14 @@ const PostAppointment=async(req,res)=>{
         res.status(500).json({
             message:error.message
         })
+    }
+}
+const getAppointments=async(req,res)=>{
+    try{
+        const Appointments=await Appointment.find({})
+        res.status(200).json(Appointments)
+    }catch(error){
+        res.status(500).json(error)
     }
 }
 
@@ -112,4 +132,5 @@ module.exports={
     getAppointmentsPatient,
     getUpcomingAppointments,
     changeStatusAppointment,
+    getAppointments
 }

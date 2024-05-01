@@ -14,7 +14,7 @@ const {
 }=require('../Controllers/doctorController')
 
 
-router.post('/postDoctor',postDoctor)
+
 router.get('/getDoctors',getDoctors)
 router.delete('/deleteUser/:id',deleteUser)
 router.put('/editDoctor/:id',editDoctor)

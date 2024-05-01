@@ -2,20 +2,7 @@ const User=require('../Models/userModel');
 //const { param } = require('../Routes/userRoutes');
 
 
-const postDoctor=async(req,res)=>{
-    try{
-        const doctor = new User(req.body);
-        doctor.role='doctor'
-        await doctor.save();
-        res.status(200).json(doctor)
-        console.log(doctor);
-    }
-    catch(error){
-        res.status(500).json({
-            message:error.message
-        })
-    }
-}
+
 
 const getDoctors=async(req,res)=>{
     try{
@@ -128,5 +115,5 @@ module.exports={
     deleteUsers,
     getDoctorInfo,
     searchDoctors,
-    postDoctor
+    
 }

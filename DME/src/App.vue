@@ -1,8 +1,8 @@
 <template>
-  <PatientProfileCard />
+  <!---<PatientProfileCard /> -->
   <!-- <DocumentContainer /> -->
   <!-- <AppointmentData /> -->
-  <!-- <router-View /> -->
+   <router-View /> 
 </template>
 
 <script>

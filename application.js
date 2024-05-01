@@ -11,12 +11,14 @@ const documentRoutes=require('./Routes/documentRoute.js')
 const authRoutes=require('./Routes/authRoute.js')
 const loginRoute=require('./Routes/loginRoute.js')
 const vizualisationRoute=require('./Routes/vizualisationRoute.js')
+const appointment=require('./Routes/appointmentRoute.js')
+const appointmentDay=require('./Routes/appointmentDayRoute.js')
 app.use(cookieParser());
 app.use(cors())//this is mandatory to let front connect into front
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 //const {errorMiddleware}=require('./middleware/errorMiddleware.js')
-app.use('/api',doctorRoutes,patientRoutes,visitRoutes,documentRoutes,authRoutes,loginRoute,vizualisationRoute)
+app.use('/api',doctorRoutes,patientRoutes,visitRoutes,documentRoutes,authRoutes,loginRoute,vizualisationRoute,appointment,appointmentDay)
 
 
 

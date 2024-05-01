@@ -1,11 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import LandingPage from '@/views/LandingPage.vue'
+
 import ClinicPage from '@/views/clinicPage.vue'
 import LoginPage from '@/views/LoginPage.vue' // Assuming LoginPage.vue is located in the 'views' directory
 import HomeDash from '../views/doctor/HomeDash.vue'
 import PatientsDash from '@/views/doctor/PatientsDash.vue'
 import AppointmentsDash from '@/views/doctor/AppointmentsDash.vue'
 import AppointmentData from '@/views/doctor/AppointmentData.vue'
+import guestAppointmentForm from '@/views/guestAppointmentForm.vue'
 const routes= [
   {
     path: '/',

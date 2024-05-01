@@ -73,8 +73,11 @@ email: {
         },
         maxPatient:{
             type:Number,
-            default:10
-        }
+        },
+        ownPatients:[{
+            type:mongoose.SchemaTypes.ObjectId,
+            ref:"User"
+        }]
     }
 },
 {

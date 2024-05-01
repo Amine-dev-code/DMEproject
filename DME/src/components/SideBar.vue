@@ -14,7 +14,6 @@
       <router-link to="/patients" :class="{ active: isActive('/patients') }">
         Patients
       </router-link>
-
     </div>
     <router-link to="/clinic" class="log-out">Log out</router-link>
   </div>

@@ -8,8 +8,13 @@ const{
     getAppointmentsDoctor,
     getAppointmentsPatient,
     getUpcomingAppointments,
-    AskForAppointment,
-    changeStatusAppointment
+    changeStatusAppointment,
+    getAppointments
 }=require('../Controllers/appointmentController')
 
-router.post('/postVisit/:patientId/:doctorId',PostAppointment)
+//router.post('/postVisit/:patientId/:doctorId',PostAppointment)
+router.get('/getAppointment/:doctorId',getAppointmentsDoctor)
+router.post('/postAppointment/:doctorId',PostAppointment)
+router.get('/getAppointments',getAppointments)
+
+module.exports=router

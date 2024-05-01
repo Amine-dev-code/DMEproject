@@ -10,7 +10,7 @@ const {
 
 
 router.post('/postDoctor',postDoctor)
-router.post('/postPatient', postPatient)
+router.post('/postPatient/:doctorId', postPatient)
 
 
 

@@ -35,7 +35,16 @@ const checkDisponibleAppointment=async(req,res)=>{
     })
     }
     }
+    const getAppointmentDays=async(req,res)=>{
+        try{
+            const AppointmentDays=await AppointmentDay.find({})
+            res.status(200).json(AppointmentDays)
+        }catch(error){
+            res.status(500).json(error)
+        }
+    }
 
     module.exports={
-        checkDisponibleAppointment
+        checkDisponibleAppointment,
+        getAppointmentDays
     }
