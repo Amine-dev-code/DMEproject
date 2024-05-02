@@ -3,31 +3,39 @@
     <form action="" class="guest-form-container" @submit.prevent="handleSubmition">
       <div class="element">
         <label for="name">Full name</label>
-        <input type="text" name="name" v-model="name" />
+        <input type="text" name="name" v-model="bookAppointment.full_name" />
       </div>
       <div class="element">
         <label for="phone">Phone number</label>
-        <input type="tel" v-model="phone" />
+        <input required type="tel" v-model="bookAppointment.phone" />
       </div>
       <div class="element">
         <label for="email">Email</label>
-        <input type="email" v-model="email" />
+        <input required type="email" v-model="bookAppointment.email" />
       </div>
       <div class="last-row" style="display: flex; flex-direction: row">
         <div class="element">
-          <select name="doctor" id="" v-model="doctorId">
-            <option value="">pick a doctor</option>
-            <option v-for="doctor in doctors" :key="doctor.id" value="doctor.id">
-              {{ doctor.name }}
+          <label for="doctor">pick a doctor</label>
+          <select name="doctor"  v-model="selectedDoctorID">
+            <option>pick a doctor</option>
+            <option v-for="doctor in doctors" id="chosenDoctor" :key="doctor._id" :value="doctor._id" >
+              {{ doctor.first_name }} {{ doctor.last_name }}
             </option>
           </select>
         </div>
         <div class="">
           <label for="date">Date</label>
-          <input type="date" name="date" v-model="date" class="date" />
+          <input type="date" name="date" v-model="bookAppointment.visit_date" class="date" />
+        </div>
+        <div v-if="youcan" class="showokMessage">
+          <h5>{{ this.okmessage }}</h5>
+        </div>
+        <div v-else>
+          <h5>{{ this.nomessage }}</h5>
         </div>
       </div>
-      <button class="book-btn" @click.prevent="print">book appointment</button>
+      <button class="book-btn" @click.prevent="bookAppointmente">book appointment</button>
+      <button class="book-btn" @click.prevent="handleDateClick">check</button>
     </form>
   </div>
 </template>
@@ -36,34 +44,78 @@
 export default {
   data() {
     return {
-      name: '',
       phone: '',
       email: '',
-      date: '',
-      doctorId: '',
-      doctors: [
-        {
-          id: 1,
-          name: 'l3amid'
-        },
-        {
-          id: 2,
-          name: 'lm9wd'
-        },
-        {
-          id: 3,
-          name: 'lm36ob'
-        }
-      ]
+      doctors: [],
+      okmessage:'',
+      nomessage:'',
+      youcan:false,
+      bookAppointment:{
+        full_name:'',
+        email:'',
+        phone:null,
+        visit_date:''
+      }
     }
   },
   methods: {
-    print() {
-      console.log(this.name)
-      console.log(this.phone)
-      console.log(this.email)
-      console.log(this.date)
+    async fetchDoctors(){
+      try{
+        const res=await fetch ('http://localhost:3000/api/getDoctors')
+        const data= await res.json();
+        this.doctors=data;
+      }catch(error){
+        console.log(error.message)
+      }
+    },
+    async handleDateClick(){
+      try{
+        const checkAppointment={
+          visit_date:this.bookAppointment.visit_date
+        };
+        const res=await fetch (`http://localhost:3000/api/checkDisponibleAppointment/${this.selectedDoctorID}`,{
+          method:'post',
+          body:JSON.stringify(checkAppointment),
+          headers:{
+          'content-type': 'application/json',
+        }
+        });
+        const data=await res.json()
+        console.log(data)
+        if(data.status=='success'){
+          this.youcan=true
+          this.okmessage=data.message
+          
+        }
+        else{
+         this.nomessage=data.message
+        
+        }
+      }catch(error){
+        console.log(error)
+      }
+    },
+    async bookAppointmente(){
+    try{
+      const res=await fetch (`http://localhost:3000/api/postAppointment/${this.selectedDoctorID}`,{
+          method:'post',
+          body:JSON.stringify(this.bookAppointment),
+          headers:{
+          'content-type': 'application/json',
+        }
+        });
+      this.bookAppointment.full_name='';
+      this.bookAppointment.email='';
+      this.bookAppointment.phone=null;
+      this.bookAppointment.visit_date=''
+    }catch(error){
+      console.log(error)
     }
+  }
+  },
+  
+  async created(){
+    await this.fetchDoctors()
   }
 }
 </script>
@@ -140,5 +192,8 @@ export default {
 .last-row > div > select {
   margin-top: 18px;
   height: 44px;
+}
+.showokMessage{
+
 }
 </style>

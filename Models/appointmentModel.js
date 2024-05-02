@@ -16,6 +16,14 @@ const appointmentSchema=mongoose.Schema({
         type:String,
         required:true
     },
+    email:{
+        type:String,
+        required:true
+    },
+    phone:{
+        type:String,
+        required:true
+    },
     reservation_date:{
         type:Date,
         immutable:true,
