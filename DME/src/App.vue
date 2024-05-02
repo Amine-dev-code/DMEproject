@@ -1,14 +1,12 @@
 <template>
-  <DashBoard />
+  <!---<PatientProfileCard /> -->
+  <!-- <DocumentContainer /> -->
+  <!-- <AppointmentData /> -->
+  <router-View />
 </template>
 
 <script>
-import DashBoard from '@/views/doctor/DashBoard.vue'
-export default {
-  components: {
-    DashBoard
-  }
-}
+export default {}
 </script>
 
 <style lang="scss">

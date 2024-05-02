@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
 import ClinicPage from '@/views/clinicPage.vue'
 import LoginPage from '@/views/LoginPage.vue' // Assuming LoginPage.vue is located in the 'views' directory
 import DashBoard from '../views/doctor/DashBoard.vue'
@@ -8,7 +9,7 @@ import AppointmentData from '@/views/doctor/AppointmentData.vue'
 import AnalyticsDash from '@/views/doctor/AnalyticsDash.vue'
 import SignUp from '../components/SignUp.vue'
 
-const routes = [
+const routes= [
   {
     path: '/',
     name: 'home',
