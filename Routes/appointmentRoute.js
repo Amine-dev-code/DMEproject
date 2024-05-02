@@ -17,4 +17,5 @@ router.get('/getAppointment/:doctorId',getAppointmentsDoctor)
 router.post('/postAppointment/:doctorId',PostAppointment)
 
 
+
 module.exports=router

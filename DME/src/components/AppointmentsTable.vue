@@ -2,8 +2,9 @@
   <div class="appointments-container">
     <div class="table">
       <div class="table-header">
-        <div class="header-cell">NAME</div>
-        <div class="header-cell">TIME</div>
+        <div class="header-cell">FULL NAME</div>
+        <div class="header-cell">EMAIL</div>
+        <div class="header-cell">PHONE</div>
         <div class="header-cell">DATE</div>
       </div>
       <router-link
@@ -12,27 +13,44 @@
         :key="appointment.id"
         class="table-row"
       >
-        <div class="table-cell" style="height: min-content">{{ appointment.name }}</div>
-        <div class="table-cell">{{ appointment.time }}</div>
-        <div class="table-cell">{{ appointment.date }}</div>
+        <div class="table-cell" style="height: min-content">{{ appointment.full_name }}</div>
+        <div class="table-cell">{{ appointment.email}}</div>
+        <div class="table-cell">{{ appointment.phone }}</div>
+        <div class="table-cell">{{ appointment.visit_date }}</div>
       </router-link>
     </div>
   </div>
 </template>
 <script>
+import moment from 'moment'
   export default {
     props: ['id', 'name', 'date', 'time'],
     data() {
       return {
-        appointments:[
-          
-        ]
+        appointments:[]
       };
     },
     methods: {
       handleRmv() {
         return null
+      },
+      async fetchAppointments(){
+      try{
+       const res= await fetch('http://localhost:3000/api/getAppointment/66325051e0e2a989a8ca3cf4');
+       const data=await res.json()
+       
+       for(let app of data){
+        app.visit_date=moment(app.visit_date).format('MMMM Do YYYY, h:mm:ss a')
+        this.appointments.push(app)
+       }
+      
+      }catch(error){
+        console.log(error)
       }
+      }
+    },
+    async created(){
+      this.fetchAppointments()
     }
   }
 </script>
