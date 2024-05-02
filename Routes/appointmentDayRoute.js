@@ -3,10 +3,10 @@ const router=express.Router()
 
 
 const{
-    checkDisponibleAppointment,
-    getAppointmentDays
+    checkDisponibleAppointment
 }=require('../Controllers/appointmentDayController')
 
-router.get('/AppointmentDays',getAppointmentDays)
+
+router.post('/checkDisponibleAppointment/:doctorId',checkDisponibleAppointment)
 
 module.exports=router

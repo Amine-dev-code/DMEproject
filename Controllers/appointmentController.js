@@ -21,18 +21,21 @@ const PostAppointment=async(req,res)=>{
             newAppointment.save();
             if(appointmentDay==null){
                 const appointmenteDay= new AppointmentDay()
-                appointmenteDay.treatment_day=Date.now()
+                appointmenteDay.treatment_day=req.body.visit_date;
+                appointmenteDay.doctor=doctorId;
                 appointmenteDay.status=false
                 appointmenteDay.reserved_patients++
-                appointmenteDay.save()
+                await appointmenteDay.save()
              }
              else{
                 appointmentDay.reserved_patients++;
                 const doctor=await User.findById(doctorId);
+                console.log(doctor.doctor_profile.maxPatient)
                 if(appointmentDay.reserved_patients==doctor.doctor_profile.maxPatient){
                     appointmentDay.status=true
-                    appointmentDay.save()
+                    
                 }
+                await appointmentDay.save()
              }
             
             res.status(200).json({
@@ -52,14 +55,7 @@ const PostAppointment=async(req,res)=>{
         })
     }
 }
-const getAppointments=async(req,res)=>{
-    try{
-        const Appointments=await Appointment.find({})
-        res.status(200).json(Appointments)
-    }catch(error){
-        res.status(500).json(error)
-    }
-}
+
 
 const deleteAppointment=async(req,res)=>{
     try{
@@ -132,5 +128,5 @@ module.exports={
     getAppointmentsPatient,
     getUpcomingAppointments,
     changeStatusAppointment,
-    getAppointments
+    
 }

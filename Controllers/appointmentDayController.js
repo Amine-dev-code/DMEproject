@@ -6,9 +6,10 @@ const AppointmentDay=require('../Models/appointmentDayModel.js')
 
 const checkDisponibleAppointment=async(req,res)=>{
     try{
-        const doctorId=req.params;
-        const testDate=req.body.reservation_date;
-        const appointmentDay =await AppointmentDay.find({doctor:doctorId,treatment_day:testDate})
+        const {doctorId}=req.params;
+        const testDate=req.body.visit_date;
+        const appointmentDay =await AppointmentDay.findOne({doctor:doctorId,treatment_day:testDate})
+        console.log(appointmentDay)
         if(!appointmentDay){
            res.status(200).json({
             status:'success',
@@ -35,16 +36,8 @@ const checkDisponibleAppointment=async(req,res)=>{
     })
     }
     }
-    const getAppointmentDays=async(req,res)=>{
-        try{
-            const AppointmentDays=await AppointmentDay.find({})
-            res.status(200).json(AppointmentDays)
-        }catch(error){
-            res.status(500).json(error)
-        }
-    }
+    
 
     module.exports={
-        checkDisponibleAppointment,
-        getAppointmentDays
+        checkDisponibleAppointment
     }
