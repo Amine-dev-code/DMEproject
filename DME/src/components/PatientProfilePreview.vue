@@ -1,13 +1,25 @@
 <template>
-  <div class="profile-preview-container">
-    <div style="display: flex; flex-direction: column">
-      <p class="name">name:</p>
-      <p class="gender">gender:</p>
-      <p class="blood">blood type:</p>
-      <p class="birthday">birth date:</p>
-      <p class="phone">phone number:</p>
-      <p class="address">address:</p>
-    </div>
+    <div class="profile-preview-container">
+        <div style="display: flex; flex-direction: column;">
+            <p class="name">
+                full name: 
+            </p>
+            <p class="gender">
+                gender: 
+            </p>
+            <p class="blood">
+                blood type: 
+            </p>
+            <p class="birthday">
+                birth date: 
+            </p>
+            <p class="phone">
+                phone number: 
+            </p>
+            <p class="address">
+                address:
+            </p>
+        </div>
     <div style="display: flex; flex-direction: column">
       <p>{{ name }} ouldkhaoua Idir</p>
       <p>{{ gender }} Male</p>
@@ -26,7 +38,17 @@
 </template>
 <script>
 export default {
-  props: ['name', 'gender', 'phone', 'blood-type', 'birthday', 'address']
+    props: ['patient'],
+    data(){
+    return{
+    
+    }
+  },
+  methods:{
+    async created(){
+      this.fetchUserProfile()
+    }
+  }
 }
 </script>
 <style scoped>

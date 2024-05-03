@@ -6,17 +6,12 @@
         <div class="header-cell">PHONE NUMBER</div>
         <div class="header-cell">EMAIL ADDRESS</div>
       </div>
-      <router-link
-        to="/patient"
-        v-for="patient in patientsData"
-        :key="patient.id"
-        :href="`/patient/${patient.id}`"
-        class="table-row"
-      >
+      <router-link  to="/patient" v-for="patient in patientsData" :key="patient.id" :href="`/patient/${patient.id}`" class="table-row">
         <div class="table-cell">{{ patient.first_name }}</div>
         <div class="table-cell">{{ patient.phone }}</div>
         <div class="table-cell">{{ patient.email }}</div>
       </router-link>
+     
     </div>
   </div>
 </template>

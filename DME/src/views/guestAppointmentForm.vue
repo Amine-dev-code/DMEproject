@@ -52,15 +52,16 @@ export default {
       phone: '',
       email: '',
       doctors: [],
-      okmessage: '',
-      nomessage: '',
-      youcan: false,
-      bookAppointment: {
-        full_name: '',
-        email: '',
-        phone: null,
-        visit_date: ''
-      }
+      okmessage:'',
+      nomessage:'',
+      youcan:false,
+      bookAppointment:{
+        full_name:'',
+        email:'',
+        phone:null,
+        visit_date:''
+      },
+      selectedDoctorID:null
     }
   },
   methods: {
@@ -119,12 +120,11 @@ export default {
       } catch (error) {
         console.log(error)
       }
+    },
+    async created() {
+      await this.fetchDoctors()
     }
   },
-
-  async created() {
-    await this.fetchDoctors()
-  }
 }
 </script>
 
@@ -201,6 +201,6 @@ export default {
   margin-top: 18px;
   height: 44px;
 }
-.showokMessage {
-}
+/*.showokMessage {
+}*/
 </style>

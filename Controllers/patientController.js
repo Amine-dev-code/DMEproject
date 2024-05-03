@@ -46,9 +46,6 @@ res.status(200).json(ownPatients);
 const getPatientInfo=async(req,res)=>{
     try{
         const {patientId}=req.params
-        if (!isValidObjectId(patientId)) {
-            return res.status(400).json({ message: "Invalid patient ID" });
-        }
         const infos=await User.findById(patientId,{doctor_profile:0,password:0})
         if(!infos){
             res.status(404).json({message:'patient not found'})

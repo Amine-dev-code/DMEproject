@@ -11,7 +11,7 @@
     <DocAppointmentForm />
     <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 55px">
       <AppointmentPreview time="11:40Am" date="23-08-2003" />
-      <PatientProfilePreview />
+      <PatientProfilePreview :patient="patient" />
     </div>
   </div>
 </template>
@@ -25,6 +25,14 @@ export default {
     DocAppointmentForm,
     PatientProfilePreview,
     AppointmentPreview
+  },
+  data(){
+    return{
+      patient:''
+    }
+  },
+  created(){
+   this.patient=JSON.parse(this.$route.query.patientKey);
   }
 }
 </script>

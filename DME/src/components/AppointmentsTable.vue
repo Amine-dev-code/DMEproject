@@ -7,8 +7,9 @@
         <div class="header-cell">PHONE</div>
         <div class="header-cell">DATE</div>
       </div>
-      <router-link
-        to="/appointment"
+      <div
+       @click='checkExistingPatient(appointment.email)'
+       to="/appointment"
         v-for="appointment in appointments"
         :key="appointment.id"
         class="table-row"
@@ -17,36 +18,53 @@
         <div class="table-cell">{{ appointment.email}}</div>
         <div class="table-cell">{{ appointment.phone }}</div>
         <div class="table-cell">{{ appointment.visit_date }}</div>
-      </router-link>
+    </div>
     </div>
   </div>
 </template>
 <script>
 import moment from 'moment'
   export default {
-    props: ['id', 'name', 'date', 'time'],
+    props: [],
     data() {
       return {
         appointments:[]
       };
     },
     methods: {
-      handleRmv() {
-        return null
-      },
       async fetchAppointments(){
       try{
        const res= await fetch('http://localhost:3000/api/getAppointment/66325051e0e2a989a8ca3cf4');
        const data=await res.json()
        
        for(let app of data){
-        app.visit_date=moment(app.visit_date).format('MMMM Do YYYY, h:mm:ss a')
+        app.visit_date=moment(app.visit_date).format('MMMM Do YYYY');
         this.appointments.push(app)
        }
       
       }catch(error){
         console.log(error)
-      }
+      }  
+      },
+      async checkExistingPatient(email){
+        try{
+          const res= await fetch(`http://localhost:3000/api/checkExistingPatient/${email}`);
+          const data=await res.json()
+          console.log(data.status)
+          if(data.status=='success'){
+
+            this.$router.push({ 
+           path: '/appointments/addappointment', 
+           query: { patientKey:JSON.stringify(data.info)} 
+             });
+          }
+          if(data.status=='fail'){
+            this.$router.push('/')
+          }
+          
+        }catch(error){
+          console.log(error.message)
+        }
       }
     },
     async created(){
