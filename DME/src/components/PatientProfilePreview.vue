@@ -2,7 +2,7 @@
     <div class="profile-preview-container">
         <div style="display: flex; flex-direction: column;">
             <p class="name">
-                name: 
+                full name: 
             </p>
             <p class="gender">
                 gender: 
@@ -22,29 +22,49 @@
         </div>
         <div style="display: flex; flex-direction: column;">
             <p>
-                {{ name }} ouldkhaoua Idir
+                {{  }} 
             </p>
             <p>
-                {{ gender }} Male
+                {{  }} 
             </p>
             <p>
-                {{ bloodType }} A+
+                {{  }}
             </p>
             <p>
-                {{ birthday }}
+                {{  }}
             </p>
             <p>
-                {{  phone }}
+                {{   }}
             </p>
             <p>
-                {{ address }}
+                {{  }}
             </p>
         </div>
     </div>
 </template>
 <script>
 export default {
-    props: ['name', 'gender', 'phone', 'blood-type', 'birthday', 'address']
+    props: ['patient'],
+    data(){
+    return{
+    
+    }
+  },
+  methods:{
+    async fetchUserProfile(){
+      try{
+        const res= await fetch(`http://localhost:3000/api/patientInfo/${this.patient._id}`);
+          const data=await res.json()
+
+          
+      }catch(error){
+        console.log(error.message)
+      }
+    }
+  },
+  async created(){
+    this.fetchUserProfile()
+  }
     
 }
 </script>

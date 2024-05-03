@@ -9,12 +9,15 @@ const{
     getAppointmentsPatient,
     getUpcomingAppointments,
     changeStatusAppointment,
+    checkExisitingPattient
     
 }=require('../Controllers/appointmentController')
 
 //router.post('/postVisit/:patientId/:doctorId',PostAppointment)
 router.get('/getAppointment/:doctorId',getAppointmentsDoctor)
 router.post('/postAppointment/:doctorId',PostAppointment)
+router.get('/checkExistingPatient/:email',checkExisitingPattient)
+
 
 
 

@@ -121,6 +121,28 @@ const changeStatusAppointment=async(req,res)=>{
         res.status(500).json({status:'fail'})
     }
 }
+const checkExisitingPattient=async(req,res)=>{
+    try{
+        const {email}=req.params
+        const appointment =await User.findOne({role:'patient',email:email})
+        if(!appointment){
+            res.status(200).json({
+                status:'fail'
+            })
+        }
+        else{
+            res.status(200).json({
+                status:'success',
+                info:appointment
+            })
+        }
+    }catch(error){
+        res.status(500).json({
+            status:'fail',
+            message:error.message
+        })
+    }
+}
 module.exports={
     PostAppointment,
     deleteAppointment,
@@ -128,5 +150,6 @@ module.exports={
     getAppointmentsPatient,
     getUpcomingAppointments,
     changeStatusAppointment,
+    checkExisitingPattient
     
 }

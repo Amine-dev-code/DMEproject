@@ -55,7 +55,8 @@ export default {
         email:'',
         phone:null,
         visit_date:''
-      }
+      },
+      selectedDoctorID:null
     }
   },
   methods: {
@@ -111,7 +112,8 @@ export default {
     }catch(error){
       console.log(error)
     }
-  }
+  },
+ 
   },
   
   async created(){
