@@ -6,7 +6,13 @@
         <div class="header-cell">PHONE NUMBER</div>
         <div class="header-cell">EMAIL ADDRESS</div>
       </div>
-      <router-link to="/patient" v-for="patient in patientsData" :key="patient.id" :href="`/patient/${patient.id}`" class="table-row">
+      <router-link
+        to="/patient"
+        v-for="patient in patientsData"
+        :key="patient.id"
+        :href="`/patient/${patient.id}`"
+        class="table-row"
+      >
         <div class="table-cell">{{ patient.first_name }}</div>
         <div class="table-cell">{{ patient.phone }}</div>
         <div class="table-cell">{{ patient.email }}</div>
@@ -19,13 +25,12 @@
 export default {
   props: {},
   methods: {
-
-    async fetchUsers(){
-      try{
-       const res= await fetch('http://localhost:3000/api/getOwnPatients/66325051e0e2a989a8ca3cf4');
-       const data=await res.json()
-       this.patientsData=data
-      }catch(error){
+    async fetchUsers() {
+      try {
+        const res = await fetch('http://localhost:3000/api/getOwnPatients/66325051e0e2a989a8ca3cf4')
+        const data = await res.json()
+        this.patientsData = data
+      } catch (error) {
         console.log(error)
       }
     }
@@ -33,15 +38,15 @@ export default {
   data() {
     return {
       patientsData: []
-    };
+    }
   },
-  async created(){
+  async created() {
     await this.fetchUsers()
   }
 }
 </script>
 
-<style>
+<style scoped>
 .patients-container {
   max-height: 550px;
   overflow-y: auto; /* Enable vertical scrolling */

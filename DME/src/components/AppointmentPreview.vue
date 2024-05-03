@@ -11,7 +11,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .appointment-preview-container {
   height: 70px;
   padding-top: 10px;

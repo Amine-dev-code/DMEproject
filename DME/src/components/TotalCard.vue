@@ -1,5 +1,5 @@
 <template>
-  <div class="total"> total {{ totalName }} is {{ totalNum }} </div>
+  <div class="total">total {{ totalName }} is {{ totalNum }}</div>
 </template>
 
 <script>
@@ -7,7 +7,7 @@ export default {
   props: ['total-name', 'total-num']
 }
 </script>
-<style>
+<style scoped>
 .total {
   background-color: rgba(0, 206, 200, 0.1);
   border: 2px solid #00cec8;

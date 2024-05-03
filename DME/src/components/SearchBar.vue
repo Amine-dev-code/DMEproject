@@ -5,7 +5,7 @@
 <script>
 export default {}
 </script>
-<style>
+<style scoped>
 .searchbar {
   width: 20vw;
   height: 40px;

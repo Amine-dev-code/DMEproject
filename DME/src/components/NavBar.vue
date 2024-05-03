@@ -1,10 +1,11 @@
 <template>
   <div class="navBarContainer">
-    <a href="#doctors" :class="{ active: isActive('#doctors') }">Doctors</a>
-    <a href="#appointment" :class="{ active: isActive('/signup') }">Appointment</a>
-    <a href="#aboutus" :class="{ active: isActive('/location') }">About us</a>
+    <a href="#doctors" :class="{ active: isActive('/#doctors') }">Doctors</a>
+    <a href="#appointment" :class="{ active: isActive('/#appointment') }">Appointment</a>
+    <a href="#aboutus" :class="{ active: isActive('/#aboutus') }">About us</a>
     <RouterLink to="/login" :class="{ active: isActive('/login') }">Login</RouterLink>
   </div>
+  <router-view/>
 </template>
 
 <script setup>
@@ -30,7 +31,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
   gap: 40px;
-  position: absolute;
+  position: fixed;
   left: 50px;
   top: 30px;
 }
@@ -40,8 +41,8 @@ a {
   font-size: 24px;
   font-family: sans-serif;
   padding: 5px;
+  z-index: 20;
   border-radius: 5px;
-  transform: translateY(-50%);
 }
 a:hover {
   color: #00cec8;

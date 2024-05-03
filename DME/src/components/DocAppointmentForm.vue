@@ -110,7 +110,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .doc-app-form-container {
   display: flex;
   flex-direction: column;
