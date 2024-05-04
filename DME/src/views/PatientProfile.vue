@@ -1,16 +1,16 @@
 <template>
   <div class="container">
     <PatientProfileCard />
-    <DocumentContainer />
+    <AppointmentHistory />
   </div>
 </template>
 <script>
 import PatientProfileCard from '@/components/PatientProfileCard.vue'
-import DocumentContainer from '@/components/DocumentContainer.vue'
+import AppointmentHistory from '@/components/AppointmentHistory.vue'
 export default {
   components: {
     PatientProfileCard,
-    DocumentContainer
+    AppointmentHistory
   }
 }
 </script>
