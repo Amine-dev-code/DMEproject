@@ -18,5 +18,7 @@
   </script>
   
   <style>
-  
+    .tab-content {
+        color: black;
+    }
   </style>

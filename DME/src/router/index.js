@@ -10,7 +10,7 @@ import AnalyticsDash from '@/views/doctor/AnalyticsDash.vue'
 import SignUp from '../components/SignUp.vue'
 import PatientProfile from '../views/PatientProfile.vue'
 import AppointmentHistory from '@/components/AppointmentHistory.vue'
-
+import PatientHome from '@/views/patient/PatientHome.vue'
 const routes = [
   {
     path: '/',
@@ -93,6 +93,12 @@ const routes = [
     path: '/patients/patient/:id',
     name: 'patient',
     component: PatientProfile,
+    props: true
+  },
+  {
+    path: '/patient/:id',
+    name :'patient-view',
+    component: PatientHome,
     props: true
   }
 ]

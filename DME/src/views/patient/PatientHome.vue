@@ -1,6 +1,6 @@
 <script setup>
-  import Tab from './components/Tab.vue';
-  import TabsWrapper from './components/TabsWrapper.vue';
+  import Tab from '@/components/Tab.vue';
+  import TabsWrapper from '@/components/TabsWrapper.vue';
 </script>
 
 <template>
@@ -21,5 +21,7 @@
 </template>
 
 <style scoped>
-
+  * {
+    color: black;
+  }
 </style>
