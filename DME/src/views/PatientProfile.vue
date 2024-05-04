@@ -1,23 +1,23 @@
 <template>
   <div class="container">
     <PatientProfileCard />
-    <DocumentContainer />
+    <AppointmentHistory/>
   </div>
 </template>
 <script>
 import PatientProfileCard from '@/components/PatientProfileCard.vue'
-import DocumentContainer from '@/components/DocumentContainer.vue'
+import AppointmentHistory from '@/components/AppointmentHistory.vue';
 export default {
   components: {
     PatientProfileCard,
-    DocumentContainer
+    AppointmentHistory
   }
 }
 </script>
 <style scoped>
 .container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   height: auto;
   gap: 20px;
   justify-content: unset;

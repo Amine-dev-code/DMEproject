@@ -7,9 +7,8 @@ import PatientsDash from '@/views/doctor/PatientsDash.vue'
 import AppointmentsDash from '@/views/doctor/AppointmentsDash.vue'
 import AppointmentData from '@/views/doctor/AppointmentData.vue'
 import AnalyticsDash from '@/views/doctor/AnalyticsDash.vue'
-import SignUp from '../components/SignUp.vue'
-import PatientProfile from '../views/PatientProfile.vue'
-import AppointmentHistory from '@/components/AppointmentHistory.vue'
+import SignUp from '@/components/SignUp.vue'
+import PatientProfile from '@/views/PatientProfile.vue'
 import PatientHome from '@/views/patient/PatientHome.vue'
 const routes = [
   {
@@ -75,11 +74,6 @@ const routes = [
     component: AppointmentsDash
   },
   {
-    path: '/apphist',
-    name: 'apphist',
-    component: AppointmentHistory
-  },
-  {
     path: '/appointments/appointment/:id',
     name: 'appointment',
     component: AppointmentData,
@@ -91,13 +85,12 @@ const routes = [
   },
   {
     path: '/patients/patient/:id',
-    name: 'patient',
-    component: PatientProfile,
-    props: true
+    name: 'patient-profile',
+    component: PatientProfile
   },
   {
     path: '/patient/:id',
-    name :'patient-view',
+    name: 'patient',
     component: PatientHome,
     props: true
   }
