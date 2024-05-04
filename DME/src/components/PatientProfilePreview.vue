@@ -80,17 +80,17 @@ export default {
     
 }
 </script>
-<style>
+<style scoped>
 .profile-preview-container {
-    display: flex; 
-    flex-direction: row; 
-    justify-content: space-between; 
-    width: 20vw; 
-    background-color: white; 
-    border-radius: 10px; 
-    border: 2px  solid #00cec8; 
-    padding: 10px ; 
-    color : #2a4b66;
-    height: min-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 20vw;
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid #00cec8;
+  padding: 10px;
+  color: #2a4b66;
+  height: min-content;
 }
 </style>

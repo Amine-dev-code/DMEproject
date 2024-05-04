@@ -1,12 +1,10 @@
 <template>
-  <div class="doc-container" @click.prevent="clicked = !clicked">
-    <img src="../assets/file-icon.png" alt="" />
-    <p>
-      {{ docTitle }}
-    </p>
-  </div>
-  <div v-if="clicked">
-    <p>hello there</p>
+  <div class="doc-container">
+    <p>Documents</p>
+    <div class="document" @click.prevent="" v-for="document in documents" :key="document">
+      <img src="../assets/file-icon.png" alt="" />
+      <p>{{ document.docTitle }}</p>
+    </div>
   </div>
 </template>
 
@@ -15,31 +13,40 @@ export default {
   props: ['docTitle'],
   data() {
     return {
-      clicked: false
+      documents: [
+        { docTitle: 'some thing weird' },
+        { docTitle: 'some thing beardy' },
+        { docTitle: 'some thing smelly' },
+        { docTitle: 'some thing fishy' }
+      ]
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
 .doc-container {
-  width: 250px;
-  height: 40px;
-  border: 1px solid #436ae6;
-  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  gap: 5px;
+  border: 2px solid black;
+  background-color: whitesmoke;
+  width: 31vw;
+  padding: 10px 0;
+}
+.document {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-left: 10px;
-  color: #436ae6;
-  cursor: pointer; /* Add cursor pointer for clickable effect */
+  background-color: white;
+  width: 30vw;
+  border-radius: 5px;
+  border: 2px solid grey;
 }
-.doc-container > img {
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
-}
-.doc-container:hover {
-  background-color: rgba(67, 106, 230, 0.2);
+.document > img {
+  height: 30px;
+  width: 30px;
 }
 </style>

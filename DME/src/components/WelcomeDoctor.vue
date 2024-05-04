@@ -18,7 +18,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .welcomeContainer {
   background-color: rgba(0, 206, 200, 0.1);
   background-color: #00cec8;

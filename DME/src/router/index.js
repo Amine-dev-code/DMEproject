@@ -8,12 +8,30 @@ import AppointmentsDash from '@/views/doctor/AppointmentsDash.vue'
 import AppointmentData from '@/views/doctor/AppointmentData.vue'
 import AnalyticsDash from '@/views/doctor/AnalyticsDash.vue'
 import SignUp from '../components/SignUp.vue'
+import PatientProfile from '../views/PatientProfile.vue'
+import AppointmentHistory from '@/components/AppointmentHistory.vue'
 
-const routes= [
+const routes = [
   {
     path: '/',
     name: 'home',
     component: ClinicPage
+  },
+  {
+    path: '/#doctors',
+    name: 'doctors',
+    component: ClinicPage
+
+  },
+  {
+    path: '/#appointment',
+    name: 'guest-appointment',
+    component: ClinicPage
+
+  },
+  {
+    path: '/#aboutus',
+    name: 'about-us'
   },
   {
     path: '/login',
@@ -57,6 +75,11 @@ const routes= [
     component: AppointmentsDash
   },
   {
+    path: '/apphist',
+    name: 'apphist',
+    component: AppointmentHistory
+  },
+  {
     path: '/appointments/appointment/:id',
     name: 'appointment',
     component: AppointmentData,
@@ -65,6 +88,12 @@ const routes= [
     path:'/addPatient',
     name:'addPatient',
     component:SignUp
+  },
+  {
+    path: '/patients/patient/:id',
+    name: 'patient',
+    component: PatientProfile,
+    props: true
   }
 ]
 const router = createRouter({

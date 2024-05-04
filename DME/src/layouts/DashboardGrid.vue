@@ -31,7 +31,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .GridContainer {
   display: grid;
   grid-template-columns: 30% 30% 30%;
