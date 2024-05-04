@@ -19,12 +19,12 @@ const visitSchema=mongoose.Schema({
         type:String,
         required:true
     },
-    diagnosis:{
-        type:String,
+    diagnosises:{
+        type:[String],
         required:true
     },
-    prescription:{
-        type:String,
+    prescriptions:{
+        type:[String],
         required:true
     },
     files:[

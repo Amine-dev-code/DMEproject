@@ -1,7 +1,6 @@
 <template>
   <SearchBar class="search-bar" />
   <router-link to="/appointments/addappointment">
-    <button class="add-appointment-btn">add an appointment</button>
   </router-link>
   <AppointmentsTable />
 </template>

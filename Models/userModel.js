@@ -26,6 +26,9 @@ email: {
       message: props => `${props.value} is not a valid email address!`
     }
   },
+    gender:{
+    type:String, 
+    },
     password:{
         type:String,
         required:true
@@ -35,22 +38,37 @@ email: {
         required:false
     },
     patient_profile:{
-        gender:{
-            type:String, 
-        },
+        
         date:{
             type:Date,
         },
         address:{
-
+            wilaya:{
+                type:String
+            },
+            city:{
+                type:String
+            },
+            detail:{
+                type:String
+            }
+            
         },
-        medical_background:{
-            type: [String],
-            default:null
-        },
+            allergies:{
+                type:[String]
+            },
+            surgeries:{
+                type:[String]
+            },
+            diagnosises:{
+                type:[String]
+            },
         blood_type:{
             type:String,
             
+        },
+        phone_number:{
+            type:String
         }
         
     },

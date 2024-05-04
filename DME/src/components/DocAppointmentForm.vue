@@ -1,7 +1,7 @@
 <template>
   <div style="display: flex; flex-direction: column; align-items: center" class="Container">
     <p style="color: #2a4b66; text-align: center; font-size: 30px">Appointment Data Enrollment</p>
-    <form action="" class="doc-app-form-container" @submit.prevent="">
+    <form @keypress.enter.prevent="$event.stopPropagation()" class="doc-app-form-container" @submit.prevent="">
       <div>
         <input
           type="text"
@@ -10,8 +10,8 @@
           v-model="diagnosis"
           @keyup.enter="addDiag"
         />
-        <div v-if="diagnosises.length > 0" class="added-container">
-          <div v-for="diagnosis in diagnosises" :key="diagnosis" class="added">
+        <div v-if="medicalRecord.diagnosises.length > 0" class="added-container">
+          <div v-for="diagnosis in medicalRecord.diagnosises" :key="diagnosis" class="added">
             {{ diagnosis }}
           </div>
         </div>
@@ -26,8 +26,8 @@
           id="perscription"
           @keyup.enter="addPers"
         />
-        <div class="added-container" v-if="perscriptions.length > 0">
-          <div class="added" v-for="perscription in perscriptions" :key="perscription">
+        <div class="added-container" v-if="medicalRecord.prescriptions.length > 0">
+          <div class="added" v-for="perscription in medicalRecord.prescriptions" :key="perscription">
             {{ perscription }}
           </div>
         </div>
@@ -35,7 +35,7 @@
       <hr style="width: 300px; border: 1px solid rgba(67, 106, 230, 0.5)" />
       <textarea
         class="report"
-        v-model="report"
+        v-model="medicalRecord.rapport"
         name=""
         id=""
         placeholder="enter report"
@@ -46,19 +46,26 @@
         or
         <input type="file" id="file-input" @change="handleFileChange" />
       </label>
-      <button type="submit" class="sub-btn" @click.prevent>Submit</button>
+      <button type="submit" class="sub-btn" id="submitform" @click.prevent="sendMedicalRecord">Submit</button>
     </form>
   </div>
 </template>
 <script>
+
 export default {
+  props:['patient'],
   data() {
     return {
-      report: '',
       perscription: '',
-      perscriptions: [],
       diagnosis: '',
-      diagnosises: []
+      medicalRecord:{
+        rapport: '',
+        prescriptions:[],
+        diagnosises: []
+      },
+      rapportError:'',
+      diagnosisError:'',
+      prescriptionError:''//for validation
     }
   },
   mounted() {
@@ -92,21 +99,42 @@ export default {
     addDiag(event) {
       console.log('addDiag called')
       if (event.key == 'Enter' && this.diagnosis) {
-        if (!this.diagnosises.includes(this.diagnosis)) {
-          this.diagnosises.push(this.diagnosis)
+        if (!this.medicalRecord.diagnosises.includes(this.diagnosis)) {
+          this.medicalRecord.diagnosises.push(this.diagnosis)
         }
       }
       this.diagnosis = ''
     },
     addPers(event) {
       if (event.key == 'Enter' && this.perscription) {
-        if (!this.perscriptions.includes(this.perscription)) {
-          this.perscriptions.push(this.perscription)
+        if (!this.medicalRecord.prescriptions.includes(this.perscription)) {
+          this.medicalRecord.prescriptions.push(this.perscription)
         }
       }
       this.perscription = ''
+    },
+    async sendMedicalRecord(){
+      try{
+        const res=await fetch (`http://localhost:3000/api/postVisit/663256774c6f6946ca1c6c03/66325051e0e2a989a8ca3cf4`,{
+          method:'post',
+          body:JSON.stringify(this.medicalRecord),
+          headers:{
+          'content-type': 'application/json',
+        }
+        });
+        const data=await res.json()
+        console.log(data)
+        if(data.status=='success'){
+          this.medicalRecord.diagnosises=[];
+          this.medicalRecord.rapport='';
+          this.medicalRecord.prescriptions=[];
+        }
+      }catch(error){
+        console.log(error.message)
+      }
     }
   }
+
 }
 </script>
 

@@ -48,18 +48,17 @@ import moment from 'moment'
       },
       async checkExistingPatient(email){
         try{
-          const res= await fetch(`http://localhost:3000/api/checkExistingPatient/${email}`);
+          const res= await fetch(`http://localhost:3000/api/checkExistingPatient/${email}/66325051e0e2a989a8ca3cf4`);
           const data=await res.json()
           console.log(data.status)
           if(data.status=='success'){
-
             this.$router.push({ 
            path: '/appointments/addappointment', 
            query: { patientKey:JSON.stringify(data.info)} 
              });
           }
           if(data.status=='fail'){
-            this.$router.push('/')
+            this.$router.push('/addPatient')
           }
           
         }catch(error){

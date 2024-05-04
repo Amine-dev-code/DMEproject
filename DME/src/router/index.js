@@ -61,6 +61,10 @@ const routes= [
     name: 'appointment',
     component: AppointmentData,
     props: true
+  },{
+    path:'/addPatient',
+    name:'addPatient',
+    component:SignUp
   }
 ]
 const router = createRouter({

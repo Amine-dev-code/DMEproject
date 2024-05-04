@@ -124,19 +124,31 @@ const changeStatusAppointment=async(req,res)=>{
 const checkExisitingPattient=async(req,res)=>{
     try{
         const {email}=req.params
-        const appointment =await User.findOne({role:'patient',email:email})
-        if(!appointment){
+        const {doctorId}=req.params
+
+        const Userappointment =await User.findOne({role:'patient',email:email},{ doctor_profile: 0, password: 0,createdAt:0,updatedAt:0 })
+        const doctor=await User.findById(doctorId)
+        if(!Userappointment){
             res.status(200).json({
                 status:'fail'
             })
         }
-        else{
+        else if (doctor.doctor_profile.ownPatients.includes(Userappointment._id)){
             res.status(200).json({
                 status:'success',
-                info:appointment
+                action:'nothing',
+                info:Userappointment
             })
         }
-    }catch(error){
+        else{
+            doctor.doctor_profile.ownPatients.push(Userappointment._id)
+            await doctor.save();
+            res.status(200).json({
+                status:'success',
+                action:'getIt',
+                info:Userappointment
+        })
+    }}catch(error){
         res.status(500).json({
             status:'fail',
             message:error.message

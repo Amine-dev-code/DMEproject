@@ -16,7 +16,7 @@ const{
 //router.post('/postVisit/:patientId/:doctorId',PostAppointment)
 router.get('/getAppointment/:doctorId',getAppointmentsDoctor)
 router.post('/postAppointment/:doctorId',PostAppointment)
-router.get('/checkExistingPatient/:email',checkExisitingPattient)
+router.get('/checkExistingPatient/:email/:doctorId',checkExisitingPattient)
 
 
 

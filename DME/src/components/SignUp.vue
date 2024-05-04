@@ -1,14 +1,14 @@
 <template>
   <div class="signup-container">
     <h1 class="form-header">Patient Profile Creation</h1>
-    <form action="" class="signup-form">
+    <form @keypress.enter.prevent="$event.stopPropagation()" action="" class="signup-form">
       <div class="general-info">
         <input
           class="half input-style"
           type="text"
           name="first-name"
           placeholder="first name"
-          v-model="firstName"
+          v-model="newPerson.first_name"
           required
         />
         <input
@@ -16,7 +16,7 @@
           placeholder="family name"
           name="family-name"
           class="input-style"
-          v-model="familyName"
+          v-model="newPerson.last_name"
           required
         />
         <div class="birthday">
@@ -69,15 +69,19 @@
             <option value="11">November</option>
             <option value="12">December</option>
           </select>
-          <select name="" id="year" class="year" v-model="year" required>
+          <select  name="" id="year" class="year" v-model="year" required>
             <option value="">Year</option>
+            <option v-for="yeary in years" :value="yeary">{{ yeary }}</option>
           </select>
         </div>
-        <input type="text" class="input-style" placeholder="gender" v-model="gender" required />
+        <select  class="input-style" placeholder="gender" v-model="newPerson.gender" required>
+          <option value="">Select gender </option>
+          <option value="male">male</option>
+          <option value="female">female</option>
+        </select>
         <div class="body-info">
-          <input type="text" placeholder="height" class="input-style" v-model="height" required />
-          <input type="text" placeholder="weight" class="input-style" v-model="weight" required />
-          <select class="blood-type" v-model="blood" required>
+          
+          <select class="blood-type" v-model="newPerson.patient_profile.blood_type" required>
             <option value="">Select blood type</option>
             <option value="A+">A+</option>
             <option value="A-">A-</option>
@@ -96,24 +100,38 @@
           class="number input-style"
           type="tel"
           placeholder="number"
-          v-model="phone"
+          v-model="newPerson.patient_profile.phone_number"
           required
         />
         <input
           class="email input-style"
           type="email"
           placeholder="email"
-          v-model="email"
+          v-model="newPerson.email"
+          required
+        />
+        <input
+          class="password input-style"
+          type="password"
+          placeholder="password"
+          v-model="newPerson.password"
+          required
+        />
+        <input
+          class="password input-style"
+          type="password"
+          placeholder="confirm password"
+          v-model="confPassword"
           required
         />
         <input
           class="address input-style"
           type="text"
           placeholder="address"
-          v-model="address"
+          v-model="newPerson.patient_profile.address.detail"
           required
         />
-        <select id="wilaya" name="wilaya" class="state" v-model="wilaya" required>
+        <select id="wilaya" name="wilaya" class="state" v-model="newPerson.patient_profile.address.wilaya" required>
           <option value="">Select wilaya</option>
           <option value="Adrar">Adrar</option>
           <option value="Chlef">Chlef</option>
@@ -164,7 +182,7 @@
           <option value="Ghardaïa">Ghardaïa</option>
           <option value="Relizane">Relizane</option>
         </select>
-        <input class="city input-style" type="text" placeholder="city" v-model="city" required />
+        <input class="city input-style" type="text" placeholder="city" v-model="newPerson.patient_profile.address.city" required />
       </div>
       <hr />
       <div class="health-info">
@@ -184,8 +202,8 @@
             v-model="tempSurg"
             @keyup.enter="addSurgeries"
           />
-          <div class="added-container" v-if="surgeries.length > 0">
-            <div class="added" v-for="surgery in surgeries" :key="surgery">
+          <div class="added-container" v-if="newPerson.patient_profile.surgeries.length > 0">
+            <div class="added" v-for="surgery in newPerson.patient_profile.surgeries" :key="surgery">
               {{ surgery }}
             </div>
           </div>
@@ -207,8 +225,8 @@
             v-model="tempAllerg"
             @keyup.enter="addAllergies"
           />
-          <div class="added-container" v-if="allergies.length > 0">
-            <div class="added" v-for="allergy in allergies" :key="allergy">
+          <div class="added-container" v-if="newPerson.patient_profile.allergies.length > 0">
+            <div class="added" v-for="allergy in newPerson.patient_profile.allergies" :key="allergy">
               {{ allergy }}
             </div>
           </div>
@@ -232,8 +250,8 @@
               v-model="tempDiag"
               @keyup.enter="addDiagnosis"
             />
-            <div class="added-container" v-if="diagnosises.length > 0">
-              <div class="added" v-for="diagnosis in diagnosises" :key="diagnosis">
+            <div class="added-container" v-if="newPerson.patient_profile.diagnosises.length > 0">
+              <div class="added" v-for="diagnosis in newPerson.patient_profile.diagnosises" :key="diagnosis">
                 {{ diagnosis }}
               </div>
             </div>
@@ -251,61 +269,99 @@
 export default {
   data() {
     return {
-      email: '',
-      firstName: '',
-      familyName: '',
+      years:[],
+      confPassword:'',
       day: '',
       month: '',
       year: '',
-      gender: '',
-      height: '',
-      weight: '',
       blood: '',
       phone: '',
-      address: '',
-      wilaya: '',
-      city: '',
       tempSurg: '',
       tempAllerg: '',
       tempDiag: '',
-      diagnosises: [],
-      surgeries: [],
-      allergies: []
+      newPerson:{
+        first_name:'',
+        last_name:'',
+        email:'',
+        gender:'',
+        password:'',
+        patient_profile:{
+          date:null,
+          address:{
+            wilaya: '',
+            city: '',
+            detail:''
+          },
+            allergies:[],
+            surgeries:[],
+            diagnosises:[],
+            blood_type:'',
+            phone_number:''
+        }
+      } 
     }
   },
   methods: {
     addDiagnosis(event) {
       if (event.key === 'Enter' && this.tempDiag) {
-        if (!this.diagnosises.includes(this.tempDiag)) {
-          this.diagnosises.push(this.tempDiag)
+        if (!this.newPerson.patient_profile.diagnosises.includes(this.tempDiag)) {
+          this.newPerson.patient_profile.diagnosises.push(this.tempDiag)
         }
         this.tempDiag = ''
       }
     },
     addAllergies(event) {
       if (event.key === 'Enter' && this.tempAllerg) {
-        if (!this.allergies.includes(this.tempAllerg)) {
-          this.allergies.push(this.tempAllerg)
+        if (!this.newPerson.patient_profile.allergies.includes(this.tempAllerg)) {
+          this.newPerson.patient_profile.allergies.push(this.tempAllerg)
         }
         this.tempAllerg = ''
       }
     },
     addSurgeries(event) {
       if (event.key === 'Enter' && this.tempSurg) {
-        if (!this.surgeries.includes(this.tempSurg)) {
-          this.surgeries.push(this.tempSurg)
+        if (!this.newPerson.patient_profile.surgeries.includes(this.tempSurg)) {
+          this.newPerson.patient_profile.surgeries.push(this.tempSurg)
         }
         this.tempSurg = ''
       }
     },
-    handleSubmit() {
-      return
+    async handleSubmit() {
+      try{
+        const newYear=Number(this.year);
+        const newMonth=Number(this.month)
+        const newDay=Number(this.day)
+        const date= new Date(newYear,newMonth-1,newDay+1);
+        console.log(this.newPerson)
+        this.newPerson.patient_profile.date=date;
+        const res=await fetch ('http://localhost:3000/api/postPatient/66325051e0e2a989a8ca3cf4',{
+          method:'post',
+          body:JSON.stringify(this.newPerson),
+          headers:{
+          'content-type': 'application/json',
+        }
+        });
+        const data=await res.json()
+        if(data.status=='success'){
+          console.log(data)
+          alert('new patient successfully added');
+        }
+      }catch(error){
+        console.log(error)
+      }
+    }
+  },
+  created(){
+    const nowYear=new Date().getFullYear();
+    for(let year=1900;year <= nowYear; year++){
+      this.years.push(year)
     }
   }
 }
 </script>
 
 <style scoped>
+
 .signup-form {
   display: flex;
   justify-content: center;

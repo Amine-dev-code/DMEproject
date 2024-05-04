@@ -9,9 +9,13 @@ try{
         const doctorid=req.params.doctorId
         visit.patient=patientid
         visit.doctor=doctorid
+        const ageUser=await User.findById(patientid)
+        const currentDate=Date.now()
+        const ageMilisecond=currentDate-ageUser.patient_profile.date
+        const age=Math.floor(ageMilisecond/(1000*60*60*24*365))
+        visit.age=age
         await visit.save();
-    res.status(200).json(visit)
-    console.log(patientid)
+        res.status(200).json({'status':'success',visit})
 }
 catch(error){
     res.status(500).json({

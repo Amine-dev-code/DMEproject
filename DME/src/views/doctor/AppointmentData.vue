@@ -8,7 +8,7 @@
       margin-top: 20px;
     "
   >
-    <DocAppointmentForm />
+    <DocAppointmentForm :patient="patient" />
     <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 55px">
       <AppointmentPreview time="11:40Am" date="23-08-2003" />
       <PatientProfilePreview :patient="patient" />

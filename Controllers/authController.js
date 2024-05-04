@@ -45,14 +45,11 @@ const postPatient=async(req,res)=>{
     
        
         const treatedDoctor = await User.findById(doctorId);
-        
-       
-        treatedDoctor.doctor_profile.ownPatients.push(patient._id);
     
         
         await treatedDoctor.save();
     
-        res.status(200).json(patient);
+        res.status(200).json({'status':'success',patient});
         console.log(patient);
     } catch (error) {
         res.status(500).json({

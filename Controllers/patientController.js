@@ -30,7 +30,6 @@ const editPatient=async(req,res)=>{
 const ownPatients=async(req,res)=>{
 try{
 const {doctorId}=req.params
-
 const doctor = await User.findById(doctorId,{ownPatients:1}).populate({
     path: 'doctor_profile.ownPatients',
     model: 'User' // Assuming 'User' is the model name for patients
@@ -69,6 +68,29 @@ const getPatients=async(req,res)=>{
         })
     }
 }
+const deletePatient=async(req,res)=>{
+    try{
+        const {doctorId}=req.params
+        const {patientId}=req.params
+        const doctor=await User.findById(doctorId)
+        const indexToremove=doctor.doctor_profile.ownPatients.indexOf(patientId)
+        if(indexToremove!==-1){
+            doctor.doctor_profile.ownPatients.splice(indexToremove,1)
+            await doctor.save()
+            res.status(200).json({
+                'status':'success',
+            })
+        }else{
+            res.status(200).json({
+                'status':'fail',
+            })
+        }
+    }catch(error){
+        res.status(500).json({
+            message:error.message
+        })
+    }
+}
 const searchPatient=async(req,res)=>{
     const price=req.query.price
     const speciality=req.query.speciality
@@ -98,6 +120,6 @@ module.exports={
     ownPatients,
     getPatientInfo,
     getPatients,
-   
+    deletePatient
     
 }
