@@ -3,20 +3,28 @@
           <div class="vue-modal-inner">
             <div class="vue-modal-content">
               <slot/>
+              <h3>Files</h3>
+              <DocumentContainer :appointment="appointment" class="setCont"/>
               <button class="cls-btn" type="button" @click="$emit('close')">Close</button>
+              
             </div>
           </div>
       </div>
   </template>
   
 <script>
+import DocumentContainer from './DocumentContainer.vue';
   export default {
-    props: {
-      open: {
-        type: Boolean,
-        default: true,
-      },
+  components: { DocumentContainer },
+    props: ['appointment','open'],
+    data(){
+      return{
+
+      }
     },
+    created(){
+    
+    }
   };
 </script>
 <style scoped>
@@ -64,8 +72,12 @@
     background-color: rgba(42, 75, 102, 1);
     color: white;
     border-radius:5px;
+    margin-top:20px;
 }
 .cls-btn:hover {
   background-color:  rgba(42, 75, 102, 0.8);
+}
+.setCont{
+  margin-top:10px
 }
 </style>

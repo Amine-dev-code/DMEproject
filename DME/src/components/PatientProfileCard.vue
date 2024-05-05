@@ -13,9 +13,9 @@
       <img src="../assets/Albert.jpeg" alt="" class="profil-picture" />
       <p style="margin-bottom: none; padding: 0; font-size: 24px">
         <!-- {{ name }} -->
-        Idir Ouldkhaoua
+        {{ user.first_name }} {{ user.last_name }}
       </p>
-      <p style="margin-bottom: 0; padding: 0; color: rgba(67, 106, 230, 0.5)">e6yr@proton.me</p>
+      <p style="margin-bottom: 0; padding: 0; color: rgba(67, 106, 230, 0.5)">{{ user.email }}</p>
       <p style="margin-bottom: 0; padding: 0">Appointments</p>
       <div
         style="
@@ -52,34 +52,43 @@
     <div class="right-half">
       <div class="gender">
         <p class="Label">Gender</p>
-        <p>male</p>
+        <p>{{ user.gender }}</p>
       </div>
       <div class="birthday">
-        <p class="Label">Birthday</p>
-        <p>Aug. 23, 2003</p>
+        <p class="Label">Birth day</p>
+        <p>{{ user.patient_profile.date }}</p>
       </div>
       <div class="phone">
-        <p class="Label">Phone number</p>
-        <p>0542384896</p>
+        <p class="Label">Phone Number</p>
+        <p>{{ user.patient_profile.phone_number }}</p>
       </div>
       <div class="address">
         <p class="Label">Address</p>
-        <p>Tasahoumi, El eulma</p>
+        <p>{{ user.patient_profile.address.detail }}</p>
       </div>
       <div class="City">
-        <p class="Label">City</p>
-        <p>Setif</p>
-      </div>
-      <div class="zip-code">
-        <p class="Label">ZIP Code</p>
-        <p>19600</p>
+        <p class="Label">{{ user.patient_profile.address.city }}</p>
+        <p>{{ user.patient_profile.address.wilaya}}</p>
       </div>
     </div>
   </div>
 </template>
 <script>
+import moment from 'moment'
 export default {
-  props: ['name', 'gender', 'birthday']
+  props: ['user'],
+  data(){
+    return{
+
+   }
+  },
+  methods:{
+
+  },
+ created(){
+  
+  }
+
 }
 </script>
 <style scoped>

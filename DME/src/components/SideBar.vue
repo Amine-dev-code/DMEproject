@@ -23,10 +23,7 @@
         <span class="material-icons">today</span>
         <span class="text">Appointments</span>
       </router-link>
-      <router-link to="/messages" class="button">
-        <span class="material-icons">message</span>
-        <span class="text">Messages</span>
-      </router-link>
+      
     </div>
 
     <div class="flex"></div>
@@ -64,7 +61,7 @@ aside {
   overflow: hidden;
   min-height: 100vh;
   padding: 1rem;
-
+  position:fixed;
   transition: 0.2s ease-in-out;
 
   .flex {

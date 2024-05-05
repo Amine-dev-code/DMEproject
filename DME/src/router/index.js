@@ -84,7 +84,7 @@ const routes = [
     component:SignUp
   },
   {
-    path: '/patients/patient/:id',
+  path: '/patients/patient/:_id',
     name: 'patient-profile',
     component: PatientProfile
   },

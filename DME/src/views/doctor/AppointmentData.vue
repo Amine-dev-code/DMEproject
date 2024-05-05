@@ -1,4 +1,6 @@
 <template>
+  <div class="toSetSide">
+    <SideBar/>
   <div
     style="
       display: flex;
@@ -14,17 +16,21 @@
       <PatientProfilePreview :patient="patient" />
     </div>
   </div>
+
+</div>
 </template>
 
 <script>
 import DocAppointmentForm from '../../components/DocAppointmentForm.vue'
 import PatientProfilePreview from '../../components/PatientProfilePreview.vue'
 import AppointmentPreview from '../../components/AppointmentPreview.vue'
+import SideBar from '@/components/SideBar.vue'
 export default {
   components: {
     DocAppointmentForm,
     PatientProfilePreview,
-    AppointmentPreview
+    AppointmentPreview,
+    SideBar
   },
   data(){
     return{
@@ -43,5 +49,9 @@ body {
   padding: 0;
   font-family: sans-serif;
   background-color: white;
+}
+.toSetSide{
+  display:flex;
+  justify-content:space-between
 }
 </style>

@@ -1,22 +1,35 @@
 <template>
+  <div class="toSetSide">
+    <SideBar />
+    <div>
   <SearchBar class="search-bar" />
   <router-link to="/appointments/addappointment">
   </router-link>
   <AppointmentsTable />
+  
+</div>
+</div>
 </template>
 
 <script>
 import AppointmentsTable from '@/components/AppointmentsTable.vue'
 import SearchBar from '@/components/SearchBar.vue'
+import SideBar from '@/components/SideBar.vue';
 
 export default {
   components: {
     AppointmentsTable,
-    SearchBar
+    SearchBar,
+    SideBar
   }
 }
 </script>
 <style scoped>
+body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
 .search-bar {
   position: absolute;
   left: calc(20vw + 60px);
@@ -40,5 +53,9 @@ export default {
 }
 .add-appointment-btn:active {
   background-color: rgba(0, 206, 200, 0.5);
+}
+.toSetSide{
+  display:flex;
+  justify-content: space-between
 }
 </style>

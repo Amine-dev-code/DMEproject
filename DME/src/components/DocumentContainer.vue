@@ -1,26 +1,22 @@
 <template>
   <div class="doc-container">
     <p>Documents</p>
-    <div class="document" @click.prevent="" v-for="document in documents" :key="document">
+    <div class="document" v-for="document in appointment.files" :key="document">
       <img src="../assets/file-icon.png" alt="" />
-      <p>{{ document.docTitle }}</p>
+      <a :href="'../../../uploads/'+ document.filename" >{{ document.filename }}</a>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['docTitle'],
+  props: ['appointment'],
   data() {
     return {
-      documents: [
-        { docTitle: 'some thing weird' },
-        { docTitle: 'some thing beardy' },
-        { docTitle: 'some thing smelly' },
-        { docTitle: 'some thing fishy' }
-      ]
+      documents: []
     }
-  }
+  },
+  
 }
 </script>
 
