@@ -8,6 +8,8 @@
       gap: 20px;
       width: calc(100vw - 400px);
       margin-top: 20px;
+      margin: 20px;
+      margin-left:270px
     "
   >
     <DocAppointmentForm :patient="patient" />

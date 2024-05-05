@@ -50,7 +50,8 @@ export default {
   height: auto;
   gap: 20px;
   justify-content: unset;
-  margin-left:100px
+  margin:20px;
+  margin-left:270px
 }
 .toSetSide{
   display:flex;

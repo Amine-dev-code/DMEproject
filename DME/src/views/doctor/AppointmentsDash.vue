@@ -25,11 +25,7 @@ export default {
 }
 </script>
 <style scoped>
-body {
-            height: 100%;
-            margin: 0;
-            overflow: hidden;
-        }
+
 .search-bar {
   position: absolute;
   left: calc(20vw + 60px);
@@ -58,4 +54,5 @@ body {
   display:flex;
   justify-content: space-between
 }
+
 </style>

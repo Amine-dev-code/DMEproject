@@ -6,7 +6,6 @@
         <div class="header-cell">PHONE</div>
         <div class="header-cell">DATE</div>
         <div class="header-cell">DELETE</div>
-        
       </div>
       <div
        @click='checkExistingPatient(appointment.email)'
