@@ -1,16 +1,15 @@
 <template>
   <div class="toSetSide">
     <SideBar/>
-  <div class="container">
-    <PatientProfileCard :user="user" />
-    <AppointmentHistory :user="user" />
-  </div>
-  
+    <div class="container">
+      <PatientProfileCard :user="user" />
+      <AppointmentHistory :user="user" />
+    </div>
 </div>
 </template>
 <script>
 import PatientProfileCard from '@/components/PatientProfileCard.vue'
-import AppointmentHistory from '@/components/AppointmentHistory.vue';
+import AppointmentHistory from '@/components/AppointmentHistory.vue'
 import SideBar from '@/components/SideBar.vue';
 export default {
   props:['id'],

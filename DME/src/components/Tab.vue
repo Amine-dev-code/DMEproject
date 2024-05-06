@@ -22,7 +22,12 @@
         color: black;
         display: flex; 
         flex-direction: row;
-        justify-content: space-between ;
-        width: 40vw;
+        justify-content: center;
+        width: 100vw;
+        height: 100vw;
+        align-items: center;
+    }
+    ul {
+      list-style: none;
     }
   </style>

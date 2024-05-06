@@ -1,7 +1,7 @@
 <template>
   <!-- No original code provided, so I'll create a basic example -->
 <div class="container">
-  <div class="side left" @click="left">
+  <div class="side left" @click="left" :class="{ 'transition': isTransitioning }">
     <img :src="getImg(doctors[lindex].img)" alt="">
     <h1>
       {{ doctors[lindex].name }}
@@ -31,7 +31,7 @@
       price : {{ doctors[mindex].price }}
     </p>
   </div>
-  <div class="side right" @click.prevent="right">
+  <div class="side right" @click.prevent="right" :class="{ 'transition': isTransitioning }">
     <img :src="getImg(doctors[rindex].img)" alt="">
     <h1>
       {{ doctors[rindex].name }}
@@ -53,6 +53,7 @@
 export default {
   data() {
     return {
+      isTransitioning: false,
       lindex: 0,
       mindex: 1,
       rindex: 2,
@@ -86,16 +87,22 @@ export default {
       return new URL(`../assets/${img}`,  import.meta.url)
     },
     right() {
-    // Update indices to shift to the right
-    this.lindex = (this.lindex + 1) % this.doctors.length;
-    this.mindex = (this.mindex + 1) % this.doctors.length;
-    this.rindex = (this.rindex + 1) % this.doctors.length;
+      this.isTransitioning = true;
+      setTimeout(() => {
+        this.lindex = (this.lindex + 1) % this.doctors.length;
+        this.mindex = (this.mindex + 1) % this.doctors.length;
+        this.rindex = (this.rindex + 1) % this.doctors.length;
+        this.isTransitioning = false;
+      }, 300);
   },
   left() {
-    // Update indices to shift to the left
-    this.lindex = (this.lindex - 1 + this.doctors.length) % this.doctors.length;
-    this.mindex = (this.mindex - 1 + this.doctors.length) % this.doctors.length;
-    this.rindex = (this.rindex - 1 + this.doctors.length) % this.doctors.length;
+      this.isTransitioning = true;
+      setTimeout(() => {
+        this.lindex = (this.lindex - 1 + this.doctors.length) % this.doctors.length;
+        this.mindex = (this.mindex - 1 + this.doctors.length) % this.doctors.length;
+        this.rindex = (this.rindex - 1 + this.doctors.length) % this.doctors.length;
+        this.isTransitioning = false;
+      }, 300);
   }
   }
 }
@@ -124,6 +131,7 @@ export default {
   align-items:center;
   justify-content: space-between;
   padding: 10px;
+  transition: transform 0.3s ease;
 }
 .left {
   transform: translateX(20%); /* tuck under the middle div */
@@ -150,5 +158,8 @@ export default {
 .side > img {
   height: auto;
   width: 100px;
+}
+.transition {
+  pointer-events: none; /* Disable clicks during transition */
 }
 </style>
