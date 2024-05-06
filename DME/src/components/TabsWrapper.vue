@@ -4,6 +4,7 @@
           <li v-for="title in tabTitles" 
           :key="title"
           @click="selectedTitle = title"
+          class="tabs"
           >
               {{  title }}
           </li>
@@ -29,5 +30,23 @@
   </script>
   
   <style>
-  
+  .Tabs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .tabs_header {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 40vw;
+  }
+  .tabs_header > li {
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    text-decoration: none;
+    padding: 10px;
+  }
   </style>

@@ -4,17 +4,17 @@
 </script>
 
 <template>
-  <TabsWrapper>
-    <Tab title="tab 1">
+  <TabsWrapper class="wrapper">
+    <Tab title="home">
       hello from tab 1 
     </Tab>
-    <Tab title="tab 2">
+    <Tab title="appointments">
       hello from tab 2
     </Tab>
-    <Tab title="tab 3">
+    <Tab title="notifications">
       hello from tab 3
     </Tab>
-    <Tab title="tab 4">
+    <Tab title="records">
       hello from tab 4
     </Tab>
   </TabsWrapper>
@@ -23,5 +23,8 @@
 <style scoped>
   * {
     color: black;
+  }
+  .wrapper {
+    
   }
 </style>

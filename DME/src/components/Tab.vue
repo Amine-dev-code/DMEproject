@@ -20,5 +20,9 @@
   <style>
     .tab-content {
         color: black;
+        display: flex; 
+        flex-direction: row;
+        justify-content: space-between ;
+        width: 40vw;
     }
   </style>

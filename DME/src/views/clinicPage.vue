@@ -7,17 +7,7 @@
     <img src="../assets/doctor.svg" alt="" style="height: 100vh;">
   </section>
   <section id="doctors">
-    <!-- <div class="card"> 
-      <div class="panel-1"></div>
-      <div class="panel-2"></div>
-      <DoctorCard :data="data" :slideIndex="slideIndex" :count="count" :active="active" />
-      <div class="arrow-left" @click="count = 0; updateCount(); slideLeft();">
-        <i class="fas fa-arrow-left"></i>
-      </div>
-      <div class="arrow-right" @click="count = 0; updateCount(); slideRight();">
-        <i class="fas fa-arrow-right"></i>
-      </div>
-    </div>-->
+    <doc-slide/>
   </section>
   <section id="appointment">
     <h1>
@@ -51,68 +41,24 @@
 
 <script>
 import NavBar from '@/components/NavBar.vue';
-//import DoctorCard from '@/components/DoctorCard.vue';
 import guestAppointmentForm from '@/views/guestAppointmentForm.vue';
 import mapContainer from '@/components/mapContainer.vue';
 import workingHours from '@/components/workingHours.vue';
+import DocSlide from '@/components/DocSlide.vue';
 export default {
   components: {
+    DocSlide,
     NavBar,
-    //DoctorCard,
     guestAppointmentForm,
     mapContainer,
     workingHours
   },
   data() {
     return {
-      active: 1,
-      slideIndex: 0,
-      count: 0,
-      data: {
-        images: [
-          'doc 1',
-          'doc 2',
-          'doc 3'
-        ],
-        names: [
-          'dr gullen',
-          'dr tenma',
-          'dr heinemann',
-        ],
-        descrptions: [
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa incidunt reprehenderit recusandae quaerat voluptatem tempora autem aut? Quas fugit totam eaque, rem nobis nulla officiis excepturi dicta, mollitia, ducimus optio?',
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa incidunt reprehenderit recusandae quaerat voluptatem tempora autem aut? Quas fugit totam eaque, rem nobis nulla officiis excepturi dicta, mollitia, ducimus optio?',
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa incidunt reprehenderit recusandae quaerat voluptatem tempora autem aut? Quas fugit totam eaque, rem nobis nulla officiis excepturi dicta, mollitia, ducimus optio?',
-        ]
-      }
+      
     };
   },
-  methods: {
-    updateCount() {
-      const  target = this.data.images[this.slideIndex] ;
-      if(this.count < target) {
-        this.count ++ ;
-        setTimeout(this.updateCount, 30)
-      } else {
-        this.count = target ;
-      }
-    },
-    slideRight() {
-      this.slideIndex++ ;
-      if(this.slideIndex > this.data.names.length - 1)
-      this.slideIndex = 0
-      },
-    sideLeft() {
-      this.slideIndex-- ;
-      if(this.slideIndex < 0)
-      this.slideIndex = this.data.names.length - 1
-    }
-  },
-  counted() {
-    this.updateCount();
-  }
 }
-
 </script>
 
 <style scoped>

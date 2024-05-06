@@ -1,7 +1,4 @@
 <template>
-  <!---<PatientProfileCard /> -->
-  <!-- <DocumentContainer /> -->
-  <!-- <AppointmentData /> -->
   <router-View />
 </template>
 
