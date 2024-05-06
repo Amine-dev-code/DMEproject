@@ -1,7 +1,6 @@
 <template>
   <div style="display: flex; flex-direction: row; justify-content: space-between">
     <SideBar />
-    <router-view />
   </div>
 </template>
 <script>

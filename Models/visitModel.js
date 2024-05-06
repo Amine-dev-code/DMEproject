@@ -29,7 +29,6 @@ const visitSchema=mongoose.Schema({
     },
     files:[
         {
-           //file_id: Schema.Types.ObjectId,
            docType:String,
            fieldname: String,
            originalname: String,

@@ -1,4 +1,6 @@
 <template>
+  <div class="tpSetSide">
+    <SideBar/>
   <div class="signup-container">
     <h1 class="form-header">Patient Profile Creation</h1>
     <form @keypress.enter.prevent="$event.stopPropagation()" action="" class="signup-form">
@@ -263,10 +265,15 @@
       </button>
     </form>
   </div>
+  </div>
 </template>
 
 <script>
+import SideBar from '@/components/SideBar.vue'
 export default {
+  components:{
+    SideBar
+  },
   data() {
     return {
       years:[],
@@ -362,6 +369,7 @@ export default {
 
 <style scoped>
 
+
 .signup-form {
   display: flex;
   justify-content: center;
@@ -392,6 +400,7 @@ hr {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  width:100%;
   overflow-y: auto;
   align-items: center;
   gap: 10px;
@@ -542,5 +551,9 @@ hr {
   margin-right: 5px;
   width: 100%;
   flex: 1;
+}
+.toSetSide{
+  display:flex;
+  justify-content:space-between
 }
 </style>

@@ -10,6 +10,8 @@ import AnalyticsDash from '@/views/doctor/AnalyticsDash.vue'
 import SignUp from '@/components/SignUp.vue'
 import PatientProfile from '@/views/PatientProfile.vue'
 import PatientHome from '@/views/patient/PatientHome.vue'
+import appointmentPatientDash from '@/views/patientRoles/appointmentsPatientDash.vue'
+import medicalRecord from '@/views/patientRoles/medicalRecord.vue'
 const routes = [
   {
     path: '/',
@@ -84,7 +86,7 @@ const routes = [
     component:SignUp
   },
   {
-    path: '/patients/patient/:id',
+  path: '/patients/patient/:id',
     name: 'patient-profile',
     component: PatientProfile
   },
@@ -93,6 +95,16 @@ const routes = [
     name: 'patient',
     component: PatientHome,
     props: true
+  },
+  {
+    path:'/patientAppointments',
+    name:'patintApps',
+    component:appointmentPatientDash
+  },
+  {
+    path:'/medicalRecords',
+    name:'medicalRecords',
+    component:medicalRecord
   }
 ]
 const router = createRouter({

@@ -5,11 +5,14 @@
         <div class="header-cell">NAME</div>
         <div class="header-cell">PHONE NUMBER</div>
         <div class="header-cell">EMAIL ADDRESS</div>
+        <div class="header-cell">DELETE</div>
+        
       </div>
-      <router-link  to="" v-for="patient in patientsData" :key="patient.id" :href="`/patient/${patient.id}`" class="table-row">
+    <router-link  :to="{name:'patient-profile',params:{id:patient._id}}" v-for="patient in patientsData" :key="patient.id" class="table-row">
         <div class="table-cell">{{ patient.first_name }} {{ patient.last_name }}</div>
         <div class="table-cell">{{ patient.patient_profile.phone_number }}</div>
         <div class="table-cell">{{ patient.email }}</div>
+        <div class="table-cell"><button class="deleteButton">DELETE</button></div>
       </router-link>
      
     </div>
@@ -103,5 +106,8 @@ export default {
 }
 a {
   text-decoration: none;
+}
+.deleteButton{
+  font-size: 20px;
 }
 </style>

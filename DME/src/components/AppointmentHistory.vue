@@ -4,36 +4,36 @@
             Appointments:
         </p>
         <div class="history-container">
-            <div v-for="appointment in this.appointments" class="appointment" :key="appointment.id" @click="transfer(appointment)">
+            <div v-for="appointment in appointments" class="appointment" :key="appointment._id" @click="transfer(appointment)">
                 <img src="../assets/appointment.png" alt="">
                 <p>
-                    {{ appointment.title }}
+                    {{ appointment.diagnosises[0] }}
                 </p>
                 <p>
-                    {{ appointment.date }}
+                    {{ appointment.createdAt }}
                 </p>
             </div>
         </div>
-        <ModalComp :open="isOpen" @close="isOpen = !isOpen" class="appointment-details">
+        <ModalComp :appointment="appointment" :open="isOpen" @close="isOpen = !isOpen" class="appointment-details">
             <div class="diagnosis-container">
                 <div class="">
                     <div class="appointment-header">
                         <p>
-                            {{ appointment.title }}
+                            {{ appointment.age }} Years Old
                         </p>
                         <p>
-                            {{ appointment.date }}
+                            {{ appointment.createdAt }}
                         </p>
                     </div>
                 </div>
                 <hr style="width: 200px; border: 1px solid rgba(42, 75, 102, 0.3); margin-bottom: 10px; margin-top: 10px;">
-                <p v-if="appointment.diagnoses.length > 2" class="label">
+                <p v-if="appointment.diagnosises.length > 1" class="label">
                     Diagnoses :
                 </p>
-                <p v-else-if="appointment.diagnoses.length === 1" class="label">
+                <p v-else-if="appointment.diagnosises.length === 1" class="label">
                 Diagnosis :
                 </p>
-                <div class="list" v-for="(diagnosis, index) in appointment.diagnoses" :key="index">
+                <div class="list" v-for="(diagnosis, index) in appointment.diagnosises" :key="index">
                     {{ diagnosis }}
                 </div>
                 <p v-if="appointment.prescriptions.length > 1" class="label">
@@ -49,7 +49,8 @@
                     Report :
                 </p>
                 <p class="list" style="padding: 5px">
-                    {{ appointment.report }}
+                    {{ appointment.rapport }}
+                    
                 </p>
             </div>
         </ModalComp>
@@ -59,6 +60,8 @@
 <script>
 import { ref } from "vue";
 import ModalComp from './ModalComp.vue'
+import moment from 'moment'
+import DocumentContainer from "./DocumentContainer.vue";
 
 export default {
     setup() {
@@ -67,51 +70,44 @@ export default {
     },
     data() {
         return {
-            isPlural: false,
             appointment: {
-                id: '',
-                title: '',
-                date: '', 
-                diagnoses: [],
+                _id: '',
+                createdAt:null,
+                diagnosises: [],
                 prescriptions: [],
-                report: '',
+                rapport: '',
+                age:null,
+                files:[]
             },
-            appointments: [
-                {
-                    id: '1',
-                    title: 'some title',
-                    date: '23/09/2003', 
-                    diagnoses: [
-                        'diag 1',
-                        'diag 2',
-                        'diag 3'
-                    ],
-                    prescriptions: [
-                        'prescription 1',
-                        'prescription 2',
-                        'prescription 3'
-                    ],
-                    report: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus et explicabo, rerum asperiores facere est accusamus incidunt sequi consectetur non fugiat sit molestiae obcaecati quibusdam voluptatum eos enim, numquam magni?',
-                },
-                {
-                    id: '2',
-                    title: 'some titre',
-                    date: '23/10/2003', 
-                    diagnoses: ['diag 4'],
-                    prescriptions: ['prescription 1'],
-                    report: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus et explicabo, rerum asperiores facere est accusamus incidunt sequi consectetur non fugiat sit molestiae obcaecati quibusdam voluptatum eos enim, numquam magni?',
-                },
-            ]
+            isPlural: false,
+            appointments: []
         };
     },
     components: {
-        ModalComp
+        ModalComp,
+        DocumentContainer
     },
     methods: {
         transfer(_appointment) {
             this.isOpen = true;
             this.appointment = _appointment;
+        },
+        async medicalRecord(){
+            try{
+        const res=await fetch ('http://localhost:3000/api/clientDoctorVisits/663256774c6f6946ca1c6c03/66325051e0e2a989a8ca3cf4')
+        const data= await res.json();
+        for(let app of data){
+        app.createdAt=moment(app.createdAt).format('MMMM Do YYYY');
+        this.appointments.push(app)
+       }
+
+            }catch(error){
+                console.log(error)
+            }
         }
+    },
+    async created(){
+        await this.medicalRecord()
     }
 }
 </script>
@@ -173,4 +169,5 @@ export default {
 hr {
     margin-left: 130px;
 }
+
 </style>

@@ -16,14 +16,9 @@
       <div class="last-row" style="display: flex; flex-direction: row">
         <div class="element">
           <label for="doctor">pick a doctor</label>
-          <select name="doctor" v-model="selectedDoctorID">
+          <select name="doctor"  v-model="selectedDoctorID">
             <option>pick a doctor</option>
-            <option
-              v-for="doctor in doctors"
-              id="chosenDoctor"
-              :key="doctor._id"
-              :value="doctor._id"
-            >
+            <option v-for="doctor in doctors" id="chosenDoctor" :key="doctor._id" :value="doctor._id" >
               {{ doctor.first_name }} {{ doctor.last_name }}
             </option>
           </select>
@@ -65,70 +60,69 @@ export default {
     }
   },
   methods: {
-    async fetchDoctors() {
-      try {
-        const res = await fetch('http://localhost:3000/api/getDoctors')
-        const data = await res.json()
-        this.doctors = data
-      } catch (error) {
+    async fetchDoctors(){
+      try{
+        const res=await fetch ('http://localhost:3000/api/getDoctors')
+        const data= await res.json();
+        this.doctors=data;
+      }catch(error){
         console.log(error.message)
       }
     },
-    async handleDateClick() {
-      try {
-        const checkAppointment = {
-          visit_date: this.bookAppointment.visit_date
+    async handleDateClick(){
+      try{
+        const checkAppointment={
+          visit_date:this.bookAppointment.visit_date
+        };
+        const res=await fetch (`http://localhost:3000/api/checkDisponibleAppointment/${this.selectedDoctorID}`,{
+          method:'post',
+          body:JSON.stringify(checkAppointment),
+          headers:{
+          'content-type': 'application/json',
         }
-        const res = await fetch(
-          `http://localhost:3000/api/checkDisponibleAppointment/${this.selectedDoctorID}`,
-          {
-            method: 'post',
-            body: JSON.stringify(checkAppointment),
-            headers: {
-              'content-type': 'application/json'
-            }
-          }
-        )
-        const data = await res.json()
+        });
+        const data=await res.json()
         console.log(data)
-        if (data.status == 'success') {
-          this.youcan = true
-          this.okmessage = data.message
-        } else {
-          this.nomessage = data.message
+        if(data.status=='success'){
+          this.youcan=true
+          this.okmessage=data.message
+          
         }
-      } catch (error) {
+        else{
+         this.nomessage=data.message
+        
+        }
+      }catch(error){
         console.log(error)
       }
     },
-    async bookAppointmente() {
-      try {
-        const res = await fetch(
-          `http://localhost:3000/api/postAppointment/${this.selectedDoctorID}`,
-          {
-            method: 'post',
-            body: JSON.stringify(this.bookAppointment),
-            headers: {
-              'content-type': 'application/json'
-            }
-          }
-        )
-        this.bookAppointment.full_name = ''
-        this.bookAppointment.email = ''
-        this.bookAppointment.phone = null
-        this.bookAppointment.visit_date = ''
-      } catch (error) {
-        console.log(error)
-      }
-    },
-    async created() {
-      await this.fetchDoctors()
+    async bookAppointmente(){
+    try{
+      const res=await fetch (`http://localhost:3000/api/postAppointment/${this.selectedDoctorID}`,{
+          method:'post',
+          body:JSON.stringify(this.bookAppointment),
+          headers:{
+          'content-type': 'application/json',
+        }
+        });
+      this.bookAppointment.full_name='';
+      this.bookAppointment.email='';
+      this.bookAppointment.phone=null;
+      this.bookAppointment.visit_date=''
+    }catch(error){
+      console.log(error)
     }
   },
+ 
+  },
+  
+  async created(){
+    await this.fetchDoctors()
+  }
 }
 </script>
 
-<style scoped>
+<style>
 .guest-form-container {
   display: flex;
   flex-direction: column;
@@ -201,6 +195,7 @@ export default {
   margin-top: 18px;
   height: 44px;
 }
-/*.showokMessage {
-}*/
+.showokMessage{
+
+}
 </style>

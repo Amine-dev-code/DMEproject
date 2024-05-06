@@ -184,6 +184,7 @@ export default {
   width: 10vw;
   height: 40px;
   font-size: 14px;
+  margin-bottom:10px
 }
 .sub-btn:hover {
   background-color: rgba(67, 106, 230, 0.8);

@@ -8,21 +8,16 @@ notifyUserDoc
 const Visit=require('../Models/visitModel');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads')
+    cb(null, 'DME/uploads')
   },
   filename: function (req, file, cb) {
-    if(file.mimetype=='image/jpeg'){
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    cb(null, file.originalname + '-' + uniqueSuffix+'.jpg')
-    }
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    cb(null, file.originalname + '-' + uniqueSuffix)
+    cb(null, uniqueSuffix+'-'+file.originalname)
    // cb(null, file.originalname)
   }
 })
 
 const upload = multer({ storage: storage,
-  createDestDir: true,
   fileFilter:function(req,file,cb){
     if(file.mimetype=='image/jpeg'||file.mimetype=='application/pdf'){
       cb(null,true)
@@ -85,39 +80,40 @@ const uploading=async(req, res, next)=>{
       );
       console.log(doc)
   }
-  //const deleteDocument=async(req,res)=>{
-    //try{
-     // const {visitId}=req.params
-      //const {docId}=req.params
-      //const doc=await Visit.findOne(
-        //{ _id: visitId, 'files._id': docId }, 
-        //{ 'files.$': 1 }
-      //)
+  const deleteDocument=async(req,res)=>{
+    try{
+      const {visitId}=req.params
+      const {docId}=req.params
+      const doc=await Visit.findById(visitId)
+      const toSearchfiles=doc.files;
+      for(let toSearchfile of toSearchfiles){
+        if(toSearchfile._id==docId){
+          const indexToremove=doc.files.indexOf(toSearchfile)
+          doc.files.splice(indexToremove,1)
+          var foundFileName=toSearchfile.filename
+          break;
+        }
+      }
+      await doc.save()
+      console.log(foundFileName)
+      if(fs.existsSync(`./DME/uploads/${foundFileName}`)){
+        fs.unlink(`./DME/uploads/${foundFileName}`,async(err)=>{
+          res.status(200).json({'status':'success',
+        'message':'the file deleted successfully'})
+        })
+   }
+   else{
+     res.status(200).json('doesnt exist')
+    }
       
-      //if(fs.existsSync('./uploads/TP4.pdf')){
-       // fs.unlink('./uploads/TP4.pdf',async(err)=>{
-          //try{
-           
-           //const UpdatedVisit= Visit.findByIdAndUpdate(visitId,{$pull:{files:{file_id:docId}}},{new:true})
-          //console.log(UpdatedVisit)
-          //}catch(error){
-           // console.log(error)
-          //}
-          
-        //})
-   // }
-   // else{
-     // res.status(200).json('doesnt exist')
-    //}
       
-      
-   // }
-   // catch(error){
-     // res.status(500).json({
-      //  message:error.message
-      //})
-    //}
-  //}
+    }
+   catch(error){
+     res.status(500).json({
+       message:error.message
+      })
+    }
+  }
  
   
  
@@ -127,5 +123,5 @@ const uploading=async(req, res, next)=>{
     upload,
     getNotification,
     findDocument,
-    //deleteDocument
+    deleteDocument
   }

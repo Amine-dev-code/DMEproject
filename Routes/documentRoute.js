@@ -9,13 +9,13 @@ const {
     upload,
     getNotification,
     findDocument,
-   // deleteDocument
+    deleteDocument
 }=require('../Controllers/documentController')
 
 
 router.post('/upload/:id', upload.single('avatar'),uploading );
 router.get('/notificationDoc/:patientId',getNotification)
 router.get('/document/:visitId/:docId',findDocument)
-//router.put('/deletedocument/:visitId/:docId',deleteDocument)
+router.get('/deletedocument/:visitId/:docId',deleteDocument)
 
 module.exports=router

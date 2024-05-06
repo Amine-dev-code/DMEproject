@@ -1,19 +1,26 @@
 <template>
+  <div class="toSetSide">
+    <SideBar />
+    <div>
   <SearchBar class="search-bar" />
   <PatientsTable />
   <router-link to="/patients/addpatient" style="height: 100%; width: 100%">
     <button class="add-patient-btn">add a patient</button>
   </router-link>
-  <router-view />
+</div>
+
+</div>
 </template>
 <script>
 import PatientsTable from '@/components/PatientsTable.vue'
 import SearchBar from '@/components/SearchBar.vue'
+import SideBar from '@/components/SideBar.vue';
 
 export default {
   components: {
     PatientsTable,
-    SearchBar
+    SearchBar,
+    SideBar
   }
 }
 </script>
@@ -42,5 +49,9 @@ export default {
   position: absolute;
   left: 280px;
   top: 20px;
+}
+.toSetSide{
+  display:flex;
+  justify-content:space-between
 }
 </style>

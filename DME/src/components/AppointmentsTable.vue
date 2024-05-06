@@ -3,9 +3,9 @@
     <div class="table">
       <div class="table-header">
         <div class="header-cell">FULL NAME</div>
-        <div class="header-cell">EMAIL</div>
         <div class="header-cell">PHONE</div>
         <div class="header-cell">DATE</div>
+        <div class="header-cell">DELETE</div>
       </div>
       <div
        @click='checkExistingPatient(appointment.email)'
@@ -15,9 +15,9 @@
         class="table-row"
       >
         <div class="table-cell" style="height: min-content">{{ appointment.full_name }}</div>
-        <div class="table-cell">{{ appointment.email}}</div>
         <div class="table-cell">{{ appointment.phone }}</div>
         <div class="table-cell">{{ appointment.visit_date }}</div>
+        <div class="table-cell"><button class="deleteButton">DELETE</button></div>
     </div>
     </div>
   </div>
@@ -80,7 +80,6 @@ import moment from 'moment'
   height: 50px;
 }
 .appointments-container {
-  max-height: 550px;
   overflow-y: auto; /* Enable vertical scrolling */
   overflow-x: hidden; /* Prevent horizontal scrolling */
   position: absolute;
@@ -130,6 +129,7 @@ import moment from 'moment'
   /*border-bottom: 1px solid rgba(0, 206, 200, 1);*/
   font-size: 20px;
   vertical-align: middle; /* Align text vertically to the middle */
+  
 }
 .rmv-btn {
   padding-left: 120px;
@@ -142,5 +142,8 @@ import moment from 'moment'
 a {
   height: 50px;
   text-decoration: none;
+}
+.deleteButton{
+  font-size: 20px;
 }
 </style>
