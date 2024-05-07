@@ -193,10 +193,11 @@ section {
   justify-content: center;
   align-items: center;
   background-color: white;
+  gap: 50px;
 }
 #appointment > h1 {
   font-size: 40px;
-  font-weight: lighter;
+  font-weight: normal;
   color: rgba(42, 75, 102, 1);
 }
 #aboutus {
@@ -209,6 +210,7 @@ section {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 20px;
 }
 .aboutus-container > div {
   display: flex;
@@ -216,6 +218,7 @@ section {
   gap: 10px;
   justify-content: center;
   align-items:center;
+  margin-bottom: 10px;
 }
 .aboutus-container > div > input, .aboutus-container div > textarea {
   width: 30vw;

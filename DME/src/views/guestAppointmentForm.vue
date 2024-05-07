@@ -13,9 +13,9 @@
         <label for="email">Email</label>
         <input required type="email" v-model="bookAppointment.email" />
       </div>
-      <div class="last-row" style="display: flex; flex-direction: row">
+      <div class="last-row" style="display: flex; flex-direction: row;">
         <div class="element">
-          <label for="doctor">pick a doctor</label>
+          <label for="doctor">Pick a doctor</label>
           <select name="doctor"  v-model="selectedDoctorID">
             <option>pick a doctor</option>
             <option v-for="doctor in doctors" id="chosenDoctor" :key="doctor._id" :value="doctor._id" >
@@ -27,15 +27,17 @@
           <label for="date">Date</label>
           <input type="date" name="date" v-model="bookAppointment.visit_date" class="date" />
         </div>
-        <div v-if="youcan" class="showokMessage">
+        <!-- <div v-if="youcan" class="showokMessage">
           <h5>{{ this.okmessage }}</h5>
         </div>
         <div v-else>
           <h5>{{ this.nomessage }}</h5>
-        </div>
+        </div> -->
       </div>
-      <button class="book-btn" @click.prevent="bookAppointmente">book appointment</button>
-      <button class="book-btn" @click.prevent="handleDateClick">check</button>
+      <div class="btn-container">
+        <button class="book-btn" @click.prevent="bookAppointmente">Book appointment</button>
+        <button class="book-btn" @click.prevent="handleDateClick">Check</button>
+      </div>
     </form>
   </div>
 </template>
@@ -170,7 +172,7 @@ export default {
   background-color: rgba(67, 106, 230, 1);
   border-radius: 5px;
   border: none;
-  font-size: 14px;
+  font-size: 16px;
   margin-top: 15px;
 }
 .book-btn:hover {
@@ -183,19 +185,29 @@ export default {
   width: 31vw;
   display: flex;
   justify-content: space-between;
-  gap: 10px;
   align-items: center;
 }
 .last-row > div {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 15vw;
+  gap: 5px;
 }
 .last-row > div > select {
-  margin-top: 18px;
+  /*margin-top: 10px;*/
+  height: 44px;
+}
+.last-row > div > input {
+  /*margin-top: 10px;*/
   height: 44px;
 }
 .showokMessage{
 
+}
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  font-size: 18px;
 }
 </style>
