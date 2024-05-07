@@ -34,20 +34,23 @@ const uploading=async(req, res, next)=>{
     // req.body will hold any text fields from the form (if there were any)
     try{
     const {id}=req.params
-    const newFile = {
-        filename: req.file.filename,
-        originalname: req.file.originalname,
-        encoding: req.file.encoding,
-        mimetype: req.file.mimetype,
-        path: req.file.path,
-        size: req.file.size
-    };
     
-    const visit=await Visit.findByIdAndUpdate(id,{new:true});
-    visit.files.push(newFile);
-    visit.save();
+  for(const file of req.files){
+      const newFile = {
+        filename: file.filename,
+        originalname: file.originalname,
+        encoding: file.encoding,
+        mimetype: file.mimetype,
+        path: file.path,
+        size: file.size
+    };
+    console.log(file.originalname)
+     var visit=await Visit.findById(id);
+    await visit.files.push(newFile);
+    await visit.save();
+    }
     console.log('uploaded');
-    console.log(req.file);
+    //console.log(req.files);
     const idoctor=visit.doctor.toHexString()
     const ipatient=visit.patient.toHexString()
     notifyUserDoc.emit('uploadFile',idoctor,ipatient,visit._id)

@@ -79,7 +79,7 @@ email: {
         desk:{
             type:Number
         },
-        prix:{
+        price:{
             type:Number,
         },
         maxPatient:{

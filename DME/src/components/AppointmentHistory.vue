@@ -114,7 +114,7 @@ export default {
 
 <style scoped>
 .app-hist-container {
-    height: 50vh;
+    
     width: 530px;
     border-radius: 5px;
     border: 2px solid rgba(42, 75, 102, 0.5);

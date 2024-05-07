@@ -25,7 +25,7 @@
         </div>
         <div class="">
           <label for="date">Date</label>
-          <input type="date" name="date" v-model="bookAppointment.visit_date" class="date" />
+          <input type="date" name="date" :min="minDate" v-model="bookAppointment.visit_date" class="date" />
         </div>
         <div v-if="youcan" class="showokMessage">
           <h5>{{ this.okmessage }}</h5>
@@ -56,7 +56,8 @@ export default {
         phone:null,
         visit_date:''
       },
-      selectedDoctorID:null
+      selectedDoctorID:null,
+      minDate:null
     }
   },
   methods: {
@@ -118,6 +119,15 @@ export default {
   
   async created(){
     await this.fetchDoctors()
+    const currentDate = new Date();
+  
+  
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0'); 
+  const day = String(currentDate.getDate()).padStart(2, '0');
+  
+  
+  this.minDate = `${year}-${month}-${day}`;
   }
 }
 </script>

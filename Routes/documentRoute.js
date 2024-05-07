@@ -13,7 +13,7 @@ const {
 }=require('../Controllers/documentController')
 
 
-router.post('/upload/:id', upload.single('avatar'),uploading );
+router.post('/upload/:id', upload.array('avatar', 13),uploading );
 router.get('/notificationDoc/:patientId',getNotification)
 router.get('/document/:visitId/:docId',findDocument)
 router.get('/deletedocument/:visitId/:docId',deleteDocument)

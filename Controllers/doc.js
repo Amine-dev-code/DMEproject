@@ -7,8 +7,13 @@
 document.querySelector('form').addEventListener('submit', async function(event) {
     event.preventDefault(); // Prevent default form submission
 
-    const formData = new FormData(); // Create a new FormData object
-    formData.append('avatar', document.querySelector('input[type="file"]').files[0]); // Append the selected file to the FormData object
+    const fileInput = document.querySelector('input[type="file"]');
+const files = fileInput.files; // Get the FileList object
+
+// Iterate over each file in the FileList and append it to the FormData object
+for (let i = 0; i < files.length; i++) {
+  formData.append('avatar', files[i]);
+} // Append the selected file to the FormData object
 
     try {
         

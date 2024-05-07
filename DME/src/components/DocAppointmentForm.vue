@@ -1,7 +1,7 @@
 <template>
   <div style="display: flex; flex-direction: column; align-items: center" class="Container">
     <p style="color: #2a4b66; text-align: center; font-size: 30px">Appointment Data Enrollment</p>
-    <form @keypress.enter.prevent="$event.stopPropagation()" class="doc-app-form-container" @submit.prevent="">
+    <form @keypress.enter.prevent="$event.stopPropagation()" class="doc-app-form-container" @submit.prevent="" enctype="multipart/form-data">
       <div>
         <input
           type="text"
@@ -44,7 +44,7 @@
       <label for="images" class="drop-container">
         <span class="drop-title">Drop files here</span>
         or
-        <input type="file" id="file-input" @change="handleFileChange" />
+        <input type="file" name="avatar" id="file-input" @change="handleFileChange" multiple >
       </label>
       <button type="submit" class="sub-btn" id="submitform" @click.prevent="sendMedicalRecord">Submit</button>
     </form>
@@ -123,14 +123,34 @@ export default {
         }
         });
         const data=await res.json()
-        console.log(data)
         if(data.status=='success'){
           this.medicalRecord.diagnosises=[];
           this.medicalRecord.rapport='';
           this.medicalRecord.prescriptions=[];
+          await this.sendDocument(data.visit._id);
+          
         }
       }catch(error){
         console.log(error.message)
+      }
+    },
+    async sendDocument(id){
+      try{
+        const formData = new FormData();
+        const fileInput = document.querySelector('input[type="file"]');
+        const files = fileInput.files; // Get the FileList object
+
+// Iterate over each file in the FileList and append it to the FormData object
+for (let i = 0; i < files.length; i++) {
+  formData.append('avatar', files[i]);
+}
+
+        const res=await fetch (`http://localhost:3000/api/upload/${id}`,{
+          method:'post',
+          body:formData
+        })
+      }catch(error){
+        console.log(error)
       }
     }
   }
