@@ -3,7 +3,6 @@
   import TabsWrapper from '@/components/TabsWrapper.vue';
   import AppointmentsPatientTable from '@/components/AppointmentsPatientTable.vue';
   import AppointmentHistory from '@/components/AppointmentHistory.vue';
-  import PatientProfileCard from '@/components/PatientProfileCard.vue';
   import { onClickOutside } from '@vueuse/core'
 
   import { ref } from 'vue'

@@ -12,6 +12,7 @@ import PatientProfile from '@/views/PatientProfile.vue'
 import PatientHome from '@/views/patient/PatientHome.vue'
 import appointmentPatientDash from '@/views/patientRoles/appointmentsPatientDash.vue'
 import medicalRecord from '@/views/patientRoles/medicalRecord.vue'
+import profile from '../views/patient/profile.vue'
 const routes = [
   {
     path: '/',
@@ -89,6 +90,12 @@ const routes = [
   path: '/patients/patient/:id',
     name: 'patient-profile',
     component: PatientProfile
+  },
+  {
+    path: '/patient-profile/:id',
+      name: 'patient-profile-card',
+      component: profile,
+      props: true,
   },
   {
     path: '/patient/:id',
