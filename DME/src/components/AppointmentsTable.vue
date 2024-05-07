@@ -5,11 +5,10 @@
         <div class="header-cell">FULL NAME</div>
         <div class="header-cell">PHONE</div>
         <div class="header-cell">DATE</div>
-       
+        <div class="header-cell">ACTION</div>
       </div>
       <div
        @click='checkExistingPatient(appointment.email)'
-       to="/appointment"
         v-for="appointment in appointments"
         :key="appointment.id"
         class="table-row"
@@ -17,6 +16,7 @@
         <div class="table-cell" style="height: min-content">{{ appointment.full_name }}</div>
         <div class="table-cell">{{ appointment.phone }}</div>
         <div class="table-cell">{{ appointment.visit_date }}</div>
+        <div class="table-cell"><button class="deleteButton" @click.stop="deleteAppointment(appointment._id)">DELETE</button></div>
         
     </div>
     </div>
@@ -34,9 +34,9 @@ import moment from 'moment'
     methods: {
       async fetchAppointments(){
       try{
+        this.appointments=[];
        const res= await fetch('http://localhost:3000/api/getAppointment/66325051e0e2a989a8ca3cf4');
        const data=await res.json()
-       
        for(let app of data){
         app.visit_date=moment(app.visit_date).format('MMMM Do YYYY');
         this.appointments.push(app)
@@ -63,6 +63,23 @@ import moment from 'moment'
         }catch(error){
           console.log(error.message)
         }
+      },
+      async deleteAppointment(id){
+        if(confirm('Are you sure you have treated this patient ?')){
+          try{
+      const res= await fetch(`http://localhost:3000/api/changeStatusAppointment/${id}`,{
+        method:'put'
+      });
+      const data=await res.json()
+      if(data.success){
+        alert('this appointment has been deleted')
+      }
+      this.fetchAppointments()
+        }catch(error){
+          console.log(error)
+        }
+        }
+        
       }
     },
     async created(){

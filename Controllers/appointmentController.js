@@ -9,16 +9,21 @@ const User=require('../Models/userModel.js')
 const PostAppointment=async(req,res)=>{
     try{
         const {doctorId}=req.params;
-        const {patientId}=req.params;
+        //const {patientId}=req.params;
+        const {email}=req.body;
         const testDate=req.body.visit_date;
         const appointmentDay =await AppointmentDay.findOne({doctor:doctorId,treatment_day:testDate})
         console.log(appointmentDay)
         if(!appointmentDay || appointmentDay.status==false){
+            const userEmail=await User.findOne({email:email});
+             if(userEmail){
+            var patientId=userEmail._id
+            }
             const newAppointment = new Appointment(req.body);
             newAppointment.patient=patientId;
             newAppointment.doctor=doctorId;
             newAppointment.status=false
-            newAppointment.save();
+            newAppointment.save(); 
             if(appointmentDay==null){
                 const appointmenteDay= new AppointmentDay()
                 appointmenteDay.treatment_day=req.body.visit_date;
@@ -59,9 +64,22 @@ const PostAppointment=async(req,res)=>{
 
 const deleteAppointment=async(req,res)=>{
     try{
-        const {id}=req.params
-        const deletedAppointment=await Appointment.findByIdAndDelete(id)
-        res.status(200).json(deletedAppointment)
+        const {appointmentId}=req.params
+        const {doctorId}=req.params
+        const deletedAppointment=await Appointment.findById(appointmentId)
+        if(deletedAppointment){
+        const thatDay=deletedAppointment.visit_date
+        await Appointment.findByIdAndDelete(appointmentId)
+        const appointmentDaydelete=await AppointmentDay.findOne({doctor:doctorId,treatment_day:thatDay})
+        appointmentDaydelete.reserved_patients--
+        if(appointmentDaydelete.status==true)
+            appointmentDaydelete.status=false
+        appointmentDaydelete.save()
+        res.status(200).json({
+            'status':'success'
+        })
+        }
+        
     }catch(error){
         res.status(500).json({
             message:error.message
@@ -72,7 +90,7 @@ const deleteAppointment=async(req,res)=>{
 const getAppointmentsPatient=async(req,res)=>{
     try{
         const {patientId}=req.params
-        const Appointments=await Appointment.find({patient:patientId,status:false})
+        const Appointments=await Appointment.find({patient:patientId,status:false}).populate('doctor')
         res.status(200).json(Appointments)
     }
     catch(error){
@@ -83,7 +101,6 @@ const getAppointmentsPatient=async(req,res)=>{
 }
 const getAppointmentsDoctor=async(req,res)=>{
     try{
-        
         const {doctorId}=req.params
         const Appointments=await Appointment.find({doctor:doctorId,status:false})
         res.status(200).json(Appointments)
@@ -94,6 +111,7 @@ const getAppointmentsDoctor=async(req,res)=>{
         })
     }
 }
+//wasn't used in the application 
 const getUpcomingAppointments=async(req,res)=>{
     try{
         const {patientId}=req.params
@@ -111,14 +129,17 @@ const getUpcomingAppointments=async(req,res)=>{
 const changeStatusAppointment=async(req,res)=>{
     try{
         const {appointmentId}=req.params
-        const Appointment=await Appointment.findById(appointmentId)
-        Appointment.status=!Appointment.status;
-        Appointment.save()
+        const appointment=await Appointment.findById(appointmentId)
+        if(appointment.status==false){
+            console.log('yes')
+            appointment.status=true
+            await appointment.save()
+        }
         res.status(200).json({
             status:'success',
         })
     }catch(error){
-        res.status(500).json({status:'fail'})
+        res.status(500).json({message:error.message})
     }
 }
 const checkExisitingPattient=async(req,res)=>{

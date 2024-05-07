@@ -17,6 +17,9 @@ const{
 router.get('/getAppointment/:doctorId',getAppointmentsDoctor)
 router.post('/postAppointment/:doctorId',PostAppointment)
 router.get('/checkExistingPatient/:email/:doctorId',checkExisitingPattient)
+router.put('/changeStatusAppointment/:appointmentId',changeStatusAppointment)
+router.get('/getAppointmentsPatient/:patientId',getAppointmentsPatient)
+router.delete('/deleteAppointment/:appointmentId/:doctorId',deleteAppointment)
 
 
 

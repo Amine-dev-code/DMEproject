@@ -3,22 +3,19 @@
       <div class="table">
         <div class="table-header">
           <div class="header-cell">DOCTOR</div>
+          <div class="header-cell">PHONE</div>
           <div class="header-cell">DATE</div>
-          <div class="header-cell">STATUS</div>
-          <div class="header-cell">CANCEL</div>
-          
+          <div class="header-cell">ACTION</div>
         </div>
         <div
-         @click='checkExistingPatient(appointment.email)'
-         to="/appointment"
           v-for="appointment in appointments"
           :key="appointment.id"
           class="table-row"
         >
-          <div class="table-cell" style="height: min-content">{{ appointment.full_name }}</div>
-          <div class="table-cell">{{ appointment.phone }}</div>
+          <div class="table-cell" style="height: min-content">{{ appointment.doctor.first_name }} {{ appointment.doctor.last_name }}</div>
+          <div class="table-cell"></div>
           <div class="table-cell">{{ appointment.visit_date }}</div>
-          <div class="table-cell"><button class="deleteButton">DELETE</button></div>
+          <div class="table-cell"><button class="deleteButton" @click.stop="cancelAppointment(appointment._id,appointment.doctor._id)">CANCEL</button></div>
       </div>
       </div>
     </div>
@@ -33,11 +30,11 @@
         };
       },
       methods: {
-        async fetchAppointments(){
+        async fetchAppointmentsUser(){
         try{
-         const res= await fetch('http://localhost:3000/api/getAppointment/66325051e0e2a989a8ca3cf4');
+          this.appointments=[];
+         const res= await fetch('http://localhost:3000/api/getAppointmentsPatient/663256774c6f6946ca1c6c03');
          const data=await res.json()
-         
          for(let app of data){
           app.visit_date=moment(app.visit_date).format('MMMM Do YYYY');
           this.appointments.push(app)
@@ -47,28 +44,27 @@
           console.log(error)
         }  
         },
-        async checkExistingPatient(email){
+        async cancelAppointment(idapp,idoc){
+          if(confirm('Are you sure you want to cancel this appointment ?'))
           try{
-            const res= await fetch(`http://localhost:3000/api/checkExistingPatient/${email}/66325051e0e2a989a8ca3cf4`);
-            const data=await res.json()
-            console.log(data.status)
-            if(data.status=='success'){
-              this.$router.push({ 
-             path: '/appointments/addappointment', 
-             query: { patientKey:JSON.stringify(data.info)} 
-               });
-            }
-            if(data.status=='fail'){
-              this.$router.push('/addPatient')
-            }
+            //http://localhost:3000/api/deleteAppointment/663a15deb8db91f8fea140f6/66325051e0e2a989a8ca3cf4
+            const res= await fetch(`http://localhost:3000/api/deleteAppointment/${idapp}/${idoc}`,{
+              method:'delete'
+            });
+          const data=await res.json()
+          if(data.status=='success'){
             
+            await this.fetchAppointmentsUser()
+            alert ('this appointment has been successfully canceled')
+          }
           }catch(error){
             console.log(error.message)
           }
+        
         }
       },
       async created(){
-        this.fetchAppointments()
+        await this.fetchAppointmentsUser()
       }
     }
   </script>
