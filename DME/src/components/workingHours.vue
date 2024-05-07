@@ -1,25 +1,49 @@
 <template>
   <div class="hours-container">
     <div class="weekdays">
-      <button class="days active">Sun</button>
-      <button class="days">Mon</button>
-      <button class="days">Tue</button>
-      <button class="days">Wed</button>
-      <button class="days">Thu</button>
-      <button class="days">Fri</button>
-      <button class="days">Sat</button>
+      <button class="days" @click="index = 1" :class="{active : index == 1 }">Sun</button>
+      <button class="days" @click="index = 2" :class="{active : index == 2 }">Mon</button>
+      <button class="days" @click="index = 3" :class="{active : index == 3 }">Tue</button>
+      <button class="days" @click="index = 4" :class="{active : index == 4 }">Wed</button>
+      <button class="days" @click="index = 5" :class="{active : index == 5 }">Thu</button>
+      <button class="days" @click="index = 6" :class="{active : index == 6 }">Fri</button>
+      <button class="days" @click="index = 7" :class="{active : index == 7 }">Sat</button>
     </div>
     <div style="display: flex; flex: 1">
-      <SunDay />
+      <SunDay v-show="index == 1"/>
+      <MonDay v-show="index == 2"/>
+      <TuesDay v-show="index == 3"/>
+      <WednesDay  v-show="index == 4"/>
+      <ThursDay  v-show="index == 5"/>
+      <FriDay  v-show="index == 6"/>
+      <SaturDay  v-show="index == 7"/>
     </div>
   </div>
 </template>
 
 <script>
 import SunDay from '@/components/days/SunDay.vue'
+import MonDay from '@/components/days/MonDay.vue'
+import TuesDay from '@/components/days/TuesDay.vue'
+import WednesDay from '@/components/days/WednesDay.vue'
+import ThursDay from '@/components/days/ThursDay.vue'
+import FridDay from '@/components/days/FriDay.vue'
+import SaturDay from '@/components/days/SaturDay.vue'
+
 export default {
   components: {
-    SunDay
+    SunDay,
+    MonDay,
+    TuesDay,
+    WednesDay,
+    ThursDay,
+    FridDay,
+    SaturDay
+  },
+  data() {
+    return {
+      index: 1
+    };
   }
 }
 </script>
@@ -52,5 +76,9 @@ export default {
   border: none;
   color: #2a4b66;
   background-color: rgba(42, 75, 102, 0.1);
+}
+.active {
+  background-color: rgba(0, 206, 200, 0.2);
+  color: rgba(0, 206, 200, 1);
 }
 </style>
