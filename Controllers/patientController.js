@@ -91,6 +91,32 @@ const deletePatient=async(req,res)=>{
         })
     }
 }
+const addToOwnPatient=async(req,res)=>{
+    try{
+        //this should be only used after creating a patient 
+        const {doctorId}=req.params;
+        const {patientId}=req.params;
+        const doctor=await User.findById(doctorId);
+        const patient=await User.findById(patientId);
+        if(patient && !doctor.doctor_profile.ownPatients.includes(patient._id)){
+        doctor.doctor_profile.ownPatients.push(patient._id)
+        await doctor.save();
+        res.status(200).json({
+            'status':'success'
+        })
+        }
+        else{
+            res.status(200).json({
+                'status':'fail'
+            })
+        }
+        
+    }catch(error){
+        res.statue(500).json({
+            message:error.message
+        })
+    }
+}
 const searchPatient=async(req,res)=>{
     const price=req.query.price
     const speciality=req.query.speciality
@@ -120,6 +146,7 @@ module.exports={
     ownPatients,
     getPatientInfo,
     getPatients,
-    deletePatient
+    deletePatient,
+    addToOwnPatient
     
 }

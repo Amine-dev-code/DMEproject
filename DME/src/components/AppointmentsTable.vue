@@ -5,7 +5,7 @@
         <div class="header-cell">FULL NAME</div>
         <div class="header-cell">PHONE</div>
         <div class="header-cell">DATE</div>
-        <div class="header-cell">DELETE</div>
+       
       </div>
       <div
        @click='checkExistingPatient(appointment.email)'
@@ -17,7 +17,7 @@
         <div class="table-cell" style="height: min-content">{{ appointment.full_name }}</div>
         <div class="table-cell">{{ appointment.phone }}</div>
         <div class="table-cell">{{ appointment.visit_date }}</div>
-        <div class="table-cell"><button class="deleteButton">DELETE</button></div>
+        
     </div>
     </div>
   </div>

@@ -76,15 +76,8 @@ email: {
         speciality:{
             type:String,
         },
-        
         desk:{
-            floor:{
-                type:Number,
-                
-            },
-            num:{
-                type:Number,
-            }
+            type:Number
         },
         prix:{
             type:Number,

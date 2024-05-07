@@ -350,13 +350,18 @@ export default {
         });
         const data=await res.json()
         if(data.status=='success'){
-          console.log(data)
+        const res=await fetch (`http://localhost:3000/api/addToOwnPatient/66325051e0e2a989a8ca3cf4/${data.patient._id}`,{
+          method:'put',
+        })
+        const secdata=await res.json()
+        if(secdata.status=='success')
           alert('new patient successfully added');
         }
       }catch(error){
         console.log(error)
       }
-    }
+    },
+   
   },
   created(){
     const nowYear=new Date().getFullYear();
