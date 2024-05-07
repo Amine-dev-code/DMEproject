@@ -60,7 +60,6 @@ import moment from 'moment'
           if(data.status=='fail'){
             this.$router.push('/addPatient')
           }
-          
         }catch(error){
           console.log(error.message)
         }
