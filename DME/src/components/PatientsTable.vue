@@ -12,9 +12,8 @@
         <div class="table-cell">{{ patient.first_name }} {{ patient.last_name }}</div>
         <div class="table-cell">{{ patient.patient_profile.phone_number }}</div>
         <div class="table-cell">{{ patient.email }}</div>
-        <div class="table-cell"><button class="deleteButton">DELETE</button></div>
+        <div class="table-cell"><button @click.prevent="deleteUser(patient._id)" class="deleteButton">DELETE</button></div>
       </router-link>
-     
     </div>
   </div>
 </template>
@@ -29,6 +28,23 @@ export default {
         const data = await res.json()
         this.patientsData = data
       } catch (error) {
+        console.log(error)
+      }
+    },
+    async deleteUser(id){
+      try{
+        if(confirm('are you sure you wanna delete this patient ?')){
+          const res = await fetch(`http://localhost:3000/api/deleteOwnPatient/${id}/66325051e0e2a989a8ca3cf4`,{
+          method:'delete'
+        })
+        const data = await res.json()
+        if(data.status=='success'){
+          this.fetchUsers()
+          alert ('patient has been successfully deleted ')
+        }
+        }
+        
+      }catch(error){
         console.log(error)
       }
     }

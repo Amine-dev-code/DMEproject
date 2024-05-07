@@ -9,8 +9,8 @@ const {
     ownPatients,
     getPatientInfo,
     getPatients,
-    postPatient,
-    deletePatient
+    deletePatient,
+    addToOwnPatient
     
 }=require('../Controllers/patientController')
 
@@ -21,6 +21,7 @@ router.get('/getOwnPatients/:doctorId', ownPatients)
 router.get('/patientInfo/:patientId',getPatientInfo)
 router.get('/getPatients',getPatients)
 router.delete('/deleteOwnPatient/:patientId/:doctorId',deletePatient)
+router.put('/addToOwnPatient/:doctorId/:patientId',addToOwnPatient)
 
 
 
