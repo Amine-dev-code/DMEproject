@@ -48,14 +48,14 @@ import DocSlide from '@/components/DocSlide.vue';
 export default {
   components: {
     DocSlide,
-    NavBar,
     guestAppointmentForm,
+    NavBar,
     mapContainer,
     workingHours
   },
   data() {
     return {
-      
+
     };
   },
 }
@@ -123,7 +123,7 @@ section {
 .panel-1::before {
   content: '';
   background: linear-gradient(
-    45deg, 
+    45deg,
     white 0%,
     white 40%,
     white 80%
@@ -136,7 +136,7 @@ section {
 }
 .panel-2 {
   background: linear-gradient(
-    white 0%, 
+    white 0%,
     #00cec8 100%
   );
   left: 0;
@@ -177,7 +177,7 @@ section {
   font-size: 1.5em;
 }
 .arrow-left {
-  left: -1em; 
+  left: -1em;
 }
 .arrow-right {
   right: -1em;
@@ -202,7 +202,14 @@ section {
 }
 #aboutus {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100vh;
   /*flex-direction: row;*/
+}
+.map {
+  width: 50vw;
+  height: 100vh;
 }
 .aboutus-container {
   width: 50vw;

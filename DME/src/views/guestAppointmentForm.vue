@@ -11,7 +11,7 @@
       </div>
       <div class="element">
         <label for="email">Email</label>
-        <input required type="email" v-model="bookAppointment.email" />
+        <input required type="email" v-model="bookAppointment.email" @keyup.enter="validateEmail"/>
       </div>
       <div class="last-row" style="display: flex; flex-direction: row;">
         <div class="element">
@@ -43,6 +43,12 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+
+const validateEmail = (event) => {
+  const isPatternValid = !!event.this.email.match('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2, 4}$')
+  console.log(isPatternValid)
+}
 export default {
   data() {
     return {

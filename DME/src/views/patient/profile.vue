@@ -1,7 +1,7 @@
 <template>
   <div class="container">
   <img src="@/assets/Albert.jpeg">
-  <form @submit="">
+  <form>
     <div class="cell">
       <label>
         First name:

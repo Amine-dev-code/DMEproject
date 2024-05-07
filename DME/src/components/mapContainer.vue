@@ -1,30 +1,31 @@
 <template>
-  <div style="height:100vh; width:50vw;">
-    <l-map ref="map" v-model:zoom="zoom" :center="[38.8977, -77.0365]">
-      <l-tile-layer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        layer-type="base"
-        name="OpenStreetMap"
-      ></l-tile-layer>
-    </l-map>
-  </div>
+  <div id="map" class="map-container"></div>
 </template>
 
 <script>
-import "leaflet/dist/leaflet.css";
-import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet";
+import Map from 'ol/Map';
+import View from 'ol/View';
+import TileLayer from 'ol/layer/Tile';
+import OSM from 'ol/source/OSM';
 
 export default {
-  components: {
-    LMap,
-    LTileLayer,
-  },
-  data() {
-    return {
-      zoom: 15,
-    };
+  name: 'MapContainer',
+  mounted() {
+    this.map = new Map({
+      target: 'map',
+      layers: [
+        new TileLayer({
+          source: new OSM()
+        })
+      ],
+      view: new View({
+        center: [10,10],
+        zoom: 5
+      })
+    });
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>
