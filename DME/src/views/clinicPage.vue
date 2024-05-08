@@ -53,11 +53,6 @@ export default {
     mapContainer,
     workingHours
   },
-  data() {
-    return {
-
-    };
-  },
 }
 </script>
 

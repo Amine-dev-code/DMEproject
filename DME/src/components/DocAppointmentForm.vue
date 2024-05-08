@@ -128,7 +128,7 @@ export default {
           this.medicalRecord.rapport='';
           this.medicalRecord.prescriptions=[];
           await this.sendDocument(data.visit._id);
-          
+          console.log('eys')
         }
       }catch(error){
         console.log(error.message)
@@ -144,13 +144,13 @@ export default {
 for (let i = 0; i < files.length; i++) {
   formData.append('avatar', files[i]);
 }
-if (formData.has('someKey')){
+
   const res=await fetch (`http://localhost:3000/api/upload/${id}`,{
           method:'post',
           body:formData
         })
 
-}
+
         
       }catch(error){
         console.log(error)

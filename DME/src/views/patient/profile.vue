@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-  <img src="@/assets/Albert.jpeg">
+  <div class="container" >
+ 
   <form>
     <div class="cell">
       <label>
@@ -16,18 +16,18 @@
         Family name:
       </label>
       <p v-if="!isEdit">
-        {{ user.family_name }} 
+        {{ user.last_name }} 
       </p>
-      <input v-else placeholder="" type="text" name="familyName" v-model="user.family_name" />
+      <input v-else placeholder="" type="text" name="familyName" v-model="user.last_name" />
     </div>
     <div>
       <label>
         Phone:
       </label>
       <p v-if="!isEdit">
-        {{ user.phone }}
+        {{ user.patient_profile.phone_number }}
       </p>
-      <input v-else placeholder="" type="tel" name="phone" v-model="user.phone"/>
+      <input v-else placeholder="" type="tel" name="phone" v-model="user.patient_profile.phone_number"/>
     </div>
     <div>
       <label>
@@ -43,42 +43,34 @@
        City:
       </label>
       <p v-if="!isEdit">
-        {{ user.city }}
+        {{ user.patient_profile.address.city }}
       </p>
-      <input v-else placeholder="" type="text" name="city" v-model="user.city"/>
+      <input v-else placeholder="" type="text" name="city" v-model="user.patient_profile.address.city"/>
     </div>
     <div>
       <label>
         Wilaya:
       </label>
       <p v-if="!isEdit">
-        {{ user.wilaya }}
+        {{ user.patient_profile.address.wilaya }}
       </p>
-      <input v-else placeholder="" type="text" name="wilaya" v-model="user.wilaya"/>
+      <input v-else placeholder="" type="text" name="wilaya" v-model="user.patient_profile.address.wilaya"/>
     </div>
-    <div>
-      <label>
-        Zip code:
-      </label>
-      <p v-if="!isEdit">
-        {{ user.zipcode }}
-      </p>
-      <input v-else placeholder="" type="text" name="zip-code" v-model="user.zipcode"/>
-    </div>
+    
     <div>
       <label>
         Address:
       </label>
       <p v-if="!isEdit">
-        {{ user.address }}
+        {{ user.patient_profile.address.detail }}
       </p>
-      <input v-else placeholder="" type="text" name="address" v-model="user.address"/>
+      <input v-else placeholder="" type="text" name="address" v-model="user.patient_profile.address.detail"/>
     </div>
   </form>
     <button v-if="!isEdit" class="edt-btn" @click="isEdit = true">
       Edit
     </button>
-    <button v-else @click.prevent="isEdit = false" class="edt-btn">
+    <button v-else @click.prevent="updateUser" class="edt-btn">
       Submit
     </button>
   </div>
@@ -90,16 +82,58 @@
       return {
         isEdit: false,
         user: {
-          first_name:'idir',
-          family_name:'ould khaoua',
-          phone:'za za za za za',
-          email:'someFuckingEmail@gmail.com',
-          city:'El eulma',
-          wilaya:'Setif',
-          zipcode:'19600',
-          address:'some fucking address'
-        }
+          first_name:'',
+          last_name:'',
+          email:'',
+          patient_profile:{
+            phone_number:'',
+            address:{
+              city:'',
+              wilaya:'',
+              detail:''
+            }
+          } 
+        },
+        
       };
+    },
+    methods:{
+      async fetchpatientInfo(){
+        try{
+          const res= await fetch('http://localhost:3000/api/patientInfo/663256774c6f6946ca1c6c03');
+          const data=await res.json()
+          console.log(data)
+          this.user.first_name=data.infos.first_name;
+          this.user.last_name=data.infos.last_name;
+          this.user.patient_profile.phone_number=data.infos.patient_profile.phone_number
+          this.user.email=data.infos.email
+          this.user.patient_profile.address.city=data.infos.patient_profile.address.city
+          this.user.patient_profile.address.wilaya=data.infos.patient_profile.address.wilaya
+          this.user.patient_profile.address.detail=data.infos.patient_profile.address.detail
+          
+        }catch(error){
+          console.log(error)
+        }
+      },
+      async updateUser(){
+        this.isEdit=false
+        try{//will be changed after to $id
+          const res=await fetch ('http://localhost:3000/api/editPatient/663256774c6f6946ca1c6c03',{
+          method:'put',
+          body:JSON.stringify(this.user),
+          headers:{
+          'content-type': 'application/json',
+        }
+        })
+
+        }catch(error){
+          console.log(error)
+        }
+      }
+    },
+    async created(){
+    await this.fetchpatientInfo()
+    
     }
   }
 </script>
@@ -113,7 +147,7 @@
     align-items: center;
     color: rgba(67, 106, 230, 1);
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     gap: 20px;
   }
   .cell {

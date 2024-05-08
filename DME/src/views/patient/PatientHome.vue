@@ -4,11 +4,12 @@
   import AppointmentsPatientTable from '@/components/AppointmentsPatientTable.vue';
   import AppointmentHistory from '@/components/AppointmentHistory.vue';
   import { onClickOutside } from '@vueuse/core'
-  import medicalRecord from '../patientRoles/medicalRecord.vue';
+  import medicalRecordTable from '@/components/medicalRecordTable.vue';
+  import profile from '@/views/patient/profile.vue'
+  import profiledoc from '@/views/doctor/profiledoc.vue'
 
   import { ref } from 'vue'
 
-import MedicalRecordTable from '@/components/medicalRecordTable.vue';
   const isOpen = ref(false)
   const isProfile = ref(false)
   const modal = ref(null)
@@ -61,8 +62,11 @@ import MedicalRecordTable from '@/components/medicalRecordTable.vue';
       <AppointmentsPatientTable/>
     </Tab>
     <Tab title="records">
-     <MedicalRecordTable />
+      <div class="med">
+        <medicalRecordTable /> 
+      </div>
     </Tab>
+    
   </TabsWrapper>
 </template>
 

@@ -31,7 +31,7 @@ export default {
         this.user=data.infos
 
       }catch(error){
-        console.log(error)
+        console.log(error) 
       }
     }
   },
