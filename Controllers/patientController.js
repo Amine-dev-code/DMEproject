@@ -12,7 +12,17 @@ const editPatient=async(req,res)=>{
             return res.status(404).json({messae:'user not found'})
         }
         if(testuser.role=='patient'){
+        const beforeUpdated=await User.findById(id)
+        const allergies=beforeUpdated.patient_profile.allergies
+        const diagnosises=beforeUpdated.patient_profile.diagnosises
+        const surgeries=beforeUpdated.patient_profile.surgeries
+        const bloodType=beforeUpdated.patient_profile.blood_type;
         const patient=await User.findByIdAndUpdate(id,req.body,{new:true});
+        patient.patient_profile.allergies=allergies
+        patient.patient_profile.surgeries=surgeries
+        patient.patient_profile.diagnosises=diagnosises
+        patient.patient_profile.blood_type=bloodType;
+        await patient.save()
         res.status(200).json(patient)
         }
         else{

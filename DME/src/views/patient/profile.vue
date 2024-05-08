@@ -100,7 +100,7 @@
     methods:{
       async fetchpatientInfo(){
         try{
-          const res= await fetch('http://localhost:3000/api/patientInfo/663256774c6f6946ca1c6c03');
+          const res= await fetch('http://localhost:3000/api/patientInfo/663bfdc4e37d44c57859c5a4');
           const data=await res.json()
           console.log(data)
           this.user.first_name=data.infos.first_name;
@@ -118,7 +118,7 @@
       async updateUser(){
         this.isEdit=false
         try{//will be changed after to $id
-          const res=await fetch ('http://localhost:3000/api/editPatient/663256774c6f6946ca1c6c03',{
+          const res=await fetch ('http://localhost:3000/api/editPatient/663bfdc4e37d44c57859c5a4',{
           method:'put',
           body:JSON.stringify(this.user),
           headers:{
