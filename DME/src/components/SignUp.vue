@@ -356,6 +356,10 @@ export default {
         const secdata=await res.json()
         if(secdata.status=='success')
           alert('new patient successfully added');
+          this.$router.push({ 
+           path: '/appointments/addappointment', 
+           query: { patientId:JSON.stringify(data.patient._id)} 
+             });
         }
       }catch(error){
         console.log(error)

@@ -54,7 +54,7 @@ import moment from 'moment'
           if(data.status=='success'){
             this.$router.push({ 
            path: '/appointments/addappointment', 
-           query: { patientKey:JSON.stringify(data.info)} 
+           query: { patientKey:JSON.stringify(data.info._id)} 
              });
           }
           if(data.status=='fail'){

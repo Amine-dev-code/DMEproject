@@ -4,8 +4,11 @@
   import AppointmentsPatientTable from '@/components/AppointmentsPatientTable.vue';
   import AppointmentHistory from '@/components/AppointmentHistory.vue';
   import { onClickOutside } from '@vueuse/core'
+  import medicalRecord from '../patientRoles/medicalRecord.vue';
 
   import { ref } from 'vue'
+
+import MedicalRecordTable from '@/components/medicalRecordTable.vue';
   const isOpen = ref(false)
   const isProfile = ref(false)
   const modal = ref(null)
@@ -58,7 +61,7 @@
       <AppointmentsPatientTable/>
     </Tab>
     <Tab title="records">
-     <AppointmentHistory/>
+     <MedicalRecordTable />
     </Tab>
   </TabsWrapper>
 </template>
@@ -139,5 +142,8 @@
     border-radius: 50%;
     height: 40px;
     width: 40px;
+  }
+  .med{
+    margin-top:300px
   }
 </style>

@@ -7,65 +7,65 @@
           <div class="header-cell">DATE</div>
         </div>
         <div
-         @click='checkExistingPatient(appointment.email)'
-         to="/appointment"
           v-for="appointment in appointments"
           :key="appointment.id"
           class="table-row"
+          @click="change(appointment)"
         >
-          <div class="table-cell" style="height: min-content">{{ appointment.full_name }}</div>
-          <div class="table-cell">{{ appointment.phone }}</div>
-          <div class="table-cell">{{ appointment.visit_date }}</div>
+          <div class="table-cell" style="height: min-content">{{ appointment.doctor.first_name }} {{ appointment.doctor.last_name }}</div>
+          <div class="table-cell">{{ appointment.diagnosises[0] }}</div>
+          <div class="table-cell">{{ appointment.createdAt }}</div>
       </div>
       </div>
+      <ModalComp :appointment="appointment" :open="isOpen" @close="isOpen = !isOpen" />
     </div>
   </template>
   <script>
+  import ModalComp from './ModalComp.vue';
   import moment from 'moment'
     export default {
       props: [],
+      components:{
+        ModalComp
+      },
       data() {
         return {
-          appointments:[]
+          appointments:[],
+          isOpen:false,
+          appointment: {
+                _id: '',
+                createdAt:null,
+                diagnosises: [],
+                prescriptions: [],
+                rapport: '',
+                age:null,
+                files:[]
+            },
+
         };
       },
       methods: {
-        async fetchAppointments(){
+        async fetchVisistPatient(){
         try{
-         const res= await fetch('http://localhost:3000/api/getAppointment/66325051e0e2a989a8ca3cf4');
+         const res= await fetch('http://localhost:3000/api/getVisitsPatient/663256774c6f6946ca1c6c03');
          const data=await res.json()
-         
+
          for(let app of data){
-          app.visit_date=moment(app.visit_date).format('MMMM Do YYYY');
-          this.appointments.push(app)
+           app.createdAt=moment(app.createdAt).format('MMMM Do YYYY');
+           this.appointments.push(app)
          }
         
         }catch(error){
           console.log(error)
         }  
         },
-        async checkExistingPatient(email){
-          try{
-            const res= await fetch(`http://localhost:3000/api/checkExistingPatient/${email}/66325051e0e2a989a8ca3cf4`);
-            const data=await res.json()
-            console.log(data.status)
-            if(data.status=='success'){
-              this.$router.push({ 
-             path: '/appointments/addappointment', 
-             query: { patientKey:JSON.stringify(data.info)} 
-               });
-            }
-            if(data.status=='fail'){
-              this.$router.push('/addPatient')
-            }
-            
-          }catch(error){
-            console.log(error.message)
-          }
+        change(appointment){
+          this.isOpen=true
+          this.appointment=appointment
         }
       },
       async created(){
-        this.fetchAppointments()
+        this.fetchVisistPatient()
       }
     }
   </script>

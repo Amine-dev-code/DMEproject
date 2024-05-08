@@ -53,7 +53,7 @@
 <script>
 
 export default {
-  props:['patient'],
+  props:['patientId'],
   data() {
     return {
       perscription: '',
@@ -115,7 +115,7 @@ export default {
     },
     async sendMedicalRecord(){
       try{
-        const res=await fetch (`http://localhost:3000/api/postVisit/663256774c6f6946ca1c6c03/66325051e0e2a989a8ca3cf4`,{
+        const res=await fetch (`http://localhost:3000/api/postVisit/${this.patientId}/66325051e0e2a989a8ca3cf4`,{
           method:'post',
           body:JSON.stringify(this.medicalRecord),
           headers:{
@@ -144,11 +144,14 @@ export default {
 for (let i = 0; i < files.length; i++) {
   formData.append('avatar', files[i]);
 }
-
-        const res=await fetch (`http://localhost:3000/api/upload/${id}`,{
+if (formData.has('someKey')){
+  const res=await fetch (`http://localhost:3000/api/upload/${id}`,{
           method:'post',
           body:formData
         })
+
+}
+        
       }catch(error){
         console.log(error)
       }

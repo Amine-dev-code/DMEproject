@@ -17,7 +17,13 @@
                 phone number: 
             </p>
             <p class="address">
-                medical background
+                diagnosises
+            </p>
+            <p class="address">
+                surgeries
+            </p>
+            <p class="address">
+                allergies
             </p>
         </div>
         <div style="display: flex; flex-direction: column;">
@@ -37,7 +43,13 @@
                 {{ phone_number  }}
             </p>
             <p>
-                {{ medical_background }}
+                {{ diagnosises }}
+            </p>
+            <p>
+                {{surgeries  }}
+            </p>
+            <p>
+                {{ allergies }}
             </p>
         </div>
     </div>
@@ -45,7 +57,7 @@
 <script>
 import moment from 'moment'
 export default {
-    props: ['patient'],
+    props: ['patientId'],
     data(){
     return{
     first_name:'',
@@ -54,21 +66,26 @@ export default {
     blood_type:'',
     birth_date:'',
     phone_number:'',
-    medical_background:[],
-
+    diagonsises:[],
+    surgeries:[],
+    allergies:[]
     }
   },
   methods:{
     async fetchUserProfile(){
-      try{
-        this.first_name=this.patient.first_name;
-        this.last_name=this.patient.last_name;
-        this.gender=this.patient.gender;
-        this.birth_date=moment(this.patient.patient_profile.date).format('MMMM Do YYYY');
-        this.phone_number=this.patient.patient_profile.phone_number;
-        this.medical_background=this.patient.patient_profile.medical_background
-        //console.log(data)
-
+      try{//http://localhost:3000/api/patientInfo/663256774c6f6946ca1c6c03
+        const res = await fetch('http://localhost:3000/api/patientInfo/663256774c6f6946ca1c6c03')
+        const data = await res.json()
+        console.log(data)
+        this.first_name=data.infos.first_name;
+        this.last_name=data.infos.last_name;
+        this.gender=data.infos.gender;
+        this.blood_type=data.infos.patient_profile.blood_type
+        this.birth_date=moment(data.infos.patient_profile.date).format('MMMM Do YYYY');
+        this.phone_number=data.infos.patient_profile.phone_number;
+        this.allergies=data.infos.patient_profile.allergies;
+        this.diagonsises=data.infos.patient_profile.diagnosises;
+        this.surgeries=data.infos.patient_profile.surgeries;
       }catch(error){
         console.log(error.message)
       }

@@ -1,8 +1,46 @@
 <template>
+
     <div class="vue-modal" v-show="open">
           <div class="vue-modal-inner">
             <div class="vue-modal-content">
-              <slot/>
+              <div class="diagnosis-container">
+                <div class="">
+                    <div class="appointment-header">
+                        <p>
+                            {{ appointment.age }} Years Old
+                        </p>
+                        <p>
+                            {{ appointment.createdAt }}
+                        </p>
+                    </div>
+                </div>
+                <hr style="width: 200px; border: 1px solid rgba(42, 75, 102, 0.3); margin-bottom: 10px; margin-top: 10px;">
+                <p v-if="appointment.diagnosises.length > 1" class="label">
+                    Diagnoses :
+                </p>
+                <p v-else-if="appointment.diagnosises.length === 1" class="label">
+                Diagnosis :
+                </p>
+                <div class="list" v-for="(diagnosis, index) in appointment.diagnosises" :key="index">
+                    {{ diagnosis }}
+                </div>
+                <p v-if="appointment.prescriptions.length > 1" class="label">
+                    Prescriptions :
+                </p>
+                <p v-else-if="appointment.prescriptions.length === 1" class="label">
+                    Prescription :
+                </p>
+                <div class="list" v-for="(prescription, index) in appointment.prescriptions" :key="index">
+                    {{ prescription }}
+                </div>
+                <p class="label">
+                    Report :
+                </p>
+                <p class="list" style="padding: 5px">
+                    {{ appointment.rapport }}
+                    
+                </p>
+            </div>
               <h3>Files</h3>
               <DocumentContainer :appointment="appointment" class="setCont"/>
               <button class="cls-btn" type="button" @click="$emit('close')">Close</button>
@@ -17,14 +55,6 @@ import DocumentContainer from './DocumentContainer.vue';
   export default {
   components: { DocumentContainer },
     props: ['appointment','open'],
-    data(){
-      return{
-
-      }
-    },
-    created(){
-    
-    }
   };
 </script>
 <style scoped>
@@ -35,6 +65,7 @@ import DocumentContainer from './DocumentContainer.vue';
   padding: 0;
   box-sizing: border-box;
 }
+
 
 .vue-modal {
   position: fixed;
@@ -79,5 +110,20 @@ import DocumentContainer from './DocumentContainer.vue';
 }
 .setCont{
   margin-top:10px
+}
+.appointment-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.list {
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    border: 2px solid rgba(42, 75, 102, 0.5);
+    margin-bottom: 3px;
+}
+.label {
+    margin-bottom: 5px;
 }
 </style>

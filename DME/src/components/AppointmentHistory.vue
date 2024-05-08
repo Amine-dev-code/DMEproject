@@ -14,46 +14,9 @@
                 </p>
             </div>
         </div>
-        <ModalComp :appointment="appointment" :open="isOpen" @close="isOpen = !isOpen" class="appointment-details">
-            <div class="diagnosis-container">
-                <div class="">
-                    <div class="appointment-header">
-                        <p>
-                            {{ appointment.age }} Years Old
-                        </p>
-                        <p>
-                            {{ appointment.createdAt }}
-                        </p>
-                    </div>
-                </div>
-                <hr style="width: 200px; border: 1px solid rgba(42, 75, 102, 0.3); margin-bottom: 10px; margin-top: 10px;">
-                <p v-if="appointment.diagnosises.length > 1" class="label">
-                    Diagnoses :
-                </p>
-                <p v-else-if="appointment.diagnosises.length === 1" class="label">
-                Diagnosis :
-                </p>
-                <div class="list" v-for="(diagnosis, index) in appointment.diagnosises" :key="index">
-                    {{ diagnosis }}
-                </div>
-                <p v-if="appointment.prescriptions.length > 1" class="label">
-                    Prescriptions :
-                </p>
-                <p v-else-if="appointment.prescriptions.length === 1" class="label">
-                    Prescription :
-                </p>
-                <div class="list" v-for="(prescription, index) in appointment.prescriptions" :key="index">
-                    {{ prescription }}
-                </div>
-                <p class="label">
-                    Report :
-                </p>
-                <p class="list" style="padding: 5px">
-                    {{ appointment.rapport }}
-                    
-                </p>
-            </div>
-        </ModalComp>
+        <ModalComp :appointment="appointment" :open="isOpen" @close="isOpen = !isOpen" />
+            
+       
     </div>
 </template>
 
@@ -146,28 +109,14 @@ export default {
     height: 30px;
     width: 30px;
 }
+
+hr {
+    margin-left: 130px;
+}
 .appointment-details {
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
-.appointment-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.list {
-    display: flex;
-    justify-content: center;
-    border-radius: 5px;
-    border: 2px solid rgba(42, 75, 102, 0.5);
-    margin-bottom: 3px;
-}
-.label {
-    margin-bottom: 5px;
-}
-hr {
-    margin-left: 130px;
 }
 
 </style>
