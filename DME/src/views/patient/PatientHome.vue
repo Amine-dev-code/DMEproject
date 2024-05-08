@@ -63,7 +63,7 @@
     </Tab>
     <Tab title="records">
       <div class="med">
-        <medicalRecordTable /> 
+        <profiledoc/> 
       </div>
     </Tab>
     
