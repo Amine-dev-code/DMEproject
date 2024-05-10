@@ -1,49 +1,48 @@
 <template>
   <!-- No original code provided, so I'll create a basic example -->
-<div class="container">
+<div class="container" v-if="loadedData">
   <div class="side left" @click="left" :class="{ 'transition': isTransitioning }">
-    <img :src="getImg(doctors[lindex].img)" alt="">
+  
     <h1>
-      {{ doctors[lindex].name }}
+      {{ doctors[lindex].first_name }}
     </h1>
     <p>
-      Speciality: {{ doctors[lindex].specialty }}
+      Speciality: {{ doctors[lindex].doctor_profile.speciality }}
     </p>
     <p>
-      Desk: {{ doctors[lindex].desk }}
+      Desk: {{ doctors[lindex].doctor_profiledesk }}
     </p>
     <p>
-      price : {{ doctors[lindex].price }}
+      price : {{ doctors[lindex].doctor_profile.price }}
     </p>
   </div>
   <div class="middle">
-    <img :src="getImg(doctors[mindex].img)" alt="">
+    
     <h1>
-      {{ doctors[mindex].name }}
+      {{ doctors[mindex].first_name }} 
     </h1>
     <p>
-      Speciality: {{ doctors[mindex].specialty }}
+      Speciality: {{ doctors[mindex].doctor_profile.speciality }}
     </p>
     <p>
-      Desk: {{ doctors[mindex].desk }}
+      Desk: {{ doctors[mindex].doctor_profile.desk }}
     </p>
     <p>
-      price : {{ doctors[mindex].price }}
+      price : {{ doctors[mindex].doctor_profile.price }}
     </p>
   </div>
   <div class="side right" @click.prevent="right" :class="{ 'transition': isTransitioning }">
-    <img :src="getImg(doctors[rindex].img)" alt="">
     <h1>
-      {{ doctors[rindex].name }}
+      {{ doctors[rindex].first_name }}
     </h1>
     <p>
-      Speciality: {{ doctors[rindex].specialty }}
+      Speciality: {{ doctors[rindex].doctor_profile.speciality }}
     </p>
     <p>
-      Desk: {{ doctors[rindex].desk }}
+      Desk: {{ doctors[rindex].doctor_profile.desk }}
     </p>
     <p>
-      price : {{ doctors[rindex].price }}
+      price : {{ doctors[rindex].doctor_profile.price }}
     </p>
   </div>
 </div>
@@ -57,35 +56,11 @@ export default {
       lindex: 0,
       mindex: 1,
       rindex: 2,
-      doctors: [
-        {
-          name: 'dr tenma',
-          specialty: 'surgeon',
-          img: 'doc-1.png',
-          desk: 'desk 9',
-          price: '1 million dollars'
-        },
-        {
-          name: 'dr boyer',
-          specialty: 'surgeon',
-          img: 'doc-2.png',
-          desk: 'desk 0',
-          price: '1 dollars'
-        },
-        {
-          name: 'dr heinnemann',
-          specialty: 'chief',
-          img: 'doc-3.png',
-          desk: 'desk 1',
-          price: '1 million DA'
-        },
-      ]
+      doctors: [],
+      loadedData:false
     };
   },
   methods: {
-    getImg(img) {
-      return new URL(`../assets/${img}`,  import.meta.url)
-    },
     right() {
       this.isTransitioning = true;
       setTimeout(() => {
@@ -103,7 +78,23 @@ export default {
         this.rindex = (this.rindex - 1 + this.doctors.length) % this.doctors.length;
         this.isTransitioning = false;
       }, 300);
-  }
+  },
+  async fetchDoctors(){
+    try{
+        const res=await fetch ('http://localhost:3000/api/getDoctors')
+        const data= await res.json();
+        this.doctors=data
+        console.log(data)
+    }catch(error){
+      console.log(error)
+    }
+  },
+  },
+  
+  async created(){
+    await this.fetchDoctors()
+    this.loadedData=true;
+
   }
 }
 </script>

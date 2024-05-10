@@ -55,12 +55,12 @@ const routes = [
     name: 'analytics',
     component: AnalyticsDash
   },
-  /*{
-    path: '/patient/:id',
-    name: 'patient',
-    component: PatientProfile,
-    props: true
-  }*/
+  {
+    path:'/patientProfile',
+    name:'patientProfile',
+    component:profile
+  }
+ ,
   {
     path: '/patients/addpatient',
     name: 'addpatient',
@@ -98,10 +98,10 @@ const routes = [
       props: true,
   },
   {
-    path: '/patient/:id',
+    path: '/patientHome',
     name: 'patient',
     component: PatientHome,
-    props: true
+   
   },
   {
     path:'/patientAppointments',

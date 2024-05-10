@@ -38,7 +38,7 @@ email: {
         required:false
     },
     patient_profile:{
-        
+
         date:{
             type:Date,
         },
@@ -79,7 +79,7 @@ email: {
         desk:{
             type:Number
         },
-        prix:{
+        price:{
             type:Number,
         },
         maxPatient:{

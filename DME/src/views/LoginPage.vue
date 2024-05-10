@@ -6,7 +6,7 @@
         type="email"
         name="email"
         placeholder="example@email.com"
-        v-model="email"
+        v-model="credentials.email"
       />
       <input
         class="login-input"
@@ -14,7 +14,7 @@
         name="password"
         placeholder="enter your password"
         required
-        v-model="password"
+        v-model="credentials.password"
       />
       <button class="lgn-btn">Login</button>
     </form>
@@ -26,13 +26,36 @@
 export default {
   data() {
     return {
-      email: '',
-      password: ''
+      credentials:{
+        email: '',
+        password: ''
+      }
+      
     }
   },
   methods: {
-    handleSubmit() {
-      console.log('form submitted')
+    async handleSubmit() {
+      try{
+        const res=await fetch ('http://localhost:3000/api/login',{
+          method:'post',
+          body:JSON.stringify(this.credentials),
+          headers:{
+          'content-type': 'application/json',
+        }
+        })
+        const data=await res.json()
+        if(data.status=='success'){
+          if(data.foundUser.role=='doctor'){
+            this.$router.push('/analytics')
+          }
+            else{
+              this.$router.push('/patientHome')
+            }
+          
+        }
+      }catch(error){
+       console.log(error)
+      }
     }
   }
 }

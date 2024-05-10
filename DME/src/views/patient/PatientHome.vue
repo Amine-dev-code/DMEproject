@@ -2,13 +2,14 @@
   import Tab from '@/components/Tab.vue';
   import TabsWrapper from '@/components/TabsWrapper.vue';
   import AppointmentsPatientTable from '@/components/AppointmentsPatientTable.vue';
-  import AppointmentHistory from '@/components/AppointmentHistory.vue';
   import { onClickOutside } from '@vueuse/core'
   import DateNTime from '@/components/DateNTime.vue'
   import WelcomeDoctor from '@/components/WelcomeDoctor.vue'
   import TotalCard from '@/components/TotalCard.vue'
+  import medicalRecordTable from '@/components/medicalRecordTable.vue';
 
   import { ref } from 'vue'
+
   const isOpen = ref(false)
   const isProfile = ref(false)
   const modal = ref(null)
@@ -65,8 +66,11 @@
       <AppointmentsPatientTable/>
     </Tab>
     <Tab title="records">
-     <AppointmentHistory/>
+      <!-- <div class="med"> -->
+        <medicalRecordTable/> 
+      <!-- </div> -->
     </Tab>
+    
   </TabsWrapper>
   <button class="log-out" @click="this.$router.push('/')">
     log out
@@ -160,5 +164,8 @@
     bottom: 10px;
     right: 10px;
     width: 80px;
+  }
+  .med{
+    margin-top:300px
   }
 </style>

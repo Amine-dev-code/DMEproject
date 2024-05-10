@@ -12,10 +12,10 @@
       margin-left:270px
     "
   >
-    <DocAppointmentForm :patient="patient" />
+    <DocAppointmentForm :patientId="patientId" />
     <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 55px">
       <AppointmentPreview time="11:40Am" date="23-08-2003" />
-      <PatientProfilePreview :patient="patient" />
+      <PatientProfilePreview :patientId="patientId" />
     </div>
   </div>
 
@@ -36,12 +36,14 @@ export default {
   },
   data(){
     return{
-      patient:''
+      patientId:''
     }
   },
   created(){
-   this.patient=JSON.parse(this.$route.query.patientKey);
+   
+    this.patientId = JSON.parse(this.$route.query.patientId || this.$route.query.patientKey);
   }
+     
 }
 </script>
 

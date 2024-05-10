@@ -32,8 +32,13 @@ const editDoctor=async(req,res)=>{
         const{id}=req.params;
         const testuser=await User.findById(id)
         if(testuser.role=='doctor'){
+        const beforeUpdate=await User.findById(id)
+        const ownPatient=beforeUpdate.doctor_profile.ownPatients;
         const doctor=await User.findByIdAndUpdate(id,req.body,{new:true});
+        doctor.doctor_profile.ownPatients=ownPatient
+        await doctor.save();
         res.status(200).json(doctor)
+        console.log('done')
         }
         else{
             res.status(200).json({message:'this is not a doctor'})
@@ -61,9 +66,6 @@ const deleteUsers=async(req,res)=>{
 const getDoctorInfo=async(req,res)=>{
     try{
         const {doctorId}=req.params
-        if (!isValidObjectId(patientId)) {
-            return res.status(400).json({ message: "Invalid patient ID" });
-        }
         const infos=await User.findById(doctorId,{patient_profile:0,password:0})
         if(!infos){
             res.status(404).json({message:'patient not found'})

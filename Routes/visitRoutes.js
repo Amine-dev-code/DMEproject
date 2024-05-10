@@ -23,7 +23,7 @@ router.delete('/deleteVisit/:id',deleteVisit)
 router.get('/getVisits',getVisits)
 router.delete('/deleteAllvisits',deleteAllvisits)
 router.get('/getVisitsPatient/:patientId',getVisitsPatient)
-router.get('/doctorVisits/:doctorId',doctorVisits)
+router.get('/doctorVisits/:doctorId',doctorVisits)//not used
 router.get('/clientDoctorVisits/:patientId/:doctorId',clientDoctorVisits)
 //router.delete('/dropVisitCollection',collectioDrop)
 

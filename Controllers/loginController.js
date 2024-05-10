@@ -32,8 +32,9 @@ const handleLogin=async(req,res)=>{
         {'email':foundUser.email},
         process.env.TOKEN_SECRET
     )
-    res.cookie('jwt', Token, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
+    //res.cookie('jwt', Token, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
      res.status(200).json({
+        'status':'success',
          foundUser
  })
  

@@ -6,7 +6,7 @@
       <button class="days" @click="index = 3" :class="{active : index == 3 }">Tue</button>
       <button class="days" @click="index = 4" :class="{active : index == 4 }">Wed</button>
       <button class="days" @click="index = 5" :class="{active : index == 5 }">Thu</button>
-      <button class="days" @click="index = 6" :class="{active : index == 6 }">Fri</button>
+      <button class="days disabled" :disabled="true">Fri</button>
       <button class="days" @click="index = 7" :class="{active : index == 7 }">Sat</button>
     </div>
     <div style="display: flex; flex: 1">
@@ -27,7 +27,6 @@ import MonDay from '@/components/days/MonDay.vue'
 import TuesDay from '@/components/days/TuesDay.vue'
 import WednesDay from '@/components/days/WednesDay.vue'
 import ThursDay from '@/components/days/ThursDay.vue'
-import FridDay from '@/components/days/FriDay.vue'
 import SaturDay from '@/components/days/SaturDay.vue'
 
 export default {
@@ -37,7 +36,6 @@ export default {
     TuesDay,
     WednesDay,
     ThursDay,
-    FridDay,
     SaturDay
   },
   data() {
@@ -80,5 +78,9 @@ export default {
 .active {
   background-color: rgba(0, 206, 200, 0.2);
   color: rgba(0, 206, 200, 1);
+}
+.disabled {
+  background-color: #f3f3f3;
+  color: rgba(128, 128, 128, 0.61);
 }
 </style>
