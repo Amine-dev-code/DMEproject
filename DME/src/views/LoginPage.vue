@@ -1,4 +1,7 @@
 <template>
+  <h1 class="header">
+    Login Page
+  </h1>
   <div class="container">
     <form @submit.prevent="handleSubmit" class="LoginForm">
       <input
@@ -7,6 +10,7 @@
         name="email"
         placeholder="example@email.com"
         v-model="credentials.email"
+        required
       />
       <input
         class="login-input"
@@ -30,7 +34,6 @@ export default {
         email: '',
         password: ''
       }
-      
     }
   },
   methods: {
@@ -113,5 +116,19 @@ export default {
 }
 .login-input::placeholder {
   color: rgba(67, 106, 230, 0.5);
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 100px;
+  color: rgba(42, 75, 102, 1);
+  width: 100%;
+  font-weight: normal;
+  font-size: 44px;
+}
+input:focus {
+  outline: none;
 }
 </style>
