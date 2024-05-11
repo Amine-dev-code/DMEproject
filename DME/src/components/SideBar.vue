@@ -29,10 +29,10 @@
     <div class="flex"></div>
 
     <div class="menu">
-      <router-link to="/settings" class="button">
+      <div @click="logout" class="button">
         <span class="material-icons">logout</span>
         <span class="text">Log out</span>
-      </router-link>
+      </div>
     </div>
   </aside>
 </template>
@@ -47,6 +47,10 @@ const ToggleMenu = () => {
   is_expanded.value = !is_expanded.value
   localStorage.setItem('is_expanded', is_expanded.value)
 }
+const logout=()=>{
+  console.log('logout')//deleting item from local storage
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -107,6 +111,7 @@ aside {
   .button .text {
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
+    cursor:pointer
   }
 
   h3 {

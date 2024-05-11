@@ -92,8 +92,10 @@ export default {
   },
   
   async created(){
+    
     await this.fetchDoctors()
     this.loadedData=true;
+    
 
   }
 }

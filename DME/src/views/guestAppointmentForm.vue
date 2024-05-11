@@ -3,11 +3,11 @@
     <form action="" class="guest-form-container" @submit.prevent="handleSubmition">
       <div class="element">
         <label for="name">Full name</label>
-        <input type="text" name="name" v-model="bookAppointment.full_name" />
+        <input required type="text" name="name" v-model="bookAppointment.full_name" >
       </div>
       <div class="element">
         <label for="phone">Phone number</label>
-        <input required type="tel" v-model="bookAppointment.phone" />
+        <input required type="tel" v-model="bookAppointment.phone" >
       </div>
       <div class="element">
         <label for="email">Email</label>
@@ -25,7 +25,7 @@
         </div>
         <div class="">
           <label for="date">Date</label>
-          <input type="date" name="date" :min="minDate" v-model="bookAppointment.visit_date" class="date" />
+          <input type="date" name="date" :min="minDate" v-model="bookAppointment.visit_date" class="date" required>
         </div>
         <!-- <div v-if="youcan" class="showokMessage">
           <h5>{{ this.okmessage }}</h5>
@@ -83,7 +83,8 @@ export default {
         const checkAppointment={
           visit_date:this.bookAppointment.visit_date
         };
-        const res=await fetch (`http://localhost:3000/api/checkDisponibleAppointment/${this.selectedDoctorID}`,{
+        const res=await fetch (`http://localhost:3000/api/
+        /${this.selectedDoctorID}`,{
           method:'post',
           body:JSON.stringify(checkAppointment),
           headers:{
