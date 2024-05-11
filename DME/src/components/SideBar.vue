@@ -3,7 +3,7 @@
     <div class="logo">
       <!-- <img :src="logoURL" alt="Vue" /> -->
     </div>
-    <div class="menu-toggle-wrap" @click="this.$router.push('/patient-profile/1')">
+    <div class="menu-toggle-wrap" @click="this.$router.push('/profiledoc/1')">
       <img src="@/assets/Albert.jpeg" alt="" style="border-radius: 50%; height: 60px; width: 60px;">
       {{ doctor.first_name }} {{ doctor.last_name }}
       <!-- <button class="menu-toggle" @click="ToggleMenu">
