@@ -2,11 +2,11 @@
   import Tab from '@/components/Tab.vue';
   import TabsWrapper from '@/components/TabsWrapper.vue';
   import AppointmentsPatientTable from '@/components/AppointmentsPatientTable.vue';
-  import AppointmentHistory from '@/components/AppointmentHistory.vue';
   import { onClickOutside } from '@vueuse/core'
+  import DateNTime from '@/components/DateNTime.vue'
+  import WelcomeDoctor from '@/components/WelcomeDoctor.vue'
+  import TotalCard from '@/components/TotalCard.vue'
   import medicalRecordTable from '@/components/medicalRecordTable.vue';
-  import profile from '@/views/patient/profile.vue'
-  import profiledoc from '@/views/doctor/profiledoc.vue'
 
   import { ref } from 'vue'
 
@@ -22,6 +22,9 @@
       "notification 2",
       "notification 3"
   ]
+  let user = {
+    name: 'some name'
+  }
   console.log(notifications.length)
 </script>
 
@@ -46,28 +49,32 @@
           </div>
       </Teleport>
     </div>
-    <img src="@/assets/Albert.jpeg" alt="" class="profile" @click="isProfile = true">
-    <!-- <Teleport to="#modal">
-      <div class="modal-bg" v-if="isOpen" >
-        <PatientProfileCard />
-      </div>
-    </Teleport> -->
+    <img src="@/assets/Albert.jpeg" alt="" class="profile" @click="this.$router.push('/patient-profile/1')">
   </div>
   <TabsWrapper class="wrapper">
-    <Tab title="home">
-     Home
-    <!-- <PatientProfileCard /> -->
+    <Tab title="home" id="home">
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+          <WelcomeDoctor :name="user.name" />
+        <div style="display: flex; flex-direction: row; justify-content: space-between; gap: 10px;">
+          <DateNTime style="width: 200px" />
+          <TotalCard class="total"/>
+          <TotalCard class="total"/>
+        </div>
+      </div>
     </Tab>
     <Tab title="appointments" id="appointments">
       <AppointmentsPatientTable/>
     </Tab>
     <Tab title="records">
-      <div class="med">
-        <profile/> 
-      </div>
+      <!-- <div class="med"> -->
+        <medicalRecordTable/> 
+      <!-- </div> -->
     </Tab>
     
   </TabsWrapper>
+  <button class="log-out" @click="this.$router.push('/')">
+    log out
+  </button>
 </template>
 
 <style scoped>
@@ -146,6 +153,17 @@
     border-radius: 50%;
     height: 40px;
     width: 40px;
+  }
+
+  .total {
+    height: 100px;
+    width: 80%;
+  }
+  .log-out {
+    position: absolute ;
+    bottom: 10px;
+    right: 10px;
+    width: 80px;
   }
   .med{
     margin-top:300px

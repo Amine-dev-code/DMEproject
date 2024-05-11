@@ -7,11 +7,11 @@
       </div>
       <div class="element">
         <label for="phone">Phone number</label>
-        <input required type="tel" v-model="bookAppointment.phone" >
+        <input type="tel" v-model="bookAppointment.phone" />
       </div>
       <div class="element">
         <label for="email">Email</label>
-        <input required type="email" v-model="bookAppointment.email" @keyup.enter="validateEmail"/>
+        <input type="email" v-model="bookAppointment.email" @keyup.enter="validateEmail"/>
       </div>
       <div class="last-row" style="display: flex; flex-direction: row;">
         <div class="element">
@@ -35,7 +35,7 @@
         </div> -->
       </div>
       <div class="btn-container">
-        <button class="book-btn" @click.prevent="bookAppointmente">Book appointment</button>
+        <button class="book-btn" @click.prevent="validate">Book appointment</button>
         <button class="book-btn" @click.prevent="handleDateClick">Check</button>
       </div>
     </form>
@@ -43,12 +43,6 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-
-const validateEmail = (event) => {
-  const isPatternValid = !!event.this.email.match('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2, 4}$')
-  console.log(isPatternValid)
-}
 export default {
   data() {
     return {
@@ -104,6 +98,32 @@ export default {
         }
       }catch(error){
         console.log(error)
+      }
+    },
+    validate() {
+      let valid = true ;
+      if(this.bookAppointment.full_name == '') {
+        alert("please enter your full name")
+        valid = false
+      }
+      if(this.bookAppointment.phone == '') {
+        alert("please enter your phone number")
+        valid = false
+      }
+      if(this.bookAppointment.email == '') {
+        alert("please enter your email")
+        valid = false
+      }
+      if(this.bookAppointment.selectedDoctorID == '') {
+        alert("please select a doctor")
+        valid = false
+      }
+      if(this.bookAppointment.visit_date == '') {
+        alert("please select a date")
+        valid = false
+      }
+      if(valid) {
+        this.bookAppointmente()
       }
     },
     async bookAppointmente(){
@@ -218,9 +238,9 @@ export default {
   /*margin-top: 10px;*/
   height: 44px;
 }
-.showokMessage{
+/*.showokMessage{
 
-}
+}*/
 .btn-container {
   display: flex;
   flex-direction: row;

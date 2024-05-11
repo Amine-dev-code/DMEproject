@@ -1,12 +1,14 @@
 <template>
   <aside :class="`${is_expanded ? 'is-expanded' : ''}`">
     <div class="logo">
-      <img :src="logoURL" alt="Vue" />
+      <!-- <img :src="logoURL" alt="Vue" /> -->
     </div>
-    <div class="menu-toggle-wrap">
-      <button class="menu-toggle" @click="ToggleMenu">
+    <div class="menu-toggle-wrap" @click="this.$router.push('/patient-profile/1')">
+      <img src="@/assets/Albert.jpeg" alt="" style="border-radius: 50%; height: 60px; width: 60px;">
+      {{ doctor.first_name }} {{ doctor.last_name }}
+      <!-- <button class="menu-toggle" @click="ToggleMenu">
         <span class="material-icons">keyboard_double_arrow_right</span>
-      </button>
+      </button> -->
     </div> 
 
     <h3>Menu</h3>
@@ -83,11 +85,12 @@ aside {
 
   .menu-toggle-wrap {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     margin-bottom: 1rem;
-
+    align-items: center;
+    margin-top: 50px;
     position: relative;
-    top: 0;
+    top: 100px;
     transition: 0.2s ease-in-out;
 
     .menu-toggle {

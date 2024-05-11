@@ -147,8 +147,7 @@
     height: 100vh;
     align-items: center;
     color: rgba(67, 106, 230, 1);
-    align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 20px;
   }
   .cell {
