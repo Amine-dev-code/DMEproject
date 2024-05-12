@@ -6,7 +6,6 @@
         <div class="header-cell">PHONE NUMBER</div>
         <div class="header-cell">EMAIL ADDRESS</div>
         <div class="header-cell">DELETE</div>
-        
       </div>
     <router-link  :to="{name:'patient-profile',params:{id:patient._id}}" v-for="patient in patientsData" :key="patient.id" class="table-row">
         <div class="table-cell">{{ patient.first_name }} {{ patient.last_name }}</div>
