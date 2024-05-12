@@ -101,17 +101,7 @@ const deleteAllvisits=async(req,res)=>{
     }
     
 }
-const collectioDrop=async(req,res)=>{
-    try{
-        await Visit.collection.drop()
-        res.status(200).json('droped')
-    }
-    catch(error){
-        res.status(500).json({
-            message:error.message
-        })
-    }
-}
+
 const doctorVisits=async(req,res)=>{
     try{
     const {doctorId}=req.params
@@ -149,7 +139,6 @@ module.exports={
     deleteVisit,
     deleteAllvisits,
     getVisitsPatient,
-    collectioDrop,
     doctorVisits,
     clientDoctorVisits
 }

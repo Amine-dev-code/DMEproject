@@ -18,7 +18,7 @@ const {
 router.get('/getDoctors',getDoctors)
 router.delete('/deleteUser/:id',deleteUser)
 router.put('/editDoctor/:id',editDoctor)
-router.delete('/deleteUsers',deleteUsers)
+//router.delete('/deleteUsers',deleteUsers)
 router.get('/doctorInfo/:doctorId',getDoctorInfo)
 
 

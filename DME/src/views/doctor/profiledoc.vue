@@ -22,15 +22,6 @@
       </div>
       <div>
         <label>
-          Phone:
-        </label>
-        <p v-if="!isEdit">
-          
-        </p>
-        <input v-else placeholder="" type="tel" name="phone" />
-      </div>
-      <div>
-        <label>
           Email:
         </label>
         <p v-if="!isEdit">

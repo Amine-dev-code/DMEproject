@@ -66,6 +66,7 @@
       </p>
       <input v-else placeholder="" type="text" name="address" v-model="user.patient_profile.address.detail"/>
     </div>
+    
   </form>
     <button v-if="!isEdit" class="edt-btn" @click="isEdit = true">
       Edit

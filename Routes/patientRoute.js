@@ -19,7 +19,7 @@ const {
 router.put('/editPatient/:id', editPatient)
 router.get('/getOwnPatients/:doctorId', ownPatients)
 router.get('/patientInfo/:patientId',getPatientInfo)
-router.get('/getPatients',getPatients)
+router.get('/getPatients',getPatients)//wasn't used in the project
 router.delete('/deleteOwnPatient/:patientId/:doctorId',deletePatient)
 router.put('/addToOwnPatient/:doctorId/:patientId',addToOwnPatient)
 

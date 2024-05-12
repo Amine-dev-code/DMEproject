@@ -3,7 +3,7 @@
     Login Page
   </h1>
   <div class="container">
-    <form @submit.prevent="handleSubmit" class="LoginForm">
+    <form @submit.prevent="login" class="LoginForm">
       <input
         class="login-input"
         type="email"
@@ -37,7 +37,7 @@ export default {
     }
   },
   methods: {
-    async handleSubmit() {
+    async login() {
       try{
         const res=await fetch ('http://localhost:3000/api/login',{
           method:'post',

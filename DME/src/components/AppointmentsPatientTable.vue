@@ -3,7 +3,7 @@
       <div class="table">
         <div class="table-header">
           <div class="header-cell">DOCTOR</div>
-          <div class="header-cell">PHONE</div>
+          <div class="header-cell">SPECIALITY</div>
           <div class="header-cell">DATE</div>
           <div class="header-cell">ACTION</div>
         </div>
@@ -13,7 +13,7 @@
           class="table-row"
         >
           <div class="table-cell" style="height: min-content">{{ appointment.doctor.first_name }} {{ appointment.doctor.last_name }}</div>
-          <div class="table-cell"></div>
+          <div class="table-cell">{{ appointment.doctor.speciality }}</div>
           <div class="table-cell">{{ appointment.visit_date }}</div>
           <div class="table-cell"><button class="deleteButton" @click.stop="cancelAppointment(appointment._id,appointment.doctor._id)">CANCEL</button></div>
       </div>
