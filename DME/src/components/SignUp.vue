@@ -324,9 +324,19 @@ export default {
       }
       if(this.newPerson.patient_profile.phoner_number == '') {
         valid = false
+        alert("please insert the patient's phone number")
       }
       if(this.newPerson.password == '') {
         valid = false
+        alert("please insert a password")
+      }
+      if(this.newPerson.patient_profile.blood_type == '') {
+        valid = false
+        alert("please pick a blood type")
+      }
+      if(this.newPerson.gender == '') {
+        valid = false
+        alert("please select a gender")
       }
       if(valid) {
         this.handleSubmit()

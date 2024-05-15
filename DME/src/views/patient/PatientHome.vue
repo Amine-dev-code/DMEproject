@@ -7,7 +7,7 @@
   import WelcomeDoctor from '@/components/WelcomeDoctor.vue'
   import TotalCard from '@/components/TotalCard.vue'
   import medicalRecordTable from '@/components/medicalRecordTable.vue';
-
+  import GraphforPatient from '@/components/GraphforPatient.vue';
   import { ref } from 'vue'
 
   const isOpen = ref(false)
@@ -60,6 +60,7 @@
           <TotalCard class="total"/>
           <TotalCard class="total"/>
         </div>
+        <GraphforPatient/>
       </div>
     </Tab>
     <Tab title="appointments" id="appointments">
@@ -160,7 +161,7 @@
     width: 80%;
   }
   .log-out {
-    position: absolute ;
+    position: fixed ;
     bottom: 10px;
     right: 10px;
     width: 80px;
