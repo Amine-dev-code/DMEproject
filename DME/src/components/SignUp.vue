@@ -73,7 +73,7 @@
           </select>
           <select  name="" id="year" class="year" v-model="year" required>
             <option value="">Year</option>
-            <option v-for="yeary in years" :value="yeary">{{ yeary }}</option>
+            <option v-for="year in years" :value="year" :key="year">{{ year }}</option>
           </select>
         </div>
         <select  class="input-style" placeholder="gender" v-model="newPerson.gender" required>
@@ -260,7 +260,7 @@
           </div>
         </div>
       </div>
-      <button class="create-patient-btn" type="submit" @click.prevent="handleSubmit">
+      <button class="create-patient-btn" type="submit" @click.prevent="validate">
         Create new patient
       </button>
     </form>
@@ -309,6 +309,39 @@ export default {
     }
   },
   methods: {
+    validate() {
+      let valid = true
+      if(this.newPerson.first_name == '') {
+        alert("please enter a first name")
+        valid = false
+      } 
+      if(this.newPerson.last_name == '') {
+        alert("please enter a first name")
+        valid = false
+      } 
+      if(this.newPerson.email == '') {
+        valid = false
+      }
+      if(this.newPerson.patient_profile.phoner_number == '') {
+        valid = false
+        alert("please insert the patient's phone number")
+      }
+      if(this.newPerson.password == '') {
+        valid = false
+        alert("please insert a password")
+      }
+      if(this.newPerson.patient_profile.blood_type == '') {
+        valid = false
+        alert("please pick a blood type")
+      }
+      if(this.newPerson.gender == '') {
+        valid = false
+        alert("please select a gender")
+      }
+      if(valid) {
+        this.handleSubmit()
+      }
+    },
     addDiagnosis(event) {
       if (event.key === 'Enter' && this.tempDiag) {
         if (!this.newPerson.patient_profile.diagnosises.includes(this.tempDiag)) {
@@ -370,7 +403,7 @@ export default {
   },
   created(){
     const nowYear=new Date().getFullYear();
-    for(let year=1900;year <= nowYear; year++){
+    for(let year= nowYear ;year > 1950; year--){
       this.years.push(year)
     }
   }
@@ -378,8 +411,6 @@ export default {
 </script>
 
 <style scoped>
-
-
 .signup-form {
   display: flex;
   justify-content: center;
@@ -396,7 +427,12 @@ hr {
   height: 40px;
   /*background-color: rgba(0, 206, 200, 0.1);*/
   border: 2px solid #00cec8;
-  border-radius: 10px;
+  border-radius: 5px;
+  padding-left: 10px;
+  font-size: 14px;
+}
+input:focus {
+  outline:none;
 }
 .input-style::placeholder {
   color: rgba(67, 106, 230, 0.5);

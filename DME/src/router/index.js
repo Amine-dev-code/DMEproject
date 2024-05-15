@@ -13,7 +13,7 @@ import PatientHome from '@/views/patient/PatientHome.vue'
 import appointmentPatientDash from '@/views/patientRoles/appointmentsPatientDash.vue'
 import medicalRecord from '@/views/patientRoles/medicalRecord.vue'
 import profile from '../views/patient/profile.vue'
-import {isAdmin,isUser,Auth} from '../../middleware.js'
+import porfiledoc from '../views/doctor/profiledoc.vue'
 const routes = [
   {
     path: '/',
@@ -91,16 +91,16 @@ const routes = [
     component:SignUp
   },
   {
-  path: '/patients/patient/:id',
+    path: '/patients/patient/:id',
     name: 'patient-profile',
     component: PatientProfile,
     props:true
   },
   {
     path: '/patient-profile/:id',
-      name: 'patient-profile-card',
-      component: profile,
-      props: true,
+    name: 'patient-profile-card',
+    component: profile,
+    props: true,
   },
   {
     path: '/patientHome',
@@ -117,6 +117,12 @@ const routes = [
     path:'/medicalRecords',
     name:'medicalRecords',
     component:medicalRecord
+  },
+  {
+    path: '/profiledoc/:id',
+    anme: 'doc-profile',
+    component: porfiledoc,
+    props: true
   }
 ]
 const router = createRouter({

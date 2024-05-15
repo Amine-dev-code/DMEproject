@@ -3,7 +3,7 @@
     <div class="logo">
       <!-- <img :src="logoURL" alt="Vue" /> -->
     </div>
-    <div class="menu-toggle-wrap" @click="this.$router.push('/patient-profile/1')">
+    <div class="menu-toggle-wrap" @click="this.$router.push('/profiledoc/1')">
       <img src="@/assets/Albert.jpeg" alt="" style="border-radius: 50%; height: 60px; width: 60px;">
       {{  }} {{  }}
       <!-- <button class="menu-toggle" @click="ToggleMenu">
@@ -48,10 +48,7 @@ const router = useRouter()
 
 const is_expanded = ref(localStorage.getItem('is_expanded') === 'true')
 
-const ToggleMenu = () => {
-  is_expanded.value = !is_expanded.value
-  localStorage.setItem('is_expanded', is_expanded.value)
-}
+
 const logout=()=>{
   localStorage.removeItem('id')
   //localStorage.removeItem('')
