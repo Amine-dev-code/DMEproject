@@ -48,6 +48,9 @@ export default {
         })
         const data=await res.json()
         if(data.status=='success'){
+          localStorage.setItem('id',data.foundUser._id)
+          localStorage.setItem('role',data.foundUser.role)
+          localStorage.setItem('token',data.Token)
           if(data.foundUser.role=='doctor'){
             this.$router.push('/analytics')
           }

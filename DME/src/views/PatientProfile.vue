@@ -26,7 +26,8 @@ export default {
   methods:{
     async fetchUserInfo(){
       try{
-        const res=await fetch ('http://localhost:3000/api/patientInfo/663256774c6f6946ca1c6c03')
+        console.log(this.id)
+        const res=await fetch (`http://localhost:3000/api/patientInfo/${this.id}`)
         const data= await res.json();
         this.user=data.infos
 

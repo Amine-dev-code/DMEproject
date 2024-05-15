@@ -34,8 +34,9 @@ import moment from 'moment'
     methods: {
       async fetchAppointments(){
       try{
+        const id=localStorage.getItem('id')
         this.appointments=[];
-       const res= await fetch('http://localhost:3000/api/getAppointment/66325051e0e2a989a8ca3cf4');
+       const res= await fetch(`http://localhost:3000/api/getAppointment/${id}`);
        const data=await res.json()
        for(let app of data){
         app.visit_date=moment(app.visit_date).format('MMMM Do YYYY');
@@ -48,7 +49,8 @@ import moment from 'moment'
       },
       async checkExistingPatient(email){
         try{
-          const res= await fetch(`http://localhost:3000/api/checkExistingPatient/${email}/66325051e0e2a989a8ca3cf4`);
+          const id=localStorage.getItem('id')
+          const res= await fetch(`http://localhost:3000/api/checkExistingPatient/${email}/${id}`);
           const data=await res.json()
           console.log(data.status)
           if(data.status=='success'){

@@ -341,6 +341,7 @@ export default {
         const date= new Date(newYear,newMonth-1,newDay+1);
         console.log(this.newPerson)
         this.newPerson.patient_profile.date=date;
+        //this id will be changed for a specific doctor
         const res=await fetch ('http://localhost:3000/api/postPatient/66325051e0e2a989a8ca3cf4',{
           method:'post',
           body:JSON.stringify(this.newPerson),

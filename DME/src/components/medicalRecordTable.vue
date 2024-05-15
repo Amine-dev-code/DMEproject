@@ -47,7 +47,8 @@
       methods: {
         async fetchVisistPatient(){
         try{
-         const res= await fetch('http://localhost:3000/api/getVisitsPatient/663256774c6f6946ca1c6c03');
+         const id=localStorage.getItem('id')
+         const res= await fetch(`http://localhost:3000/api/getVisitsPatient/${id}`);
          const data=await res.json()
 
          for(let app of data){

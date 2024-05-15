@@ -115,7 +115,8 @@ export default {
     },
     async sendMedicalRecord(){
       try{
-        const res=await fetch (`http://localhost:3000/api/postVisit/${this.patientId}/66325051e0e2a989a8ca3cf4`,{
+        const id=localStorage.getItem('id')
+        const res=await fetch (`http://localhost:3000/api/postVisit/${this.patientId}/${id}`,{
           method:'post',
           body:JSON.stringify(this.medicalRecord),
           headers:{

@@ -27,6 +27,7 @@ import moment from 'moment'
 import DocumentContainer from "./DocumentContainer.vue";
 
 export default {
+    props:['user'],
     setup() {
         const isOpen = ref(false);
         return { isOpen };
@@ -57,7 +58,8 @@ export default {
         },
         async medicalRecord(){
             try{
-        const res=await fetch ('http://localhost:3000/api/clientDoctorVisits/663256774c6f6946ca1c6c03/66325051e0e2a989a8ca3cf4')
+        const id=localStorage.getItem('id')
+        const res=await fetch (`http://localhost:3000/api/clientDoctorVisits/${this.user._id}/${id}`)
         const data= await res.json();
         for(let app of data){
         app.createdAt=moment(app.createdAt).format('MMMM Do YYYY');

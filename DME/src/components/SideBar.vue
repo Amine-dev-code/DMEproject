@@ -5,7 +5,7 @@
     </div>
     <div class="menu-toggle-wrap" @click="this.$router.push('/patient-profile/1')">
       <img src="@/assets/Albert.jpeg" alt="" style="border-radius: 50%; height: 60px; width: 60px;">
-      {{ doctor.first_name }} {{ doctor.last_name }}
+      {{  }} {{  }}
       <!-- <button class="menu-toggle" @click="ToggleMenu">
         <span class="material-icons">keyboard_double_arrow_right</span>
       </button> -->
@@ -42,6 +42,9 @@
 <script setup>
 import { ref } from 'vue'
 import logoURL from '../assets/logo.png'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const is_expanded = ref(localStorage.getItem('is_expanded') === 'true')
 
@@ -50,7 +53,9 @@ const ToggleMenu = () => {
   localStorage.setItem('is_expanded', is_expanded.value)
 }
 const logout=()=>{
-  console.log('logout')//deleting item from local storage
+  localStorage.removeItem('id')
+  //localStorage.removeItem('')
+  router.push('/')
 }
 
 </script>

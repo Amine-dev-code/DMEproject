@@ -13,7 +13,7 @@
           class="table-row"
         >
           <div class="table-cell" style="height: min-content">{{ appointment.doctor.first_name }} {{ appointment.doctor.last_name }}</div>
-          <div class="table-cell">{{ appointment.doctor.speciality }}</div>
+          <div class="table-cell">{{ appointment.doctor.doctor_profile.speciality }}</div>
           <div class="table-cell">{{ appointment.visit_date }}</div>
           <div class="table-cell"><button class="deleteButton" @click.stop="cancelAppointment(appointment._id,appointment.doctor._id)">CANCEL</button></div>
       </div>
@@ -32,8 +32,9 @@
       methods: {
         async fetchAppointmentsUser(){
         try{
+          const id=localStorage.getItem('id')
           this.appointments=[];
-         const res= await fetch('http://localhost:3000/api/getAppointmentsPatient/663256774c6f6946ca1c6c03');
+         const res= await fetch(`http://localhost:3000/api/getAppointmentsPatient/${id}`);
          const data=await res.json()
          for(let app of data){
           app.visit_date=moment(app.visit_date).format('MMMM Do YYYY');

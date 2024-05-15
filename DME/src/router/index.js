@@ -13,16 +13,19 @@ import PatientHome from '@/views/patient/PatientHome.vue'
 import appointmentPatientDash from '@/views/patientRoles/appointmentsPatientDash.vue'
 import medicalRecord from '@/views/patientRoles/medicalRecord.vue'
 import profile from '../views/patient/profile.vue'
+import {isAdmin,isUser,Auth} from '../../middleware.js'
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: ClinicPage
+    component: ClinicPage,
+    
   },
   {
     path: '/#doctors',
     name: 'doctors',
-    component: ClinicPage
+    component: ClinicPage,
+    
 
   },
   {
@@ -38,7 +41,8 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: LoginPage
+    component: LoginPage,
+    
   },
   {
     path: '/dashboard',
@@ -89,7 +93,8 @@ const routes = [
   {
   path: '/patients/patient/:id',
     name: 'patient-profile',
-    component: PatientProfile
+    component: PatientProfile,
+    props:true
   },
   {
     path: '/patient-profile/:id',

@@ -8,7 +8,7 @@
         <div class="header-cell">DELETE</div>
         
       </div>
-    <router-link  :to="{name:'patient-profile',params:{id:patient._id}}" v-for="patient in patientsData" :key="patient.id" class="table-row">
+    <router-link  :to="{name:'patient-profile',params:{id:patient._id}}" v-for="patient in patientsData" :key="patient._id" class="table-row">
         <div class="table-cell">{{ patient.first_name }} {{ patient.last_name }}</div>
         <div class="table-cell">{{ patient.patient_profile.phone_number }}</div>
         <div class="table-cell">{{ patient.email }}</div>
@@ -24,7 +24,8 @@ export default {
   methods: {
     async fetchUsers() {
       try {
-        const res = await fetch('http://localhost:3000/api/getOwnPatients/66325051e0e2a989a8ca3cf4')
+        const id=localStorage.getItem('id')
+        const res = await fetch(`http://localhost:3000/api/getOwnPatients/${id}`)
         const data = await res.json()
         this.patientsData = data
       } catch (error) {
@@ -33,8 +34,9 @@ export default {
     },
     async deleteUser(id){
       try{
+        const userId=localStorage.getItem('id')
         if(confirm('are you sure you wanna delete this patient ?')){
-          const res = await fetch(`http://localhost:3000/api/deleteOwnPatient/${id}/66325051e0e2a989a8ca3cf4`,{
+          const res = await fetch(`http://localhost:3000/api/deleteOwnPatient/${id}/${userId}`,{
           method:'delete'
         })
         const data = await res.json()

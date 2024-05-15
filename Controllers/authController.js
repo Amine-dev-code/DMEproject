@@ -36,6 +36,7 @@ const postPatient=async(req,res)=>{
         const patient = new User({
             first_name: req.body.first_name,
             last_name: req.body.last_name,
+            gender:req.body.gender,
             email: req.body.email,
             password: hashedPassword,
             patient_profile: req.body.patient_profile

@@ -27,16 +27,16 @@
           <label for="date">Date</label>
           <input type="date" name="date" :min="minDate" v-model="bookAppointment.visit_date" class="date" required>
         </div>
-        <!-- <div v-if="youcan" class="showokMessage">
+        <div v-if="youcan" class="showokMessage">
           <h5>{{ this.okmessage }}</h5>
         </div>
         <div v-else>
           <h5>{{ this.nomessage }}</h5>
-        </div> -->
+        </div> 
       </div>
       <div class="btn-container">
-        <button class="book-btn" @click.prevent="validate">Book appointment</button>
-        <button class="book-btn" @click.prevent="handleDateClick">Check</button>
+        <button class="book-btn" :disabled='isDisabled'  @click.prevent="validate">Book appointment</button>
+        <button class="book-btn"  @click.prevent="handleDateClick">Check</button>
       </div>
     </form>
   </div>
@@ -59,7 +59,8 @@ export default {
         visit_date:''
       },
       selectedDoctorID:null,
-      minDate:null
+      minDate:null,
+      isDisabled:true
     }
   },
   methods: {
@@ -74,11 +75,11 @@ export default {
     },
     async handleDateClick(){
       try{
+        this.isDisabled=false;
         const checkAppointment={
           visit_date:this.bookAppointment.visit_date
         };
-        const res=await fetch (`http://localhost:3000/api/
-        /${this.selectedDoctorID}`,{
+        const res=await fetch (`http://localhost:3000/api/checkDisponibleAppointment/${this.selectedDoctorID}`,{
           method:'post',
           body:JSON.stringify(checkAppointment),
           headers:{
@@ -90,7 +91,7 @@ export default {
         if(data.status=='success'){
           this.youcan=true
           this.okmessage=data.message
-          
+          this.isDisabled=false;
         }
         else{
          this.nomessage=data.message
@@ -211,6 +212,11 @@ export default {
   border: none;
   font-size: 16px;
   margin-top: 15px;
+}
+.book-btn:disabled {
+  background-color: rgba(67, 106, 230, 0.5); /* Adjust opacity or color for disabled state */
+  cursor: not-allowed; /* Change cursor for disabled state */
+  /* Add any other styles for disabled state */
 }
 .book-btn:hover {
   background-color: rgba(67, 106, 230, 0.8);
