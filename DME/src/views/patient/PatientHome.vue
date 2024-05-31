@@ -7,32 +7,84 @@
   import WelcomeDoctor from '@/components/WelcomeDoctor.vue'
   import TotalCard from '@/components/TotalCard.vue'
   import medicalRecordTable from '@/components/medicalRecordTable.vue';
+  import DocumentContainer from '@/components/DocumentContainer.vue'
   import GraphforPatient from '@/components/GraphforPatient.vue';
-  import { ref } from 'vue'
+  import { ref,onMounted } from 'vue'
+  import { useRouter } from 'vue-router'
+
+ const router = useRouter()
 
   const isOpen = ref(false)
   const isProfile = ref(false)
   const modal = ref(null)
+  const notifications=ref([])
+  const countnum=ref(0)
+  const totalName='appointment'
+  const totalnum=ref(6)
+  
+  
 
   onClickOutside(modal, () => { isOpen.value = false })
   onClickOutside(modal, () => { isProfile.value = false })
+  const logout=()=>{
+  localStorage.removeItem('id')
+  localStorage.removeItem('token')
+  localStorage.removeItem('role')
+  router.push('/')
+}
 
-  let notifications = [
-      "notification 1 notification 1 notification 1 notification 1 notification 1 notification 1 notification 1 notification 1 notification 1",
-      "notification 2",
-      "notification 3"
-  ]
   let user = {
-    name: 'some name'
+  name:'ahmed',
   }
-  console.log(notifications.length)
+
+  const count=async()=>{
+    try{
+      const id=localStorage.getItem('id')
+      const res=await fetch (`http://localhost:3000/api/count/${id}`)
+      const data=await res.json()
+      countnum.value=data
+      console.log(countnum.value);
+    }catch(error){
+      console.log(error)
+    }
+  }
+const updateUser=async()=>{
+       
+        try{//will be changed after to $id
+          const id=localStorage.getItem('id')
+          const res=await fetch (`http://localhost:3000/api/notificationDoc/${id}`,{
+          method:'put',
+          headers:{
+          'content-type': 'application/json',
+        }
+        })
+      
+        const data=await res.json()
+        notifications.value=data
+
+        }catch(error){
+          console.log(error)
+        }
+      }
+const notify =()=>{
+  isOpen.value = !isOpen.value;
+  updateUser()
+}
+onMounted(() => {
+  count();
+  
+});
+
+
+ 
+ 
 </script>
 
 <template>
   <div class="container">
     <div class="notifications">
-      <img v-if="notifications.length > 0" src="@/assets/notified.png" alt="" @click="isOpen = true" class="notification-img">
-      <img v-else src="@/assets/no-notification.png" alt="" @click="isOpen = true" >
+      <img v-if="countnum > 0" src="@/assets/notified.png" alt="" @click="notify" class="notification-img">
+      <img v-else src="@/assets/no-notification.png" alt=""  @click="notify"  >
       <Teleport to="#modal">
         <div class="modal-bg" v-if="isOpen" >
             <div class="modal" ref="modal">
@@ -40,7 +92,7 @@
                 Notifications :
               </p>
               <div class="notification" v-for="notification in notifications" :key="notification">
-                {{ notification }}
+                <DocumentContainer :document="notification.file" class="setCont"/>
               </div>
               <button @click="isOpen = false">
                 close notifications
@@ -49,7 +101,7 @@
           </div>
       </Teleport>
     </div>
-    <img src="@/assets/Albert.jpeg" alt="" class="profile" @click="this.$router.push('/patient-profile/1')">
+    <img src="@/assets/Albert.jpeg" alt="" class="profile" @click="this.$router.push('/patient-profile')">
   </div>
   <TabsWrapper class="wrapper">
     <Tab title="home" id="home">
@@ -57,10 +109,10 @@
           <WelcomeDoctor :name="user.name" />
         <div style="display: flex; flex-direction: row; justify-content: space-between; gap: 10px;">
           <DateNTime style="width: 200px" />
-          <TotalCard class="total"/>
-          <TotalCard class="total"/>
+          <TotalCard :total-name="totalName" :total-num="totalnum" class="total"/>
+          
         </div>
-        <GraphforPatient/>
+        
       </div>
     </Tab>
     <Tab title="appointments" id="appointments">
@@ -73,7 +125,7 @@
     </Tab>
     
   </TabsWrapper>
-  <button class="log-out" @click="this.$router.push('/')">
+  <button class="log-out" @click="logout">
     log out
   </button>
 </template>
@@ -110,14 +162,7 @@
   width: 50vw;
   align-items: center;
 }
-  .notification {
-    margin-bottom: 5px;
-    padding: 10px;
-    background-color: #00cec8 ;
-    border-radius: 5px;
-    color: white;
-    width: 80% ;
-  }
+  
   .container {
     height: min-content ;
     width: 20vw;

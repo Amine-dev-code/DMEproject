@@ -9,8 +9,7 @@ const uploadNotifySchema=mongoose.Schema({
         ref:"User"
     },
     file:{
-        type:mongoose.SchemaTypes.ObjectId,
-        ref:"Visit"
+        type:[String]
     },
     receiver:{
         type:mongoose.SchemaTypes.ObjectId,

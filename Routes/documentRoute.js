@@ -9,12 +9,14 @@ const {
     upload,
     getNotification,
     findDocument,
-    deleteDocument
+    deleteDocument,
+    countNotifications
 }=require('../Controllers/documentController')
 
 
 router.post('/upload/:id', upload.array('avatar', 13),uploading );
-router.get('/notificationDoc/:patientId',getNotification)
+router.put('/notificationDoc/:patientId',getNotification)
+router.get('/count/:patientId',countNotifications)
 router.get('/document/:visitId/:docId',findDocument)
 router.get('/deletedocument/:visitId/:docId',deleteDocument)
 

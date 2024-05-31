@@ -2,7 +2,7 @@
   <div class="welcomeContainer">
     <img src="../assets/welcome.svg" alt="" />
     <div style="display: flex; flex-direction: column; color: white; font-family: sans-serif">
-      <p>Hello there Dr. {{ name }}, How are you feeling today ?</p>
+      <p>Hello there <Map></Map>Mr {{ name }}, How are you feeling today ?</p>
       <p style="align-items: center; padding-right: 10px">
         To summarize it all up for today, we have
         <span>17</span> regular appointments 

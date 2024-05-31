@@ -11,6 +11,7 @@
 import PatientProfileCard from '@/components/PatientProfileCard.vue'
 import AppointmentHistory from '@/components/AppointmentHistory.vue'
 import SideBar from '@/components/SideBar.vue';
+import moment from 'moment'
 export default {
   props:['id'],
   components: {
@@ -30,6 +31,7 @@ export default {
         const res=await fetch (`http://localhost:3000/api/patientInfo/${this.id}`)
         const data= await res.json();
         this.user=data.infos
+        this.user.patient_profile.date=moment(data.infos.patient_profile.date).format('MMMM Do YYYY');
 
       }catch(error){
         console.log(error) 

@@ -88,7 +88,8 @@
       methods:{
         async fetchpatientInfo(){
           try{
-            const res= await fetch('http://localhost:3000/api/doctorInfo/66325051e0e2a989a8ca3cf4');
+            const id=localStorage.getItem('id')
+            const res= await fetch(`http://localhost:3000/api/doctorInfo/${id}`);
             const data=await res.json()
             console.log(data)
             this.user.first_name=data.infos.first_name;
@@ -104,7 +105,8 @@
         async updateUser(){
           this.isEdit=false
           try{//will be changed after to $id
-            const res=await fetch ('http://localhost:3000/api/editDoctor/66325051e0e2a989a8ca3cf4',{
+            const id=localStorage.getItem('id')
+          const res=await fetch (`http://localhost:3000/api/editDoctor/${id}`,{
             method:'put',
             body:JSON.stringify(this.user),
             headers:{

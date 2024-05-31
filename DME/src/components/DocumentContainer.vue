@@ -1,7 +1,11 @@
 <template>
   <div class="doc-container">
     <p>Documents</p>
-    <div class="document" v-for="document in appointment.files" :key="document">
+    <div v-if="document" class="document" v-for="doc in document" :key="doc">
+      <img src="../assets/file-icon.png" alt="" />
+      <a :href="'../../../uploads/'+ doc" >{{ doc}}</a>
+    </div>
+    <div v-else class="document" v-for="document in appointment.files" :key="document">
       <img src="../assets/file-icon.png" alt="" />
       <a :href="'../../../uploads/'+ document.filename" >{{ document.filename }}</a>
     </div>
@@ -10,12 +14,12 @@
 
 <script>
 export default {
-  props: ['appointment'],
+  props: ['appointment','document'],
   data() {
     return {
       documents: []
     }
-  },
+  }
   
 }
 </script>

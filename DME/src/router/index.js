@@ -14,11 +14,24 @@ import appointmentPatientDash from '@/views/patientRoles/appointmentsPatientDash
 import medicalRecord from '@/views/patientRoles/medicalRecord.vue'
 import profile from '../views/patient/profile.vue'
 import porfiledoc from '../views/doctor/profiledoc.vue'
+import {isAdmin,isUser} from '../../middleware.js'
+ function Auth(to, from, next) {
+  let auth=window.localStorage.getItem('token');
+   // For example, check if the user has the 'admin' role in your authentication state.
+   if (auth) {
+     router.go(-1); // Proceed to the next route.
+   } 
+   else{
+      return next();
+   }
+}
+
 const routes = [
   {
     path: '/',
     name: 'home',
     component: ClinicPage,
+
     
   },
   {
@@ -42,87 +55,77 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginPage,
+   beforeEnter:Auth
     
   },
-  {
-    path: '/dashboard',
-    name: 'dashboard',
-    component: DashBoard
-  },
+  
   {
     path: '/patients',
     name: 'patients',
-    component: PatientsDash
+    component: PatientsDash,
+    beforeEnter:isAdmin
+
   },
   {
     path: '/analytics',
     name: 'analytics',
-    component: AnalyticsDash
+    component: AnalyticsDash,
+    beforeEnter:isAdmin
   },
-  {
-    path:'/patientProfile',
-    name:'patientProfile',
-    component:profile
-  }
- ,
-  {
-    path: '/patients/addpatient',
-    name: 'addpatient',
-    component: SignUp
-  },
+  
+ 
   {
     path: '/appointments/addappointment',
     name: 'addappointment',
-    component: AppointmentData
+    component: AppointmentData,
+    beforeEnter:isAdmin
   },
   {
     path: '/appointments',
     name: 'appointments',
-    component: AppointmentsDash
+    component: AppointmentsDash,
+    beforeEnter:isAdmin
   },
   {
     path: '/appointments/appointment/:id',
     name: 'appointment',
     component: AppointmentData,
-    props: true
-  },{
+    props: true,
+    beforeEnter:isAdmin
+  },
+  {
     path:'/addPatient',
     name:'addPatient',
-    component:SignUp
+    component:SignUp,
+    beforeEnter:isAdmin
   },
   {
     path: '/patients/patient/:id',
     name: 'patient-profile',
     component: PatientProfile,
-    props:true
+    props:true,
+    beforeEnter:isAdmin
   },
   {
-    path: '/patient-profile/:id',
+    path: '/patient-profile',
     name: 'patient-profile-card',
     component: profile,
     props: true,
+    beforeEnter:isUser
   },
   {
     path: '/patientHome',
     name: 'patient',
     component: PatientHome,
-   
+    beforeEnter:isUser
   },
-  {
-    path:'/patientAppointments',
-    name:'patintApps',
-    component:appointmentPatientDash
-  },
-  {
-    path:'/medicalRecords',
-    name:'medicalRecords',
-    component:medicalRecord
-  },
+  
   {
     path: '/profiledoc/:id',
     anme: 'doc-profile',
     component: porfiledoc,
-    props: true
+    props: true,
+    beforeEnter:isAdmin
   }
 ]
 const router = createRouter({

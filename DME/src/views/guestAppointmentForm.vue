@@ -27,13 +27,14 @@
           <label for="date">Date</label>
           <input type="date" name="date" :min="minDate" v-model="bookAppointment.visit_date" class="date" required>
         </div>
-        <div v-if="youcan" class="showokMessage">
+        
+      </div>
+      <div v-if="youcan" class="showokMessage">
           <h5>{{ this.okmessage }}</h5>
         </div>
         <div v-else>
           <h5>{{ this.nomessage }}</h5>
         </div> 
-      </div>
       <div class="btn-container">
         <button class="book-btn" :disabled='isDisabled'  @click.prevent="validate">Book appointment</button>
         <button class="book-btn"  @click.prevent="handleDateClick">Check</button>
@@ -75,7 +76,7 @@ export default {
     },
     async handleDateClick(){
       try{
-        this.isDisabled=false;
+        
         const checkAppointment={
           visit_date:this.bookAppointment.visit_date
         };
@@ -92,6 +93,7 @@ export default {
           this.youcan=true
           this.okmessage=data.message
           this.isDisabled=false;
+         
         }
         else{
          this.nomessage=data.message
@@ -136,6 +138,7 @@ export default {
           'content-type': 'application/json',
         }
         });
+        alert('appointment booked suuccessfully')
       this.bookAppointment.full_name='';
       this.bookAppointment.email='';
       this.bookAppointment.phone=null;

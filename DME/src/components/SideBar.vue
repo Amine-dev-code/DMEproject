@@ -51,7 +51,8 @@ const is_expanded = ref(localStorage.getItem('is_expanded') === 'true')
 
 const logout=()=>{
   localStorage.removeItem('id')
-  //localStorage.removeItem('')
+  localStorage.removeItem('token')
+  localStorage.removeItem('role')
   router.push('/')
 }
 

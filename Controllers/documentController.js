@@ -34,7 +34,7 @@ const uploading=async(req, res, next)=>{
     // req.body will hold any text fields from the form (if there were any)
     try{
     const {id}=req.params
-    
+    var originalnames=[]
   for(const file of req.files){
       const newFile = {
         filename: file.filename,
@@ -44,8 +44,9 @@ const uploading=async(req, res, next)=>{
         path: file.path,
         size: file.size
     };
-    console.log(file.originalname)
-     var visit=await Visit.findById(id);
+    originalnames.push(file.filename)
+    //console.log(file.originalname)
+    var visit=await Visit.findById(id);
     await visit.files.push(newFile);
     await visit.save();
     }
@@ -53,7 +54,7 @@ const uploading=async(req, res, next)=>{
     //console.log(req.files);
     const idoctor=visit.doctor.toHexString()
     const ipatient=visit.patient.toHexString()
-    notifyUserDoc.emit('uploadFile',idoctor,ipatient,visit._id)
+    notifyUserDoc.emit('uploadFile',idoctor,ipatient,originalnames)
     res.send('File uploaded successfully');
     }catch(error){
         res.status(500).json({
@@ -65,8 +66,19 @@ const uploading=async(req, res, next)=>{
     try{
       const {patientId}=req.params
       const uploadDoc=await Uploadnotify.find({receiver:patientId,readingStatus:false})
-      await Uploadnotify.updateMany({receiver:patientId,readingStatus:false},{$set:{readingStatus:true}})
+      await Uploadnotify.updateMany({receiver:patientId,readingStatus:false},{$set:{readingStatus:true}},{New:1})
       res.status(200).json(uploadDoc)
+    }catch(error){
+      res.status(500).json({
+        message:error.message
+      })
+    }
+  }
+  const countNotifications=async(req,res)=>{
+    try{
+      const {patientId}=req.params
+      const count = await Uploadnotify.countDocuments({ receiver: patientId, readingStatus: false });
+      res.status(200).json(count)
     }catch(error){
       res.status(500).json({
         message:error.message
@@ -126,5 +138,6 @@ const uploading=async(req, res, next)=>{
     upload,
     getNotification,
     findDocument,
-    deleteDocument
+    deleteDocument,
+    countNotifications
   }

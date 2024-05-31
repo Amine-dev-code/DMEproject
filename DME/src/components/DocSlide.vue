@@ -1,5 +1,6 @@
 <template>
   <!-- No original code provided, so I'll create a basic example -->
+  
 <div class="container" v-if="loadedData">
   <div class="side left" @click="left" :class="{ 'transition': isTransitioning }">
   
@@ -110,6 +111,8 @@ export default {
   justify-content: center;
   height: 100vh;
   width: 100vw;
+  font-family: Verdana, sans-serif;
+
 }
 .container div {
   border-radius: 5px;

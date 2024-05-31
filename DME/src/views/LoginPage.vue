@@ -20,6 +20,7 @@
         required
         v-model="credentials.password"
       />
+      <h3 class="styling">{{ error }}</h3>
       <button class="lgn-btn">Login</button>
     </form>
     <img src="../assets/login.svg" alt="" class="loginimg" />
@@ -33,7 +34,9 @@ export default {
       credentials:{
         email: '',
         password: ''
-      }
+      },
+      error:''
+
     }
   },
   methods: {
@@ -59,8 +62,12 @@ export default {
             }
           
         }
+        
       }catch(error){
        console.log(error)
+
+      this.error='invalid email or password'
+        
       }
     }
   }
@@ -133,5 +140,8 @@ export default {
 }
 input:focus {
   outline: none;
+}
+.styling{
+  color:red
 }
 </style>

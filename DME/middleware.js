@@ -9,7 +9,7 @@ export function isAdmin(to, from, next) {
       return next('/login') // Redirect to an unauthorized page or handle it as needed.
     }
     else{
-        return next('/analytics')
+        return next('/patientHome')
     }
   }
   
@@ -23,18 +23,9 @@ export function isAdmin(to, from, next) {
         return next('/login'); // Redirect to an unauthorized page or handle it as needed.
      }
      else{
-        return next('/patientHome')
+        return next('/analytics')
      }
   }
   
   
- export function Auth(to, from, next) {
-  let auth=window.localStorage.getItem('token');
-   // For example, check if the user has the 'admin' role in your authentication state.
-   if (auth) {
-     router.go(-1); // Proceed to the next route.
-   } 
-   else{
-      return next();
-   }
-}
+ 
