@@ -66,12 +66,20 @@ const uploading=async(req, res, next)=>{
     try{
       const {patientId}=req.params
       const uploadDoc=await Uploadnotify.find({receiver:patientId,readingStatus:false})
-      await Uploadnotify.updateMany({receiver:patientId,readingStatus:false},{$set:{readingStatus:true}},{New:1})
+      //await Uploadnotify.updateMany({receiver:patientId,readingStatus:false},{$set:{readingStatus:true}},{New:1})
       res.status(200).json(uploadDoc)
     }catch(error){
       res.status(500).json({
         message:error.message
       })
+    }
+  }
+  const uploadStatus=async(req,res)=>{
+    try{
+      const {patientId}=req.params
+      await Uploadnotify.updateMany({receiver:patientId,readingStatus:false},{$set:{readingStatus:true}},{New:1})
+    }catch(error){
+      console.log(error)
     }
   }
   const countNotifications=async(req,res)=>{
@@ -139,5 +147,6 @@ const uploading=async(req, res, next)=>{
     getNotification,
     findDocument,
     deleteDocument,
-    countNotifications
+    countNotifications,
+    uploadStatus
   }

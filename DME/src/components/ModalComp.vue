@@ -6,7 +6,7 @@
               <div class="diagnosis-container">
                 <div class="">
                     <div class="appointment-header">
-                        <p>
+                        <p class="age">
                             {{ appointment.age }} Years Old
                         </p>
                         <p>
@@ -114,7 +114,11 @@ import DocumentContainer from './DocumentContainer.vue';
 .appointment-header {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+
+}
+.age{
+  margin-right:20px;
 }
 .list {
     display: flex;

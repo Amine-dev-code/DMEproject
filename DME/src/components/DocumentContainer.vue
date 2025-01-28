@@ -14,12 +14,8 @@
 
 <script>
 export default {
-  props: ['appointment','document'],
-  data() {
-    return {
-      documents: []
-    }
-  }
+  props: ['document','appointment'],
+ 
   
 }
 </script>
@@ -33,17 +29,18 @@ export default {
   gap: 5px;
   border: 2px solid black;
   background-color: whitesmoke;
-  width: 31vw;
   padding: 10px 0;
+  margin-bottom:10px
 }
 .document {
   display: flex;
   flex-direction: row;
   align-items: center;
   background-color: white;
-  width: 30vw;
+
   border-radius: 5px;
   border: 2px solid grey;
+  
 }
 .document > img {
   height: 30px;

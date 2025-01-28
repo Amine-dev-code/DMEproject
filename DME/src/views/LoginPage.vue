@@ -59,6 +59,8 @@ export default {
           }
             else{
               this.$router.push('/patientHome')
+              const userId=localStorage.getItem('id');
+              this.$socket.emit('registerUser', userId);
             }
           
         }

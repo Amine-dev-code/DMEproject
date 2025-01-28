@@ -98,6 +98,7 @@
         
       };
     },
+    
     methods:{
       async fetchpatientInfo(){
         try{

@@ -56,6 +56,7 @@ export default {
   props:['patientId'],
   data() {
     return {
+      countnum:null,
       perscription: '',
       diagnosis: '',
       medicalRecord:{
@@ -68,7 +69,15 @@ export default {
       prescriptionError:''//for validation
     }
   },
+  sockets: {
+        connect() {
+            console.log('Successfully connected to the server!');
+        },
+   
+        
+    },
   mounted() {
+   
     // const dropContainer = document.getElementById('drop-container')
     // const fileInput = document.getElementById('file-input')
     // dropContainer.addEventListener(
@@ -129,7 +138,7 @@ export default {
           this.medicalRecord.rapport='';
           this.medicalRecord.prescriptions=[];
           await this.sendDocument(data.visit._id);
-          console.log('eys')
+          await this.notifyUser(this.patientId)
         }
       }catch(error){
         console.log(error.message)
@@ -150,13 +159,31 @@ for (let i = 0; i < files.length; i++) {
           method:'post',
           body:formData
         })
-
-
-        
       }catch(error){
         console.log(error)
       }
-    }
+    },
+    async count(countid) {
+  try {
+    const id = localStorage.getItem('id');
+    const res = await fetch(`http://localhost:3000/api/count/${countid}`);
+    const data = await res.json();
+    this.countnum = data; // Use this.countnum
+    console.log(this.countnum); // Use this.countnum
+  } catch (error) {
+    console.log(error);
+  }
+},
+
+      async notifyUser(id) {
+         setTimeout(async () => {
+         // Code to execute after 3000 milliseconds (3 seconds)
+         await this.count(id); // Wait for the count function to complete
+         this.$socket.emit('notifyUser', this.countnum, id); // Emit the socket event
+        }, 3000);
+      
+     
+      },
   }
 
 }

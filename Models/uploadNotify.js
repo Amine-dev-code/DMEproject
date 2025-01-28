@@ -16,7 +16,7 @@ const uploadNotifySchema=mongoose.Schema({
         ref:"User"
     },
     readingStatus:{
-        type:Boolean
+    type:Boolean
     }
 })
 
